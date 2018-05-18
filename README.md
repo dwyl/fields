@@ -2,6 +2,12 @@
 https://youtu.be/KLVq0IAzh1A
 
 
+This is "enough" for us to get started:
++ username > encrypted
++ username_hash > sha256
++ email > encrypted
++ email_hash > sha256
++ password_hash > Argon2
 
 
 
@@ -22,6 +28,11 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/fields](https://hexdocs.pm/fields).
 
+
+
+### Required Environment Variables
+
+`Fields` expects the following Environment Variables to be defined.
 
 
 
