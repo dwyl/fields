@@ -1,5 +1,5 @@
 defmodule Fields.FieldsView do
-  use Phoenix.View, root: "lib/templates"
+  use Phoenix.View, root: "lib/templates", pattern: "**/*"
   use Phoenix.HTML
   import Phoenix.HTML.Form
   import Fields.ErrorHelpers
