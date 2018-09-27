@@ -29,7 +29,11 @@ defmodule Fields do
       def render_fields(conn, action, schema, assigns) when action in [:update, :create] do
         fields = schema.__schema__(:fields) |> Enum.reject(&(&1 in [:id, :inserted_at, :updated_at]))
 
-        {_key, schema_data} = Enum.find(assigns, fn {_k, v} -> match?(v, schema) end)
+        {_key, schema_data} =
+          case action do
+            :create -> {nil, []}
+            :update -> Enum.find(assigns, fn {_k, v} -> match?(v, schema) end)
+          end
 
         action_path = path(conn, action, schema_data)
 
