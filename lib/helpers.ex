@@ -11,7 +11,8 @@ defmodule Fields.Helpers do
 
   @doc """
   Hash a string, or a value that implements the String.Chars protocol, using
-  sha256. sha256 is fast, but not as strong as Argon2, so not recommended for hashing passwords.
+  sha256. sha256 is fast, but not as strong as Argon2,
+  so it is not recommended for hashing passwords.
   """
   @spec hash(atom(), String.Chars.t()) :: String.t()
   def hash(:sha256, value) do
