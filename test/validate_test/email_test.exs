@@ -1,7 +1,8 @@
-defmodule Fields.ValidateTest do
+defmodule Fields.ValidateEmailTest do
   use ExUnit.Case
-  alias Fields.Validate
   use ExUnitProperties
+
+  alias Fields.Validate
 
   def valid_local() do
     '!#$%&\'*+-/=?^_`{|}~'

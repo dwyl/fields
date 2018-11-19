@@ -17,4 +17,18 @@ defmodule Fields.Validate do
 
     Regex.match?(regex, email) && !String.contains?(email, "..")
   end
+
+  @doc """
+  Validate the format of an postcode using a regex.
+  All existing postcodes in the UK should pass this validation;
+  some non-existent ones may too if they follow the standard UK postcode format.
+  """
+  def postcode(postcode) do
+    {:ok, regex} =
+      Regex.compile(
+        "^([A-Za-z][A-Za-z]?[0-9][A-Za-z0-9]? ?[0-9][A-Za-z]{2}|[Gg][Ii][Rr] ?0[Aa]{2})$"
+      )
+
+    Regex.match?(regex, postcode)
+  end
 end
