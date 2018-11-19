@@ -22,7 +22,8 @@ defmodule Fields.MixProject do
   defp deps do
     [
       {:argon2_elixir, "~> 1.2"},
-      {:ecto, "~> 2.2.10"}
+      {:ecto, "~> 2.2.10"},
+      {:stream_data, "~> 0.4.2", only: :test}
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
     ]
   end
