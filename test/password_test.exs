@@ -14,7 +14,7 @@ defmodule Fields.PasswordTest do
   test ".dump returns an Argon2id Hash given a password string" do
     {:ok, result} = Password.dump("password")
     assert is_binary(result)
-    assert String.starts_with?(result, "$argon2id$v=19$m=65536,t=6,p=1$")
+    assert String.starts_with?(result, "$argon2")
   end
 
   test ".dump uses Argon2id to Hash a value" do
