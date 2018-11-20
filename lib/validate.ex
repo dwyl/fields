@@ -31,4 +31,22 @@ defmodule Fields.Validate do
 
     Regex.match?(regex, postcode)
   end
+
+  @doc """
+  Validate an address.
+  Currently just validates that some input has been given.
+  """
+  def address(address) do
+    String.length(address) > 0
+  end
+
+  @doc """
+  Validates the format of a UK phone number.
+  """
+  def phone_number(phone) do
+    regex =
+      ~r/^(((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$/
+
+    Regex.match?(regex, phone)
+  end
 end
