@@ -31,4 +31,12 @@ defmodule Fields.Validate do
 
     Regex.match?(regex, postcode)
   end
+
+  @doc """
+  Validate an address.
+  Currently just validates that some input has been given.
+  """
+  def address(address) do
+    String.length(address) > 0
+  end
 end

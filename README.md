@@ -53,6 +53,8 @@ The currently existing fields are:
 - [Password](lib/password.ex)
 - [Postcode](lib/postcode.ex)
 - [PostcodeEncrypted](lib/postcode_encrypted.ex)
+- [Address](lib/address.ex)
+- [AddressEncrypted](lib/address_encryptes.ex)
 
 ## Config 
 

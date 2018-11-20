@@ -1,20 +1,20 @@
-defmodule Fields.EmailEncrypted do
+defmodule Fields.AddressEncrypted do
   @moduledoc """
-  An Ecto Type for encrypted emails.
+  An Ecto Type for encrypted addresses.
 
   ## Example
 
       schema "users" do
-        field(:email, Fields.EmailEncrypted)
+        field(:address, Fields.AddressEncrypted)
       end
   """
-  alias Fields.{EmailPlaintext, Encrypted}
+  alias Fields.{Address, Encrypted}
 
   @behaviour Ecto.Type
 
   def type, do: :binary
 
-  def cast(value), do: EmailPlaintext.cast(value)
+  def cast(value), do: Address.cast(value)
 
   def dump(value), do: Encrypted.dump(value)
 
