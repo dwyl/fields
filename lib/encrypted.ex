@@ -1,4 +1,14 @@
 defmodule Fields.Encrypted do
+  @moduledoc """
+  An Ecto Type for encrypted fields.
+  See `Fields.AES` for details on encryption/decryption.
+
+  ## Example
+
+        schema "users" do
+          field(:name, Fields.Encrypted)
+        end
+  """
   alias Fields.AES
 
   @behaviour Ecto.Type

@@ -1,4 +1,15 @@
 defmodule Fields.Password do
+  @moduledoc """
+  An Ecto Type for hashed passwords.
+  Hashed using Argon2. See `Fields.Helpers` for hashing details.
+
+  ## Example
+
+      schema "users" do
+        field(:email, Fields.EmailEncrypted)
+        field(:password, Fields.Password)
+      end
+  """
   @behaviour Ecto.Type
 
   alias Fields.Helpers

@@ -2,13 +2,7 @@
 https://youtu.be/KLVq0IAzh1A
 
 
-This is "enough" for us to get started:
-+ username > encrypted
-+ username_hash > sha256
-+ email > encrypted
-+ email_hash > sha256
-+ password_hash > Argon2
-
+A collection of commonly used fields implemented as custom Ecto types with the necessary validation, encryption, and/or hashing. 
 
 
 ## Installation
@@ -19,7 +13,7 @@ by adding `fields` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:fields, "~> 0.1.0"}
+    {:fields, "~> 0.1.1"}
   ]
 end
 ```
@@ -28,13 +22,58 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/fields](https://hexdocs.pm/fields).
 
+## Usage
 
+Each field can be used in place of an Ecto type when defining your schema.
 
-### Required Environment Variables
+```
+schema "users" do
+  field(:email, Fields.EmailEncrypted)
+  field(:address, Fields.Address)
+  field(:postcode, Fields.Postcode)
+  field(:password, Fields.Password)
 
-`Fields` expects the following Environment Variables to be defined.
+  timestamps()
+end
+```
 
+Each field is defined as an [Ecto type](https://hexdocs.pm/ecto/Ecto.Type.html), with the relevant callbacks. So when you call `Ecto.Changeset.cast/4` in your schema's changeset function, the field will be correctly validated. For example, calling cast on the `:email` field will ensure it is a valid format for an email address.
 
+When you load one of the fields into your database, the corresponding `dump/1` callback will be called, ensuring it is inserted into the database in the correct format. In the case of `Fields.EmailEncrypted`, it will encrypt the email address using a give encryption key (set in your config file) before inserting it.
+
+Likewise, when you load a field from the database, the `load/1` callback will be called, giving you the data in the format you need. `Fields.EmailEncrypted` will be decrypted back to plaintext. 
+
+The currently existing fields are:
+
+- [Encrypted](lib/encrypted.ex)
+- [Hash](lib/hash.ex)
+- [EmailPlaintext](lib/email_plaintext.ex)
+- [EmailHash](lib/email_hash.ex)
+- [EmailEncrypted](lib/email_encrypted.ex)
+- [Password](lib/password.ex)
+
+## Config 
+
+If you use any of the `Encrypted` fields, you will need to set a list of one or more encryption keys in your config:
+
+``` elixir
+config :fields, Fields.AES,
+  keys:
+    System.get_env("ENCRYPTION_KEYS")
+    # remove single-quotes around key list in .env
+    |> String.replace("'", "")
+    # split the CSV list of keys
+    |> String.split(",")
+    # decode the key.
+    |> Enum.map(fn key -> :base64.decode(key) end)
+```
+
+If you use any of the `Hash` fields, you will need to set a secret key base:
+
+``` elixir
+config :fields, Fields,
+  secret_key_base: "rVOUu+QTva+VlRJJI3wSYONRoffFQH167DfiZcegvYY/PEasjPLKIDz7wPTvTPIP"
+```
 
 ## Background / Further Reading
 

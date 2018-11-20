@@ -1,4 +1,13 @@
 defmodule Fields.EmailEncrypted do
+  @moduledoc """
+  An Ecto Type for encrypted emails.
+
+  ## Example
+
+      schema "users" do
+        field(:email, Fields.EmailEncrypted)
+      end
+  """
   alias Fields.{EmailPlaintext, Encrypted, Validate}
 
   @behaviour Ecto.Type

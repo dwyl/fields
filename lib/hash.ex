@@ -1,4 +1,14 @@
 defmodule Fields.Hash do
+  @moduledoc """
+  An Ecto Type for hashed fields.
+  Hashed using sha256. See `Fields.Helpers` for hashing details.
+
+  ## Example
+
+        schema "messages" do
+          field(:digest, Fields.Hash)
+        end
+  """
   @behaviour Ecto.Type
 
   alias Fields.Helpers
