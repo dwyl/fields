@@ -13,7 +13,7 @@ by adding `fields` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:fields, "~> 0.1.1"}
+    {:fields, "~> 0.1.2"}
   ]
 end
 ```
@@ -51,6 +51,8 @@ The currently existing fields are:
 - [EmailHash](lib/email_hash.ex)
 - [EmailEncrypted](lib/email_encrypted.ex)
 - [Password](lib/password.ex)
+- [Postcode](lib/postcode.ex)
+- [PostcodeEncrypted](lib/postcode_encrypted.ex)
 
 ## Config 
 

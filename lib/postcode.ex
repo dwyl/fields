@@ -1,4 +1,14 @@
 defmodule Fields.Postcode do
+  @moduledoc """
+  An Ecto Type for plaintext postcodes.
+  Use for publicly available postcodes. For personal data, use `Fields.PostcodeEncrypted` instead.
+
+  ## Example
+
+      schema "retailers" do
+        field(:postcode, Fields.Postcode)
+      end
+  """
   alias Fields.Validate
 
   @behaviour Ecto.Type

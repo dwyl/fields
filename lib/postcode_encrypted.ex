@@ -1,4 +1,15 @@
 defmodule Fields.PostcodeEncrypted do
+  @moduledoc """
+  An Ecto Type for encrypted postcodes.
+  See `Fields.AES` for details on encryption/decryption.
+
+  ## Example
+
+      schema "users" do
+        field(:email, Fields.EmailEncrypted)
+        field(:postcode, Fields.PostcodeEncrypted)
+      end
+  """
   alias Fields.{Postcode, Encrypted, Validate}
 
   @behaviour Ecto.Type
