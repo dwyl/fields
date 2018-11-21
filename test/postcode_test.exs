@@ -19,8 +19,8 @@ defmodule Fields.PostcodeTest do
     end
 
     test "Postcode.cast validates postcode" do
-      assert {:error, [postcode: :invalid]} == Postcode.cast("invalid_postcode")
-      assert {:error, [postcode: :invalid]} == PostcodeEncrypted.cast("E2 777")
+      assert :error == Postcode.cast("invalid_postcode")
+      assert :error == PostcodeEncrypted.cast("E2 777")
     end
   end
 

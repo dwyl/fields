@@ -19,7 +19,7 @@ defmodule Fields.Address do
   def cast(value) do
     case Validate.address(value) do
       true -> {:ok, to_string(value)}
-      false -> {:error, address: :invalid}
+      false -> :error
     end
   end
 

@@ -18,7 +18,7 @@ defmodule Fields.Postcode do
   def cast(value) do
     case Validate.postcode(value) do
       true -> {:ok, to_string(value)}
-      false -> {:error, postcode: :invalid}
+      false -> :error
     end
   end
 

@@ -24,9 +24,9 @@ defmodule Fields.EmailTest do
     end
 
     test "Email.cast validates email" do
-      assert {:error, [email: :invalid]} == EmailPlaintext.cast("invalid_email")
-      assert {:error, [email: :invalid]} == EmailEncrypted.cast("invalid_email")
-      assert {:error, [email: :invalid]} == EmailHash.cast("invalid_email")
+      assert :error == EmailPlaintext.cast("invalid_email")
+      assert :error == EmailEncrypted.cast("invalid_email")
+      assert :error == EmailHash.cast("invalid_email")
     end
   end
 

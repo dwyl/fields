@@ -10,7 +10,7 @@ defmodule Fields.PostcodeEncrypted do
         field(:postcode, Fields.PostcodeEncrypted)
       end
   """
-  alias Fields.{Postcode, Encrypted, Validate}
+  alias Fields.{Postcode, Encrypted}
 
   @behaviour Ecto.Type
 

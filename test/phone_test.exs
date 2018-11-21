@@ -21,10 +21,10 @@ defmodule Fields.PhoneNumberTest do
     end
 
     test "PhoneNumber.cast validates PhoneNumber" do
-      assert {:error, [phone_number: :invalid]} == PhoneNumber.cast("012345")
-      assert {:error, [phone_number: :invalid]} == PhoneNumber.cast("bad_number")
-      assert {:error, [phone_number: :invalid]} == PhoneNumberEncrypted.cast("012345")
-      assert {:error, [phone_number: :invalid]} == PhoneNumberEncrypted.cast("bad_number")
+      assert :error == PhoneNumber.cast("012345")
+      assert :error == PhoneNumberEncrypted.cast("012345")
+      assert :error == PhoneNumber.cast("bad_number")
+      assert :error == PhoneNumberEncrypted.cast("bad_number")
     end
   end
 
