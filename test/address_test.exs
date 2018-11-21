@@ -19,8 +19,8 @@ defmodule Fields.AddressTest do
     end
 
     test "Address.cast validates Address" do
-      assert {:error, [address: :invalid]} == Address.cast("")
-      assert {:error, [address: :invalid]} == AddressEncrypted.cast("")
+      assert :error == Address.cast("")
+      assert :error == AddressEncrypted.cast("")
     end
   end
 
