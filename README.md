@@ -43,6 +43,8 @@ When you load one of the fields into your database, the corresponding `dump/1` c
 
 Likewise, when you load a field from the database, the `load/1` callback will be called, giving you the data in the format you need. `Fields.EmailEncrypted` will be decrypted back to plaintext. 
 
+Each Field optionally defines an `input_type/0` function. This will return an atom representing the `Phoenix.HTML.Form` input type to use for the Field. For example, `Fields.DescriptionPlaintextUnlimited.input_type` returns `:textarea`.
+
 The currently existing fields are:
 
 - [Encrypted](lib/encrypted.ex)
@@ -57,6 +59,7 @@ The currently existing fields are:
 - [AddressEncrypted](lib/address_encrypted.ex)
 - [PhoneNumber](lib/phone_number.ex)
 - [PhoneNumberEncrypted](lib/phone_number_encrypted.ex)
+- [DescriptionPlaintextUnlimited](lib/description_plaintext_unlimited.ex)
 
 ## Config 
 
