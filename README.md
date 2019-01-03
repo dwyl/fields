@@ -2,7 +2,7 @@
 https://youtu.be/KLVq0IAzh1A
 
 
-A collection of commonly used fields implemented as custom Ecto types with the necessary validation, encryption, and/or hashing. 
+A collection of commonly used fields implemented as custom Ecto types with the necessary validation, encryption, and/or hashing.
 
 
 ## Installation
@@ -41,27 +41,38 @@ Each field is defined as an [Ecto type](https://hexdocs.pm/ecto/Ecto.Type.html),
 
 When you load one of the fields into your database, the corresponding `dump/1` callback will be called, ensuring it is inserted into the database in the correct format. In the case of `Fields.EmailEncrypted`, it will encrypt the email address using a give encryption key (set in your config file) before inserting it.
 
-Likewise, when you load a field from the database, the `load/1` callback will be called, giving you the data in the format you need. `Fields.EmailEncrypted` will be decrypted back to plaintext. 
+Likewise, when you load a field from the database, the `load/1` callback will be called, giving you the data in the format you need. `Fields.EmailEncrypted` will be decrypted back to plaintext.
 
 Each Field optionally defines an `input_type/0` function. This will return an atom representing the `Phoenix.HTML.Form` input type to use for the Field. For example, `Fields.DescriptionPlaintextUnlimited.input_type` returns `:textarea`.
 
+The fields `DescriptionPlaintextUnlimited` and `HtmlBody` use html_sanitize_ex
+(https://github.com/rrrene/html_sanitize_ex) to remove scripts and help keep your
+project safe. `HtmlBody` is able to display basic html elements whilst
+`DescriptionPlaintextUnlimited` displays text. Remember to use `raw` when rendering
+the content of your `DescriptionPlaintextUnlimited` and `HtmlBody` fields so that
+symbols such as & (ampersand) and Html are rendered correctly. E.g.
+`<p><%= raw @product.description %></p>` 
+
 The currently existing fields are:
 
+- [Address](lib/address.ex)
+- [AddressEncrypted](lib/address_encrypted.ex)
+- [DescriptionPlaintextUnlimited](lib/description_plaintext_unlimited.ex)
 - [Encrypted](lib/encrypted.ex)
-- [Hash](lib/hash.ex)
 - [EmailPlaintext](lib/email_plaintext.ex)
 - [EmailHash](lib/email_hash.ex)
 - [EmailEncrypted](lib/email_encrypted.ex)
+- [Hash](lib/hash.ex)
+- [HtmlBody](lib/html-body.ex)
 - [Password](lib/password.ex)
-- [Postcode](lib/postcode.ex)
-- [PostcodeEncrypted](lib/postcode_encrypted.ex)
-- [Address](lib/address.ex)
-- [AddressEncrypted](lib/address_encrypted.ex)
 - [PhoneNumber](lib/phone_number.ex)
 - [PhoneNumberEncrypted](lib/phone_number_encrypted.ex)
-- [DescriptionPlaintextUnlimited](lib/description_plaintext_unlimited.ex)
+- [Postcode](lib/postcode.ex)
+- [PostcodeEncrypted](lib/postcode_encrypted.ex)
+- [Url](lib/url.ex)
 
-## Config 
+
+## Config
 
 If you use any of the `Encrypted` fields, you will need to set a list of one or more encryption keys in your config:
 
