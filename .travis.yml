@@ -1,0 +1,12 @@
+language: elixir
+elixir:
+  - 1.8
+env:
+  - MIX_ENV=test
+script:
+  - source .env_sample
+  - mix test
+cache:
+  directories:
+    - _build
+    - deps
