@@ -33,7 +33,7 @@ if Mix.env() == :test, do: import_config("#{Mix.env()}.exs")
 config :fields, Fields.AES,
   # get the ENCRYPTION_KEYS env variable
   keys:
-    System.get_env("ENCRYPTION_KEYS")
+    Map.fetch!(System.get_env(), "ENCRYPTION_KEYS")
     # remove single-quotes around key list in .env
     |> String.replace("'", "")
     # split the CSV list of keys

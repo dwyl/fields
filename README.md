@@ -1,8 +1,27 @@
-# fields
-https://youtu.be/KLVq0IAzh1A
+<div align="center">
+
+# Fields
+
+A collection of commonly used fields implemented as custom Ecto types 
+with the necessary validation, encryption, and/or hashing.
+
+[![Build Status](https://img.shields.io/travis/dwyl/fields/master.svg?style=flat-square)](https://travis-ci.org/dwyl/fields)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/fields/issues)
+[![HitCount](http://hits.dwyl.io/dwyl/fields.svg)](http://hits.dwyl.io/dwyl/fields)
+<!-- uncomment when service is working ... [![Inline docs](http://inch-ci.org/github/dwyl/fields.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/fields) 
+[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/fields/master.svg?style=flat-square)](http://codecov.io/github/dwyl/fields?branch=master)
+-->
+
+  <a href="https://youtu.be/8UQK-UcRezE"
+  alt="Try the Demo on Heroku!">
+    <img src="https://user-images.githubusercontent.com/194400/57781239-af4a0280-7721-11e9-8bf0-42bee626f58a.png"
+    alt="Van Gogh Fields of Wheat!">
+  </a>
+
+</div>
 
 
-A collection of commonly used fields implemented as custom Ecto types with the necessary validation, encryption, and/or hashing.
+
 
 
 ## Installation
