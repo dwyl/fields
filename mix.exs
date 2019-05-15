@@ -26,6 +26,7 @@ defmodule Fields.MixProject do
       {:html_sanitize_ex, "~> 1.3"},
       {:stream_data, "~> 0.4.2", only: :test}
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
+      
     ]
   end
 end
