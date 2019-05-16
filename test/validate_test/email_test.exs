@@ -15,7 +15,7 @@ defmodule Fields.ValidateEmailTest do
     StreamData.string(:alphanumeric, min_length: 1, max_length: 63)
   end
 
-  test "local part of email containing only numbers is valid"  do
+  test "local part of email containing only numbers is valid issue #39"  do
     email = "0123456@emample.com"
     assert Validate.email(email)
   end
