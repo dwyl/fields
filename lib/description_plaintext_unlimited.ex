@@ -14,7 +14,8 @@ defmodule Fields.DescriptionPlaintextUnlimited do
   def type, do: :string
 
   def cast(value) do
-    {:ok, to_string(value)}
+    value = value |> to_string() |> String.trim()
+    {:ok, value}
   end
 
   def dump(value) do
