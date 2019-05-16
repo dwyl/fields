@@ -17,8 +17,9 @@ defmodule Fields.PhoneNumber do
   def type, do: :string
 
   def cast(value) do
+    value = value |> to_string() |> String.trim()
     case Validate.phone_number(value) do
-      true -> {:ok, to_string(value)}
+      true -> {:ok, value}
       false -> :error
     end
   end

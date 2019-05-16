@@ -15,6 +15,7 @@ defmodule Fields.AddressTest do
   describe "cast" do
     test "Address.cast accepts a string" do
       assert {:ok, "123 Test St"} == Address.cast("123 Test St")
+      assert {:ok, "123 Test St"} == Address.cast("    123 Test St    ")
       assert {:ok, "123 Test St"} == AddressEncrypted.cast("123 Test St")
     end
 
