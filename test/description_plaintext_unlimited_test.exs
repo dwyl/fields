@@ -16,6 +16,10 @@ defmodule Fields.DescriptionPlaintextUnlimitedTest do
     test "Description does NOT strip whitespace" do
       assert {:ok, " testing  "} == Description.cast(" testing  ")
     end
+
+    test "description is cast to_string" do
+      assert {:ok, "123"} == Description.cast(123)
+    end
   end
 
   describe "dump" do
