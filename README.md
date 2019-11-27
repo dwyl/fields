@@ -5,7 +5,10 @@
 A collection of commonly used fields implemented as custom Ecto types 
 with the validation, sanitising and encryption/hashing. <br />
 <!--
-Ship your Phoenix App _much_ faster by using 
+TODO: update intro copy once we ship better docs!
+Ship your Phoenix App _much_ faster by using well-documented fields
+with built-in validation, testing, sanitising and encryption.
+See below for examples!
 -->
 
 
@@ -62,20 +65,44 @@ schema "users" do
 end
 ```
 
-Each field is defined as an [Ecto type](https://hexdocs.pm/ecto/Ecto.Type.html), with the relevant callbacks. So when you call `Ecto.Changeset.cast/4` in your schema's changeset function, the field will be correctly validated. For example, calling cast on the `:email` field will ensure it is a valid format for an email address.
+Each field is defined as an 
+[Ecto type](https://hexdocs.pm/ecto/Ecto.Type.html), 
+with the relevant callbacks. 
+So when you call `Ecto.Changeset.cast/4` 
+in your schema's changeset function, 
+the field will be correctly validated. 
+For example, calling cast on the `:email` field 
+will ensure it is a valid format for an email address.
 
-When you load one of the fields into your database, the corresponding `dump/1` callback will be called, ensuring it is inserted into the database in the correct format. In the case of `Fields.EmailEncrypted`, it will encrypt the email address using a give encryption key (set in your config file) before inserting it.
+When you load one of the fields into your database, 
+the corresponding `dump/1` callback will be called, 
+ensuring it is inserted into the database in the correct format. 
+In the case of `Fields.EmailEncrypted`, 
+it will encrypt the email address 
+using a given encryption key 
+(set in your config file) before inserting it.
 
-Likewise, when you load a field from the database, the `load/1` callback will be called, giving you the data in the format you need. `Fields.EmailEncrypted` will be decrypted back to plaintext.
+Likewise, when you load a field from the database, 
+the `load/1` callback will be called, 
+giving you the data in the format you need. 
+`Fields.EmailEncrypted` will be decrypted back to plaintext.
 
-Each Field optionally defines an `input_type/0` function. This will return an atom representing the `Phoenix.HTML.Form` input type to use for the Field. For example, `Fields.DescriptionPlaintextUnlimited.input_type` returns `:textarea`.
+Each Field optionally defines an `input_type/0` function. 
+This will return an atom 
+representing the `Phoenix.HTML.Form` input type to use for the Field. 
+For example: `Fields.DescriptionPlaintextUnlimited.input_type` returns `:textarea`.
 
-The fields `DescriptionPlaintextUnlimited` and `HtmlBody` use html_sanitize_ex
-(https://github.com/rrrene/html_sanitize_ex) to remove scripts and help keep your
-project safe. `HtmlBody` is able to display basic html elements whilst
-`DescriptionPlaintextUnlimited` displays text. Remember to use `raw` when rendering
-the content of your `DescriptionPlaintextUnlimited` and `HtmlBody` fields so that
-symbols such as & (ampersand) and Html are rendered correctly. E.g.
+The fields `DescriptionPlaintextUnlimited` 
+and `HtmlBody` uses 
+[`html_sanitize_ex`](https://github.com/rrrene/html_sanitize_ex) 
+to remove scripts and help keep your project safe. 
+`HtmlBody` is able to display basic html elements 
+whilst `DescriptionPlaintextUnlimited` displays text. 
+Remember to use `raw` when rendering
+the content of your `DescriptionPlaintextUnlimited` 
+and `HtmlBody` fields 
+so that symbols such as & (ampersand) and Html are rendered correctly. 
+E.g:
 `<p><%= raw @product.description %></p>` 
 
 The currently existing fields are:
@@ -99,7 +126,9 @@ The currently existing fields are:
 
 ## Config
 
-If you use any of the `Encrypted` fields, you will need to set a list of one or more encryption keys in your config:
+If you use any of the `Encrypted` fields, 
+you will need to set a list of 
+one or more encryption keys in your config:
 
 ``` elixir
 config :fields, Fields.AES,
