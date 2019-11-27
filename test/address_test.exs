@@ -38,8 +38,15 @@ defmodule Fields.AddressTest do
     end
   end
 
-  describe "load" do
-    test "AddressEncrypted.load decrypts a value" do
+  describe "AddressEncrypted.load/1" do
+    test "AddressEncrypted.load/1 decrypts a value" do
+      {:ok, ciphertext} = AddressEncrypted.dump("123 Test St")
+      assert {:ok, "123 Test St"} == AddressEncrypted.load(ciphertext)
+    end
+  end
+
+  describe "load/2" do
+    test "AddressEncrypted.load/2 decrypts a value" do
       {:ok, ciphertext} = AddressEncrypted.dump("123 Test St")
       keys = Application.get_env(:fields, Fields.AES)[:keys]
       key_id = Enum.count(keys) - 1
@@ -50,4 +57,6 @@ defmodule Fields.AddressTest do
       assert {:ok, "123 Test St"} == Address.load("123 Test St")
     end
   end
+
+
 end
