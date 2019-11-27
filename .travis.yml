@@ -1,13 +1,15 @@
 language: elixir
 elixir:
-  - 1.8
+  - 1.9
 env:
   global:
     - MIX_ENV=test
     - ENCRYPTION_KEYS="nMdayQpR0aoasLaq1g94FLba+A+wB44JLko47sVQXMg=,L+ZVX8iheoqgqb22mUpATmMDsvVGtafoAeb0KN5uWf0="
     - SECRET_KEY_BASE="2PzB7PPnpuLsbWmWtXpGyI+kfSQSQ1zUW2Atz/+8PdZuSEJzHgzGnJWV35nTKRwx"
 script:
-  - mix test
+  - mix coveralls.json
+after_success:
+  - bash <(curl -s https://codecov.io/bash) # send coverage report
 cache:
   directories:
     - _build
