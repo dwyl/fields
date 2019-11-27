@@ -3,7 +3,12 @@
 # Fields
 
 A collection of commonly used fields implemented as custom Ecto types 
-with the necessary validation, encryption, and/or hashing.
+with the validation, sanitising and encryption/hashing. <br />
+<!--
+Ship your Phoenix App _much_ faster by using 
+-->
+
+
 
 [![Build Status](https://img.shields.io/travis/dwyl/fields/master.svg?style=flat-square)](https://travis-ci.org/dwyl/fields)
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/fields/master.svg?style=flat-square)](http://codecov.io/github/dwyl/fields?branch=master)
@@ -27,19 +32,19 @@ with the necessary validation, encryption, and/or hashing.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `fields` to your list of dependencies in `mix.exs`:
+Add the `fields` package to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:fields, "~> 0.1.2"}
+    {:fields, "~> 1.0.0"}
   ]
 end
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
+and published on [HexDocs](https://hexdocs.pm). 
+Once published, the docs can
 be found at [https://hexdocs.pm/fields](https://hexdocs.pm/fields).
 
 ## Usage
