@@ -31,7 +31,7 @@ defmodule Fields.MixProject do
   defp deps do
     [
       {:argon2_elixir, "~> 1.2"},    # password hashing
-      {:ecto, "~> 2.2.10"},          # ecto types
+      {:ecto, "~> 3.0"},             # ecto types
       {:html_sanitize_ex, "~> 1.3"}, # strip noise from html field
 
       # stream_data for property based testing
