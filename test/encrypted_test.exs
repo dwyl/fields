@@ -17,6 +17,16 @@ defmodule Fields.EncryptedTest do
     assert String.length(ciphertext) != 0
   end
 
+  test ".dump with google token" do
+    token = "ya29.Il-yB-eegeLyTvygvFAtX-gJhq-LIfR1UskKVsczYPKtOeMB3l0P4ipcYNs0IrI2S5f1jZXPzgRSIYFhdsSx6ws6FYlNySzxeixEDbnTTtcrBg2a9fQJHzvWM6i9DWp2HA"
+    {:ok, ciphertext} = Encrypted.dump(token)
+    keys = Application.get_env(:fields, Fields.AES)[:keys]
+    key_id = Enum.count(keys) - 1
+    {:ok, decrypted} = Encrypted.load(ciphertext, key_id )
+    assert token == decrypted
+    assert String.length(ciphertext) != 0
+  end
+
   test ".load decrypts a value" do
     {:ok, ciphertext} = Encrypted.dump("hello")
     keys = Application.get_env(:fields, Fields.AES)[:keys]
