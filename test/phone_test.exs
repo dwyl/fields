@@ -42,7 +42,13 @@ defmodule Fields.PhoneNumberTest do
   end
 
   describe "load" do
-    test "PhoneNumberEncrypted.load decrypts a value" do
+
+    test "PhoneNumberEncrypted.load/1 decrypts a value" do
+      {:ok, ciphertext} = PhoneNumberEncrypted.dump("01234567890")
+      assert {:ok, "01234567890"} == PhoneNumberEncrypted.load(ciphertext)
+    end
+
+    test "PhoneNumberEncrypted.load/2 decrypts a value" do
       {:ok, ciphertext} = PhoneNumberEncrypted.dump("01234567890")
       keys = Application.get_env(:fields, Fields.AES)[:keys]
       key_id = Enum.count(keys) - 1

@@ -3,42 +3,48 @@
 # Fields
 
 A collection of commonly used fields implemented as custom Ecto types 
-with the necessary validation, encryption, and/or hashing.
+with the validation, sanitising and encryption/hashing. <br />
+<!--
+TODO: update intro copy once we ship better docs!
+Ship your Phoenix App _much_ faster by using well-documented fields
+with built-in validation, testing, sanitising and encryption.
+See below for examples!
+-->
+
 
 [![Build Status](https://img.shields.io/travis/dwyl/fields/master.svg?style=flat-square)](https://travis-ci.org/dwyl/fields)
+[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/fields/master.svg?style=flat-square)](http://codecov.io/github/dwyl/fields?branch=master)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/fields/issues)
 [![HitCount](http://hits.dwyl.io/dwyl/fields.svg)](http://hits.dwyl.io/dwyl/fields)
 <!-- uncomment when service is working ... [![Inline docs](http://inch-ci.org/github/dwyl/fields.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/fields) 
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/fields/master.svg?style=flat-square)](http://codecov.io/github/dwyl/fields?branch=master)
--->
 
   <a href="https://youtu.be/8UQK-UcRezE"
   alt="Try the Demo on Heroku!">
     <img src="https://user-images.githubusercontent.com/194400/57781239-af4a0280-7721-11e9-8bf0-42bee626f58a.png"
     alt="Van Gogh Fields of Wheat!">
   </a>
+-->
 
 </div>
 
 
 
-
-
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `fields` to your list of dependencies in `mix.exs`:
+Add the `fields` package to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:fields, "~> 0.1.2"}
+    {:fields, "~> 1.0.0"}
   ]
 end
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
+and published on [HexDocs](https://hexdocs.pm). 
+Once published, the docs can
 be found at [https://hexdocs.pm/fields](https://hexdocs.pm/fields).
 
 ## Usage
@@ -56,20 +62,44 @@ schema "users" do
 end
 ```
 
-Each field is defined as an [Ecto type](https://hexdocs.pm/ecto/Ecto.Type.html), with the relevant callbacks. So when you call `Ecto.Changeset.cast/4` in your schema's changeset function, the field will be correctly validated. For example, calling cast on the `:email` field will ensure it is a valid format for an email address.
+Each field is defined as an 
+[Ecto type](https://hexdocs.pm/ecto/Ecto.Type.html), 
+with the relevant callbacks. 
+So when you call `Ecto.Changeset.cast/4` 
+in your schema's changeset function, 
+the field will be correctly validated. 
+For example, calling cast on the `:email` field 
+will ensure it is a valid format for an email address.
 
-When you load one of the fields into your database, the corresponding `dump/1` callback will be called, ensuring it is inserted into the database in the correct format. In the case of `Fields.EmailEncrypted`, it will encrypt the email address using a give encryption key (set in your config file) before inserting it.
+When you load one of the fields into your database, 
+the corresponding `dump/1` callback will be called, 
+ensuring it is inserted into the database in the correct format. 
+In the case of `Fields.EmailEncrypted`, 
+it will encrypt the email address 
+using a given encryption key 
+(set in your config file) before inserting it.
 
-Likewise, when you load a field from the database, the `load/1` callback will be called, giving you the data in the format you need. `Fields.EmailEncrypted` will be decrypted back to plaintext.
+Likewise, when you load a field from the database, 
+the `load/1` callback will be called, 
+giving you the data in the format you need. 
+`Fields.EmailEncrypted` will be decrypted back to plaintext.
 
-Each Field optionally defines an `input_type/0` function. This will return an atom representing the `Phoenix.HTML.Form` input type to use for the Field. For example, `Fields.DescriptionPlaintextUnlimited.input_type` returns `:textarea`.
+Each Field optionally defines an `input_type/0` function. 
+This will return an atom 
+representing the `Phoenix.HTML.Form` input type to use for the Field. 
+For example: `Fields.DescriptionPlaintextUnlimited.input_type` returns `:textarea`.
 
-The fields `DescriptionPlaintextUnlimited` and `HtmlBody` use html_sanitize_ex
-(https://github.com/rrrene/html_sanitize_ex) to remove scripts and help keep your
-project safe. `HtmlBody` is able to display basic html elements whilst
-`DescriptionPlaintextUnlimited` displays text. Remember to use `raw` when rendering
-the content of your `DescriptionPlaintextUnlimited` and `HtmlBody` fields so that
-symbols such as & (ampersand) and Html are rendered correctly. E.g.
+The fields `DescriptionPlaintextUnlimited` 
+and `HtmlBody` uses 
+[`html_sanitize_ex`](https://github.com/rrrene/html_sanitize_ex) 
+to remove scripts and help keep your project safe. 
+`HtmlBody` is able to display basic html elements 
+whilst `DescriptionPlaintextUnlimited` displays text. 
+Remember to use `raw` when rendering
+the content of your `DescriptionPlaintextUnlimited` 
+and `HtmlBody` fields 
+so that symbols such as & (ampersand) and Html are rendered correctly. 
+E.g:
 `<p><%= raw @product.description %></p>` 
 
 The currently existing fields are:
@@ -93,7 +123,9 @@ The currently existing fields are:
 
 ## Config
 
-If you use any of the `Encrypted` fields, you will need to set a list of one or more encryption keys in your config:
+If you use any of the `Encrypted` fields, 
+you will need to set a list of 
+one or more encryption keys in your config:
 
 ``` elixir
 config :fields, Fields.AES,

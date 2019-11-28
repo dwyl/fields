@@ -52,7 +52,12 @@ defmodule Fields.EmailTest do
   end
 
   describe "load" do
-    test "EmailEncrypted.load decrypts a value" do
+    test "EmailEncrypted.load/1 decrypts a value" do
+      {:ok, ciphertext} = EmailEncrypted.dump("test@test.com")
+      assert {:ok, "test@test.com"} == EmailEncrypted.load(ciphertext)
+    end
+
+    test "EmailEncrypted.load/2 decrypts a value" do
       {:ok, ciphertext} = EmailEncrypted.dump("test@test.com")
       keys = Application.get_env(:fields, Fields.AES)[:keys]
       key_id = Enum.count(keys) - 1
