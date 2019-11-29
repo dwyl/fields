@@ -9,6 +9,7 @@ defmodule Fields.MixProject do
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      package: package(),
       
       # coverage
       test_coverage: [tool: ExCoveralls],
