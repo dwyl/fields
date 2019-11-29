@@ -4,7 +4,7 @@ defmodule Fields.MixProject do
   def project do
     [
       app: :fields,
-      version: "1.0.0",
+      version: "0.0.1",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -37,7 +37,10 @@ defmodule Fields.MixProject do
       # stream_data for property based testing
       {:stream_data, "~> 0.4.3", only: :test},
       # tracking test coverage
-      {:excoveralls, "~> 0.12.1", only: [:test, :dev]}
+      {:excoveralls, "~> 0.12.1", only: [:test, :dev]},
+
+      # documentation
+      {:ex_doc, "~> 0.21.2", only: :dev},
     ]
   end
 end
