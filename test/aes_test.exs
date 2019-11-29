@@ -9,7 +9,7 @@ defmodule Fields.AESTest do
   end
 
   test ".encrypt can encrypt a number" do
-    assert is_binary(AES.encrypt(123, 1))
+    assert is_binary(AES.encrypt(123))
   end
 
   test ".encrypt includes the random IV in the value" do

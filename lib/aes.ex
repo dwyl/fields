@@ -20,18 +20,19 @@ defmodule Fields.AES do
     using `to_string` before encryption.
   - `key_id`: the index of the AES encryption key used to encrypt the ciphertext
   ## Examples
-      iex> Fields.AES.encrypt("tea", 1) != Fields.AES.encrypt("tea", 1)
+      iex> Fields.AES.encrypt("tea") != Fields.AES.encrypt("tea")
       true
-      iex> ciphertext = Fields.AES.encrypt(123, 1)
+      iex> ciphertext = Fields.AES.encrypt(123)
       iex> is_binary(ciphertext)
       true
   """
 
-  @spec encrypt(any, number) :: {String.t(), number}
-  def encrypt(plaintext, key_id \\ get_key_id()) do
+  @spec encrypt(any) :: String.t()
+  def encrypt(plaintext) do
     # create random Initialisation Vector
     iv = :crypto.strong_rand_bytes(16)
     # get *specific* key (by id) from list of keys.
+    key_id = get_key_id()
     key = get_key(key_id)
     {ciphertext, tag} = :crypto.block_encrypt(:aes_gcm, key, iv, {@aad, to_string(plaintext), 16})
     key_id_str = String.pad_leading(to_string(key_id), 4, "0") # 1 >> "0001"
