@@ -46,24 +46,17 @@ defmodule Fields.AES do
     binary are the IV to use for decryption.
   - `key_id`: the index of the AES encryption key used to encrypt the ciphertext
   ## Example
-      iex> Fields.AES.encrypt("test") |> Fields.AES.decrypt(1)
+      iex> Fields.AES.encrypt("test") |> Fields.AES.decrypt()
       "test"
   """
-  @spec decrypt(String.t(), number) :: {String.t(), number}
-  # patern match on binary to split parts:
-  def decrypt(ciphertext, key_id) do
-    <<key_index::binary-4, iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
-    # get encrytion/decryption key based on key_id
-    key = get_key(key_id)
-    :crypto.block_decrypt(:aes_gcm, key, iv, {@aad, ciphertext, tag})
-  end
 
   # as above but *asumes* `default` (latest) encryption key is used.
   @spec decrypt(any) :: String.t()
   def decrypt(ciphertext) do
     <<key_id_str::binary-4, iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
     key_id = String.to_integer(key_id_str)
-    decrypt(ciphertext, key_id)
+    key = get_key(key_id)
+    :crypto.block_decrypt(:aes_gcm, key, iv, {@aad, ciphertext, tag})
   end
 
   # @doc """
@@ -72,7 +65,7 @@ defmodule Fields.AES do
   # """
   defp get_key_id() do
     keys = Application.get_env(:fields, Fields.AES)[:keys]
-    count = Enum.count(keys) - 1
+    Enum.count(keys) - 1
   end
 
   # @doc """

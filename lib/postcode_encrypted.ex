@@ -22,5 +22,4 @@ defmodule Fields.PostcodeEncrypted do
 
   def load(value), do: Encrypted.load(value)
 
-  def load(value, key_id), do: Encrypted.load(value, key_id)
 end
