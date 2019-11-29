@@ -20,32 +20,24 @@ defmodule Fields.AES do
     using `to_string` before encryption.
   - `key_id`: the index of the AES encryption key used to encrypt the ciphertext
   ## Examples
-      iex> Fields.AES.encrypt("tea", 1) != Fields.AES.encrypt("tea", 1)
+      iex> Fields.AES.encrypt("tea") != Fields.AES.encrypt("tea")
       true
-      iex> ciphertext = Fields.AES.encrypt(123, 1)
+      iex> ciphertext = Fields.AES.encrypt(123)
       iex> is_binary(ciphertext)
       true
   """
+
   @spec encrypt(any) :: String.t()
   def encrypt(plaintext) do
     # create random Initialisation Vector
     iv = :crypto.strong_rand_bytes(16)
-    # get the *latest* key in the list of encryption keys
-    key = get_key()
-    {ciphertext, tag} = :crypto.block_encrypt(:aes_gcm, key, iv, {@aad, to_string(plaintext), 16})
-    # "return" iv with the cipher tag & ciphertext
-    iv <> tag <> ciphertext
-  end
-
-  @spec encrypt(any, number) :: {String.t(), number}
-  def encrypt(plaintext, key_id) do
-    # create random Initialisation Vector
-    iv = :crypto.strong_rand_bytes(16)
     # get *specific* key (by id) from list of keys.
+    key_id = get_key_id()
     key = get_key(key_id)
     {ciphertext, tag} = :crypto.block_encrypt(:aes_gcm, key, iv, {@aad, to_string(plaintext), 16})
-    # "return" iv with the cipher tag & ciphertext
-    iv <> tag <> ciphertext
+    key_id_str = String.pad_leading(to_string(key_id), 4, "0") # 1 >> "0001"
+    # "return" key_id_str with the iv, cipher tag & ciphertext
+    key_id_str <> iv <> tag <> ciphertext # "concat" key_id iv cipher tag & ciphertext
   end
 
   @doc """
@@ -55,45 +47,40 @@ defmodule Fields.AES do
     binary are the IV to use for decryption.
   - `key_id`: the index of the AES encryption key used to encrypt the ciphertext
   ## Example
-      iex> Fields.AES.encrypt("test") |> Fields.AES.decrypt(1)
+      iex> Fields.AES.encrypt("test") |> Fields.AES.decrypt()
       "test"
   """
-  @spec decrypt(String.t(), number) :: {String.t(), number}
-  # patern match on binary to split parts:
-  def decrypt(ciphertext, key_id) do
-    <<iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
-    # get encrytion/decryption key based on key_id
-    key = get_key(key_id)
-    :crypto.block_decrypt(:aes_gcm, key, iv, {@aad, ciphertext, tag})
-  end
 
   # as above but *asumes* `default` (latest) encryption key is used.
   @spec decrypt(any) :: String.t()
   def decrypt(ciphertext) do
-    <<iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
-    :crypto.block_decrypt(:aes_gcm, get_key(), iv, {@aad, ciphertext, tag})
+    <<key_id_str::binary-4, iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
+    key_id = String.to_integer(key_id_str)
+    key = get_key(key_id)
+    :crypto.block_decrypt(:aes_gcm, key, iv, {@aad, ciphertext, tag})
+  end
+
+  # @doc """
+  # Get the current key index.
+  # The key used for the encryption is always the latest key in the list (ie most recent created key)
+  # """
+  defp get_key_id() do
+    keys = Application.get_env(:fields, Fields.AES)[:keys]
+    Enum.count(keys) - 1
   end
 
   # @doc """
   # get_key - Get encryption key from list of keys.
-  # if `key_id` is *not* supplied as argument,
-  # then the default *latest* encryption key will be returned.
   # ## Parameters
   # - `key_id`: the index of AES encryption key used to encrypt the ciphertext
   # ## Example
   #     iex> Fields.AES.get_key
   #     <<13, 217, 61, 143, 87, 215, 35, 162, 183, 151, 179, 205, 37, 148>>
   # """ # doc commented out because https://stackoverflow.com/q/45171024/1148249
-  @spec get_key() :: String
-  defp get_key do
-    keys = Application.get_env(:fields, Fields.AES)[:keys]
-    count = Enum.count(keys) - 1
-    get_key(count)
-  end
-
   @spec get_key(number) :: String
   defp get_key(key_id) do
     keys = Application.get_env(:fields, Fields.AES)[:keys]
     Enum.at(keys, key_id)
   end
+
 end
