@@ -4,10 +4,12 @@ defmodule Fields.MixProject do
   def project do
     [
       app: :fields,
+      description: "a collection of useful fields for building Phoenix apps faster!",
       version: "2.0.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      package: package(),
 
       # coverage
       test_coverage: [tool: ExCoveralls],
@@ -37,7 +39,19 @@ defmodule Fields.MixProject do
       # stream_data for property based testing
       {:stream_data, "~> 0.4.3", only: :test},
       # tracking test coverage
-      {:excoveralls, "~> 0.12.1", only: [:test, :dev]}
+      {:excoveralls, "~> 0.12.1", only: [:test, :dev]},
+
+      # documentation
+      {:ex_doc, "~> 0.21.2", only: :dev},
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: ["dwyl"],
+      licenses: ["GNU GPL v2.0"],
+      links: %{github: "https://github.com/dwyl/fields"},
+      files: ~w(lib LICENSE mix.exs README.md .formatter.exs)
     ]
   end
 end
