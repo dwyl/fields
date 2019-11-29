@@ -4,6 +4,7 @@ defmodule Fields.MixProject do
   def project do
     [
       app: :fields,
+      description: "a collection of useful fields for building Phoenix apps faster!",
       version: "0.0.1",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
@@ -41,6 +42,15 @@ defmodule Fields.MixProject do
 
       # documentation
       {:ex_doc, "~> 0.21.2", only: :dev},
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: ["dwyl"],
+      licenses: ["GNU GPL v2.0"],
+      links: %{github: "https://github.com/dwyl/fields"},
+      files: ~w(lib LICENSE mix.exs README.md .formatter.exs)
     ]
   end
 end
