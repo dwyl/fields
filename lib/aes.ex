@@ -52,7 +52,7 @@ defmodule Fields.AES do
   @spec decrypt(String.t(), number) :: {String.t(), number}
   # patern match on binary to split parts:
   def decrypt(ciphertext, key_id) do
-    <<key_index::binary-16, iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
+    <<key_index::binary-4, iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
     # get encrytion/decryption key based on key_id
     key = get_key(key_id)
     :crypto.block_decrypt(:aes_gcm, key, iv, {@aad, ciphertext, tag})
@@ -61,7 +61,8 @@ defmodule Fields.AES do
   # as above but *asumes* `default` (latest) encryption key is used.
   @spec decrypt(any) :: String.t()
   def decrypt(ciphertext) do
-    <<key_id::binary-16, iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
+    <<key_id_str::binary-4, iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
+    key_id = String.to_integer(key_id_str)
     decrypt(ciphertext, key_id)
   end
 
