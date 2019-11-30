@@ -14,9 +14,8 @@ defmodule Fields.HashTest do
   test ".dump converts a value to a sha256 hash" do
     {:ok, hash} = Hash.dump("hello")
 
-    assert hash ==
-             <<182, 157, 193, 195, 194, 54, 161, 104, 62, 219, 55, 39, 12, 127, 11, 187, 120, 98,
-               218, 185, 11, 61, 167, 121, 228, 8, 215, 53, 110, 89, 4, 128>>
+    assert hash == <<207, 65, 85, 134, 204, 120, 27, 4, 245, 204, 86, 6, 85, 48, 252, 242, 8, 
+      75, 210, 30, 49, 50, 86, 91, 17, 108, 189, 90, 54, 16, 21, 172>>
   end
 
   test ".load does not modify the hash, since the hash cannot be reversed" do
