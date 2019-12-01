@@ -30,31 +30,33 @@ for commonly used fields on each new Phoenix project/App.
 We wanted a _much_ easier/faster way of building apps
 so we created a collection of pre-defined fields
 with built-in validation, sanitising and security.
-
 **`Fields`** makes defining Ecto Schemas much faster,
-more precise and easier to render data input/edit
-forms automatically based on the field type.
+more precise.
+
 
 # _What_? 💭
 
 An Elixir package that helps you add popular custom types
 to your Phoenix/Ecto schemas so you can build apps faster!
 
+> **@dwyl** we are firm believers that personal data
+(_Personally Identifiable Information_ (PII)) should be encrypted "at rest"
+i.e. all "user" data should be encrypted _before_ being stored in the database.
+This project makes hashing, encryption and _decryption_ for secure data storage
+_much_ easier for everyone.
 
 # _Who_? 👥
 
 This module is for people building Elixir/Phoenix apps
 who want to ship _simpler_ more maintainable code.
 
-> **Note**: @dwyl we are firm believers that personal data
-(_Personally Identifiable Information_ (PII)) should be encrypted "at rest"
-i.e. all "user" data should be encrypted _before_ being stored in the database.
-
-# _How_? ✅
-
 > We've attempted to make **`Fields`** as easy to use as possible.
 But if you get stuck using it, ask for
 [help!](https://github.com/dwyl/fields/issues)
+
+# _How_? ✅
+
+Start using **`Fields`** in your Phoenix App today with these 3 easy steps:
 
 
 ## 1. Add the hex package to `deps` 📦
@@ -159,7 +161,7 @@ so that symbols such as & (ampersand) and Html are rendered correctly.
 E.g:
 `<p><%= raw @product.description %></p>`
 
-## Available `Fields`
+## Available `Fields` 📖
 
 + [`Address`](lib/address.ex) - an address for a physical location.
 Validated and stored as a (`plaintext`) `String`.
@@ -193,7 +195,7 @@ sensitive information and can be stored in plaintext.
 Detailed documentation available on HexDocs:
 [https://hexdocs.pm/fields](https://hexdocs.pm/fields)
 
-## Contributing
+## Contributing ➕
 
 If there is a field that you need in your app
 that is not already in the **`Fields`** package,
@@ -201,7 +203,7 @@ please open an issue so we can add it!
 [github.com/dwyl/fields/issues](https://github.com/dwyl/fields/issues)
 
 
-## Background / Further Reading
+## Background / Further Reading 🔗
 
 If you want an in-depth understanding of how automatic/transparent
 encryption/decryption works using Ecto Types, <br />see:
