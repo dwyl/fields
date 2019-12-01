@@ -83,9 +83,23 @@ export ENCRYPTION_KEYS='nMdayQpR0aoasLaq1g94FLba+A+wB44JLko47sVQXMg=,L+ZVX8iheoq
 export SECRET_KEY_BASE=GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO61z0DMOF
 ```
 
-In our case we use a `.env` file to manage our environment variables.
+If you need to create a secure `SECRET_KEY_BASE` value, please see:
+[How to create secret_key_base](https://github.com/dwyl/phoenix-ecto-encryption-example#generate-the-secret_key_base)
+
+And for `ENCRYPTION_KEYS`, see:
+[How to create encryption keys](https://github.com/dwyl/phoenix-ecto-encryption-example#how-to-generate-aes-encryption-keys)
+
+
+In our case we use a `.env` file
+to manage our environment variables.
 See:
 [github.com/dwyl/**learn-environment-variables**](https://git.io/JeMLg)
+This allows us to securely manage our secret keys without the risk
+of accidentally publishing them on Github.
+When we _deploy_ our Apps, we use our service provider's
+built-in key management service to securely store Environment Variables.
+e.g:
+[Environment Variables on Heroku](https://github.com/dwyl/learn-environment-variables#environment-variables-on-heroku)
 
 
 ## 3. Apply the relevant field(s) to your schema 📝
@@ -96,6 +110,7 @@ An example fo defining a "user" schema using **Fields**:
 
 ```
 schema "users" do
+  field :first_name, Fields.Name
   field :email, Fields.EmailEncrypted       # Validates email then encrypts
   field :address, Fields.AddressEncrypted   # Trims address string then encrypts
   field :postcode, Fields.PostcodeEncrypted # Validates postcode then encrypts
@@ -104,8 +119,6 @@ schema "users" do
   timestamps()
 end
 ```
-
-
 
 Each field is defined as an
 [Ecto type](https://hexdocs.pm/ecto/Ecto.Type.html),
