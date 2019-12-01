@@ -160,25 +160,33 @@ so that symbols such as & (ampersand) and Html are rendered correctly.
 E.g:
 `<p><%= raw @product.description %></p>`
 
-The currently existing fields are:
+## Available `Fields`
 
 + [`Address`](lib/address.ex) - an address for a physical location.
 Validated and stored as a (`plaintext`) `String`.
 + [`AddressEncrypted`](lib/address_encrypted.ex) - an address for a customer
 or user which should be stored encrypted for data protection.
 + [`DescriptionPlaintextUnlimited`](lib/description_plaintext_unlimited.ex)
-+ [`Encrypted`](lib/encrypted.ex)
-+ [`EmailPlaintext`](lib/email_plaintext.ex)
-+ [`EmailHash`](lib/email_hash.ex)
-+ [`EmailEncrypted`](lib/email_encrypted.ex)
-+ [`Hash`](lib/hash.ex)
-+ [`HtmlBody`](lib/html-body.ex)
-+ [`Password`](lib/password.ex)
-+ [`PhoneNumber`](lib/phone_number.ex)
-+ [`PhoneNumberEncrypted`](lib/phone_number_encrypted.ex)
-+ [`Postcode`](lib/postcode.ex)
-+ [`PostcodeEncrypted`](lib/postcode_encrypted.ex)
-+ [`Url`](lib/url.ex) - validate a URL and store as `plaintext` (_not encrypted_) `String`
++ [`Encrypted`](lib/encrypted.ex) - a general purpose encrypted field.
+  converts any type of data `to_string` and then applies strong AES encryption.
++ [`EmailEncrypted`](lib/email_encrypted.ex) - validate and strongly encrypt
+email address to ensure they are kept private and secure in the case of a breach.
++ [`EmailHash`](lib/email_hash.ex) - useful when an email needs to be looked up
+without decrypting all emails in the database. Salted and hashed with `:sha256`.
++ [`EmailPlaintext`](lib/email_plaintext.ex) - useful on the rare occasion when
++ [`Hash`](lib/hash.ex) - a general-purpose hash field using `:sha256`,
+useful if you need to store the hash of a value. (_one way_)
++ [`HtmlBody`](lib/html-body.ex) - useful for storing HTML data e.g in a CMS.
++ ['Name'](lib/html-body.ex) - used for personal names
+that need to be kept private/secure. Max length 35 characters. AES Encrypted.
++ [`Password`](lib/password.ex) - passwords hashed using `argon2`.
++ [`PhoneNumberEncrypted`](lib/phone_number_encrypted.ex) - a phone number that should be kept private gets validated and encrypted.
++ [`PhoneNumber`](lib/phone_number.ex) - when a phone number is _not_
+sensitive information and can be stored in plaintext.
++ [`Postcode`](lib/postcode.ex) - validated postcode stored as `plaintext`.
++ [`PostcodeEncrypted`](lib/postcode_encrypted.ex) - validated and encrypted.
++ [`Url`](lib/url.ex) - validate a URL and store as `plaintext`
+(_not encrypted_) `String`
 + [`UrlEncrypted`](lib/url_encrypted.ex) - validate a URL and store as AES _encrypted_ `Binary`
 
 Detailed documentation available on HexDocs:
@@ -189,6 +197,7 @@ Detailed documentation available on HexDocs:
 If there is a field that you need in your app
 that is not already in the **`Fields`** package,
 please open an issue so we can add it!
+[github.com/dwyl/fields/issues](https://github.com/dwyl/fields/issues)
 
 
 ## Background / Further Reading

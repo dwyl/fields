@@ -5,7 +5,7 @@ defmodule Fields.UrlEncryptedTest do
 
   describe "types" do
     test "Url.type is :string" do
-      assert Url.type() == :string
+      assert Url.type() == :binary
     end
   end
 

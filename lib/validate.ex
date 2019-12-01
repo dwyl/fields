@@ -27,6 +27,14 @@ defmodule Fields.Validate do
   end
 
   @doc """
+  Validate the length of a name is less than 35 characters
+  """
+  def name(name) do
+    len = String.length(name)
+    1 < len && len < 35
+  end
+
+  @doc """
   Validates the format of a UK phone number.
   """
   def phone_number(phone) do

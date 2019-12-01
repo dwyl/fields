@@ -1,15 +1,16 @@
-defmodule Fields.UrlEncrypted do
+defmodule Fields.Name do
   @moduledoc """
-  An Ecto Type for urls that need to be stored securely.
+  An Ecto Type for names that need to be stored securely.
 
   ## Example
-      ```
-      schema "bookmarks" do
-        field :url, Fields.UrlEncrypted
+    ```
+    schema "user" do
+      field :name, Fields.Name
+      field :email, Fields.EmailEncrypted
 
-        timestamps()
-      end
-      ```
+      timestamps()
+    end
+    ```
   """
   alias Fields.{Validate, Encrypted}
 
@@ -19,7 +20,7 @@ defmodule Fields.UrlEncrypted do
 
   def cast(value) do
     value = value |> to_string() |> String.trim()
-    case Validate.url(value) do
+    case Validate.name(value) do
       true -> {:ok, value}
       false -> :error
     end
