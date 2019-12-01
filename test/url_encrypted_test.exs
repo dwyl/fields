@@ -44,4 +44,8 @@ defmodule Fields.UrlEncryptedTest do
       assert "http://www.test.com" == decrypted
     end
   end
+
+  test "UrlEncrypted.equal?/2 confirms terms are equal" do
+    assert Url.equal?("hello", "hello")
+  end
 end
