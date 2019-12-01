@@ -39,4 +39,8 @@ defmodule Fields.UrlTest do
       assert {:ok, "http://www.test.com"} == Url.load("http://www.test.com")
     end
   end
+
+  test "Url.equal?/2 confirms terms are equal" do
+    assert Url.equal?("hello", "hello")
+  end
 end
