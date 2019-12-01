@@ -4,8 +4,8 @@ defmodule Fields.MixProject do
   def project do
     [
       app: :fields,
-      description: "a collection of useful fields for building Phoenix apps faster!",
-      version: "2.0.1",
+      description: "A collection of useful fields for building Phoenix apps faster!",
+      version: "2.1.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -18,7 +18,6 @@ defmodule Fields.MixProject do
         "coveralls.json": :test,
         "coveralls.html": :test
       ]
-
     ]
   end
 
@@ -43,6 +42,7 @@ defmodule Fields.MixProject do
 
       # documentation
       {:ex_doc, "~> 0.21.2", only: :dev},
+      {:inch_ex, only: :docs}
     ]
   end
 

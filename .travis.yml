@@ -8,6 +8,9 @@ env:
     - SECRET_KEY_BASE="GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO61z0DMOF"
 script:
   - mix coveralls.json
+after_script:
+  - MIX_ENV=docs mix deps.get
+  - MIX_ENV=docs mix inch.report
 after_success:
   - bash <(curl -s https://codecov.io/bash) # send coverage report
 cache:
