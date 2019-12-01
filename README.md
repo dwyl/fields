@@ -109,7 +109,7 @@ Each field can be used in place of an Ecto type when defining your schema.
 
 An example fo defining a "user" schema using **Fields**:
 
-```
+```elixir
 schema "users" do
   field :first_name, Fields.Name            # Length validated and encrypted
   field :email, Fields.EmailEncrypted       # Validates email then encrypts
