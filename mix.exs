@@ -32,8 +32,8 @@ defmodule Fields.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:argon2_elixir, "~> 1.2"},    # password hashing
-      {:ecto, "~> 3.0"},             # ecto types
+      {:argon2_elixir, "~> 2.1.2"},    # password hashing
+      {:ecto, "~> 3.2.5"},             # ecto types
       {:html_sanitize_ex, "~> 1.3"}, # strip noise from html field
 
       # stream_data for property based testing
