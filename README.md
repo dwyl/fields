@@ -91,7 +91,7 @@ And for `ENCRYPTION_KEYS`, see:
 [How to create encryption keys](https://github.com/dwyl/phoenix-ecto-encryption-example#how-to-generate-aes-encryption-keys)
 
 
-In our case we use a `.env` file
+> In our case we use a `.env` file
 to manage our environment variables.
 See:
 [github.com/dwyl/**learn-environment-variables**](https://git.io/JeMLg) <br />
@@ -111,7 +111,7 @@ An example fo defining a "user" schema using **Fields**:
 
 ```
 schema "users" do
-  field :first_name, Fields.Name
+  field :first_name, Fields.Name            # Length validated and encrypted
   field :email, Fields.EmailEncrypted       # Validates email then encrypts
   field :address, Fields.AddressEncrypted   # Trims address string then encrypts
   field :postcode, Fields.PostcodeEncrypted # Validates postcode then encrypts
@@ -128,7 +128,8 @@ So when you call `Ecto.Changeset.cast/4`
 in your schema's changeset function,
 the field will be correctly validated.
 For example, calling cast on the `:email` field
-will ensure it is a valid format for an email address.
+will ensure it is a valid format for an email address
+[RFC 5322](https://en.wikipedia.org/wiki/Email_address)
 
 When you load one of the fields into your database,
 the corresponding `dump/1` callback will be called,
@@ -136,17 +137,22 @@ ensuring it is inserted into the database in the correct format.
 In the case of `Fields.EmailEncrypted`,
 it will encrypt the email address
 using a given encryption key
-(set in your config file) before inserting it.
+before inserting it.
 
 Likewise, when you load a field from the database,
 the `load/1` callback will be called,
 giving you the data in the format you need.
 `Fields.EmailEncrypted` will be decrypted back to plaintext.
+This all happens 100% transparently to the developer.
+It's _like_ magic. But the kind where you can
+actually _understand_ how it works!
+(_read the code if you're curious_)
 
 Each Field optionally defines an `input_type/0` function.
 This will return an atom
 representing the `Phoenix.HTML.Form` input type to use for the Field.
-For example: `Fields.DescriptionPlaintextUnlimited.input_type` returns `:textarea`.
+For example: `Fields.DescriptionPlaintextUnlimited.input_type`
+returns `:textarea` which helps us render the correct field in a form.
 
 The fields `DescriptionPlaintextUnlimited`
 and `HtmlBody` uses
