@@ -84,8 +84,7 @@ export SECRET_KEY_BASE=GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO6
 ```
 
 If you need to create a secure `SECRET_KEY_BASE` value, please see:
-[How to create secret_key_base](https://github.com/dwyl/phoenix-ecto-encryption-example#generate-the-secret_key_base)
-
+[How to create Phoenix `secret_key_base`](https://github.com/dwyl/phoenix-ecto-encryption-example#generate-the-secret_key_base) <br />
 And for `ENCRYPTION_KEYS`, see:
 [How to create encryption keys](https://github.com/dwyl/phoenix-ecto-encryption-example#how-to-generate-aes-encryption-keys)
 
@@ -93,9 +92,9 @@ And for `ENCRYPTION_KEYS`, see:
 In our case we use a `.env` file
 to manage our environment variables.
 See:
-[github.com/dwyl/**learn-environment-variables**](https://git.io/JeMLg)
+[github.com/dwyl/**learn-environment-variables**](https://git.io/JeMLg) <br />
 This allows us to securely manage our secret keys without the risk
-of accidentally publishing them on Github.
+of accidentally publishing them on Github. <br />
 When we _deploy_ our Apps, we use our service provider's
 built-in key management service to securely store Environment Variables.
 e.g:
@@ -166,7 +165,8 @@ E.g:
 Validated and stored as a (`plaintext`) `String`.
 + [`AddressEncrypted`](lib/address_encrypted.ex) - an address for a customer
 or user which should be stored encrypted for data protection.
-+ [`DescriptionPlaintextUnlimited`](lib/description_plaintext_unlimited.ex)
++ [`DescriptionPlaintextUnlimited`](lib/description_plaintext_unlimited.ex) -
+filters any HTML/JS to avoid security issues. Perfect for blog post comments.
 + [`Encrypted`](lib/encrypted.ex) - a general purpose encrypted field.
   converts any type of data `to_string` and then applies strong AES encryption.
 + [`EmailEncrypted`](lib/email_encrypted.ex) - validate and strongly encrypt
@@ -174,6 +174,7 @@ email address to ensure they are kept private and secure in the case of a breach
 + [`EmailHash`](lib/email_hash.ex) - useful when an email needs to be looked up
 without decrypting all emails in the database. Salted and hashed with `:sha256`.
 + [`EmailPlaintext`](lib/email_plaintext.ex) - useful on the rare occasion when
+it is acceptable to store an email in `plaintext` e.g. your local pizzeria.
 + [`Hash`](lib/hash.ex) - a general-purpose hash field using `:sha256`,
 useful if you need to store the hash of a value. (_one way_)
 + [`HtmlBody`](lib/html-body.ex) - useful for storing HTML data e.g in a CMS.
@@ -203,7 +204,7 @@ please open an issue so we can add it!
 ## Background / Further Reading
 
 If you want an in-depth understanding of how automatic/transparent
-encryption/decryption works using Ecto Types, see:
+encryption/decryption works using Ecto Types, <br />see:
 [github.com/dwyl/**phoenix-ecto-encryption-example**](https://github.com/dwyl/phoenix-ecto-encryption-example)
 
 If you are rusty/new on Binaries in Elixir,
