@@ -30,8 +30,8 @@ for commonly used fields on each new Phoenix project/App.
 We wanted a _much_ easier/faster way of building apps
 so we created a collection of pre-defined fields
 with built-in validation, sanitising and security.
-**`Fields`** makes defining Ecto Schemas much faster,
-more precise.
+**`Fields`** makes defining Ecto Schemas faster
+and more precise.
 
 
 # _What_? 💭
@@ -50,7 +50,8 @@ _much_ easier for everyone.
 This module is for people building Elixir/Phoenix apps
 who want to ship _simpler_ more maintainable code.
 
-> We've attempted to make **`Fields`** as beginner-friendly as possible. <br />
+> We've attempted to make **`Fields`**
+as **beginner-friendly** as possible. <br />
 If you get stuck using it or anything is unclear, please ask for
 [help!](https://github.com/dwyl/fields/issues)
 
@@ -81,7 +82,7 @@ In order to use Encryption and Hashing,
 you will need to have environment variables
 defined for `ENCRYPTION_KEYS` and `SECRET_KEY_BASE` respectively.
 
-```yml
+```yaml
 export ENCRYPTION_KEYS='nMdayQpR0aoasLaq1g94FLba=,L+ZVX8iheoqgqb22mUpATmMDsvVGtafoAeb='
 export SECRET_KEY_BASE=GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO61z0DMOF
 ```
@@ -177,11 +178,11 @@ or user which should be stored encrypted for data protection.
 + [`DescriptionPlaintextUnlimited`](lib/description_plaintext_unlimited.ex) -
 filters any HTML/JS to avoid security issues. Perfect for blog post comments.
 + [`Encrypted`](lib/encrypted.ex) - a general purpose encrypted field.
-  converts any type of data `to_string` and then applies strong AES encryption.
+  converts any type of data `to_string` and then encrypts it.
 + [`EmailEncrypted`](lib/email_encrypted.ex) - validate and strongly encrypt
-email address to ensure they are kept private and secure in the case of a breach.
-+ [`EmailHash`](lib/email_hash.ex) - useful when an email needs to be looked up
-without decrypting all emails in the database. Salted and hashed with `:sha256`.
+email address to ensure they are kept private and secure.
++ [`EmailHash`](lib/email_hash.ex) - when an email needs to be looked up fast
+without decrypting. Salted and hashed with `:sha256`.
 + [`EmailPlaintext`](lib/email_plaintext.ex) - useful on the rare occasion when
 it is acceptable to store an email in `plaintext` e.g. your local pizzeria.
 + [`Hash`](lib/hash.ex) - a general-purpose hash field using `:sha256`,
@@ -199,8 +200,8 @@ sensitive information and can be stored in plaintext.
 (_not encrypted_) `String`
 + [`UrlEncrypted`](lib/url_encrypted.ex) - validate a URL and store as AES _encrypted_ `Binary`
 
-Detailed documentation available on HexDocs:
-[https://hexdocs.pm/fields](https://hexdocs.pm/fields)
+***Detailed documentation*** available on **HexDocs**:
+[hexdocs.pm/**fields**](https://hexdocs.pm/fields)
 
 ## Contributing ➕
 
@@ -217,5 +218,5 @@ encryption/decryption works using Ecto Types, <br />see:
 [github.com/dwyl/**phoenix-ecto-encryption-example**](https://github.com/dwyl/phoenix-ecto-encryption-example)
 
 If you are rusty/new on Binaries in Elixir,
-take a look at this post by @blackode:
+take a look at this post by @blackode: <br />
 https://medium.com/blackode/playing-with-elixir-binaries-strings-dd01a40039d5
