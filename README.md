@@ -60,9 +60,9 @@ If you get stuck using it or anything is unclear, please ask for
 Start using **`Fields`** in your Phoenix App today with these 3 easy steps:
 
 
-## 1. Add the hex package to `deps` 📦
+## 1. Add the `fields` hex package to `deps` in `mix.exs` 📦
 
-Add the `fields` package to your list of dependencies in `mix.exs`:
+Add the `fields` package to your list of dependencies in your `mix.exs` file:
 
 ```elixir
 def deps do
@@ -72,7 +72,7 @@ def deps do
 end
 ```
 
-Once you have saved the file,
+Once you have saved the `mix.exs` file,
 run **`mix deps.get`** in your terminal to download.
 
 
@@ -93,12 +93,12 @@ And for `ENCRYPTION_KEYS`, see:
 [How to create encryption keys](https://github.com/dwyl/phoenix-ecto-encryption-example#how-to-generate-aes-encryption-keys)
 
 
-> In our case we use a `.env` file
+> In our case we use a **`.env`** file
 to manage our environment variables.
 See:
 [github.com/dwyl/**learn-environment-variables**](https://git.io/JeMLg) <br />
-This allows us to securely manage our secret keys without the risk
-of accidentally publishing them on Github. <br />
+This allows us to securely manage our secret keys in dev
+without the risk of accidentally publishing them on Github. <br />
 When we _deploy_ our Apps, we use our service provider's
 built-in key management service to securely store Environment Variables.
 e.g:
@@ -131,7 +131,7 @@ in your schema's changeset function,
 the field will be correctly validated.
 For example, calling cast on the `:email` field
 will ensure it is a valid format for an email address
-[RFC 5322](https://en.wikipedia.org/wiki/Email_address)
+[RFC 5322](https://en.wikipedia.org/wiki/Email_address).
 
 When you load one of the fields into your database,
 the corresponding `dump/1` callback will be called,
@@ -148,7 +148,8 @@ giving you the data in the format you need.
 This all happens 100% transparently to the developer.
 It's _like_ magic. But the kind where you can
 actually _understand_ how it works!
-(_read the code if you're curious_)
+(_if you're curious, read the
+[**`code`**](https://github.com/dwyl/fields/tree/master/lib)_)
 
 Each Field optionally defines an `input_type/0` function.
 This will return an atom
@@ -166,7 +167,7 @@ Remember to use `raw` when rendering
 the content of your `DescriptionPlaintextUnlimited`
 and `HtmlBody` fields
 so that symbols such as & (ampersand) and Html are rendered correctly.
-E.g:
+e.g:
 `<p><%= raw @product.description %></p>`
 
 ## Available `Fields` 📖
@@ -188,7 +189,7 @@ it is acceptable to store an email in `plaintext` e.g. your local pizzeria.
 + [`Hash`](lib/hash.ex) - a general-purpose hash field using `:sha256`,
 useful if you need to store the hash of a value. (_one way_)
 + [`HtmlBody`](lib/html-body.ex) - useful for storing HTML data e.g in a CMS.
-+ ['Name'](lib/html-body.ex) - used for personal names
++ [`Name`](lib/html-body.ex) - used for personal names
 that need to be kept private/secure. Max length 35 characters. AES Encrypted.
 + [`Password`](lib/password.ex) - passwords hashed using `argon2`.
 + [`PhoneNumberEncrypted`](lib/phone_number_encrypted.ex) - a phone number that should be kept private gets validated and encrypted.
@@ -203,6 +204,8 @@ sensitive information and can be stored in plaintext.
 ***Detailed documentation*** available on **HexDocs**:
 [hexdocs.pm/**fields**](https://hexdocs.pm/fields)
 
+<br />
+
 ## Contributing ➕
 
 If there is a field that you need in your app
@@ -210,6 +213,7 @@ that is not already in the **`Fields`** package,
 please open an issue so we can add it!
 [github.com/dwyl/fields/issues](https://github.com/dwyl/fields/issues)
 
+<br />
 
 ## Background / Further Reading 🔗
 
