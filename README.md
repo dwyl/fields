@@ -50,8 +50,8 @@ _much_ easier for everyone.
 This module is for people building Elixir/Phoenix apps
 who want to ship _simpler_ more maintainable code.
 
-> We've attempted to make **`Fields`** as easy to use as possible.
-But if you get stuck using it, ask for
+> We've attempted to make **`Fields`** as beginner-friendly as possible. <br />
+If you get stuck using it or anything is unclear, please ask for
 [help!](https://github.com/dwyl/fields/issues)
 
 # _How_? ✅
@@ -71,7 +71,8 @@ def deps do
 end
 ```
 
-Once added, run **`mix deps.get`** in your terminal to download.
+Once you have saved the file,
+run **`mix deps.get`** in your terminal to download.
 
 
 ## 2. Ensure you have the necessary environment variables 🔑
@@ -81,7 +82,7 @@ you will need to have environment variables
 defined for `ENCRYPTION_KEYS` and `SECRET_KEY_BASE` respectively.
 
 ```yml
-export ENCRYPTION_KEYS='nMdayQpR0aoasLaq1g94FLba+A+wB44JLko47sVQXMg=,L+ZVX8iheoqgqb22mUpATmMDsvVGtafoAeb0KN5uWf0='
+export ENCRYPTION_KEYS='nMdayQpR0aoasLaq1g94FLba=,L+ZVX8iheoqgqb22mUpATmMDsvVGtafoAeb='
 export SECRET_KEY_BASE=GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO61z0DMOF
 ```
 
