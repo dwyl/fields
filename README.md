@@ -14,6 +14,7 @@ See below for examples!
 [![Build Status](https://img.shields.io/travis/dwyl/fields/master.svg?style=flat-square)](https://travis-ci.org/dwyl/fields)
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/fields/master.svg?style=flat-square)](http://codecov.io/github/dwyl/fields?branch=master)
 [![Hex.pm](https://img.shields.io/hexpm/v/fields?color=brightgreen&style=flat-square)](https://hex.pm/packages/fields)
+[![docs](https://img.shields.io/badge/docs-maintained-brightgreen?style=flat-square)](https://hexdocs.pm/fields/api-reference.html)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/fields/issues)
 [![HitCount](http://hits.dwyl.io/dwyl/fields.svg)](http://hits.dwyl.io/dwyl/fields)
 <!-- uncomment when service is working ...
@@ -36,9 +37,8 @@ forms automatically based on the field type.
 
 # _What_? 💭
 
-An Elixir package that helps you add
-
->
+An Elixir package that helps you add popular custom types
+to your Phoenix/Ecto schemas so you can build apps faster!
 
 
 # _Who_? 👥
@@ -78,11 +78,14 @@ In order to use Encryption and Hashing,
 you will need to have environment variables
 defined for `ENCRYPTION_KEYS` and `SECRET_KEY_BASE` respectively.
 
-
 ```yml
 export ENCRYPTION_KEYS='nMdayQpR0aoasLaq1g94FLba+A+wB44JLko47sVQXMg=,L+ZVX8iheoqgqb22mUpATmMDsvVGtafoAeb0KN5uWf0='
 export SECRET_KEY_BASE=GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO61z0DMOF
 ```
+
+In our case we use a `.env` file to manage our environment variables.
+See:
+[github.com/dwyl/**learn-environment-variables**](https://git.io/JeMLg)
 
 
 ## 3. Apply the relevant field(s) to your schema 📝
