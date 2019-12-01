@@ -6,7 +6,7 @@ defmodule Fields.Url do
   ## Example
 
       schema "retailers" do
-        field(:url, Fields.Url)
+        field :url, Fields.Url
       end
   """
   alias Fields.Validate

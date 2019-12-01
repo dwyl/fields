@@ -22,9 +22,42 @@ See below for examples!
 
 </div>
 
+# _Why_? 🤷
+
+We found ourselves repeating code
+for commonly used fields on each new Phoenix project/App.  
+We wanted a _much_ easier/faster way of building apps
+so we created a collection of pre-defined fields
+with built-in validation, sanitising and security.
+
+**`Fields`** makes defining Ecto Schemas much faster,
+more precise and easier to render data input/edit
+forms automatically based on the field type.
+
+# _What_? 💭
+
+An Elixir package that helps you add
+
+>
 
 
-## Installation
+# _Who_? 👥
+
+This module is for people building Elixir/Phoenix apps
+who want to ship _simpler_ more maintainable code.
+
+> **Note**: @dwyl we are firm believers that personal data
+(_Personally Identifiable Information_ (PII)) should be encrypted "at rest"
+i.e. all "user" data should be encrypted _before_ being stored in the database.
+
+# _How_? ✅
+
+> We've attempted to make **`Fields`** as easy to use as possible.
+But if you get stuck using it, ask for
+[help!](https://github.com/dwyl/fields/issues)
+
+
+## 1. Add the hex package to `deps` 📦
 
 Add the `fields` package to your list of dependencies in `mix.exs`:
 
@@ -36,25 +69,40 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm).
-Once published, the docs can
-be found at [https://hexdocs.pm/fields](https://hexdocs.pm/fields).
+Once added, run **`mix deps.get`** in your terminal to download.
 
-## Usage
+
+## 2. Ensure you have the necessary environment variables 🔑
+
+In order to use Encryption and Hashing,
+you will need to have environment variables
+defined for `ENCRYPTION_KEYS` and `SECRET_KEY_BASE` respectively.
+
+
+```yml
+export ENCRYPTION_KEYS='nMdayQpR0aoasLaq1g94FLba+A+wB44JLko47sVQXMg=,L+ZVX8iheoqgqb22mUpATmMDsvVGtafoAeb0KN5uWf0='
+export SECRET_KEY_BASE=GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO61z0DMOF
+```
+
+
+## 3. Apply the relevant field(s) to your schema 📝
 
 Each field can be used in place of an Ecto type when defining your schema.
 
+An example fo defining a "user" schema using **Fields**:
+
 ```
 schema "users" do
-  field(:email, Fields.EmailEncrypted)
-  field(:address, Fields.Address)
-  field(:postcode, Fields.Postcode)
-  field(:password, Fields.Password)
+  field :email, Fields.EmailEncrypted       # Validates email then encrypts
+  field :address, Fields.AddressEncrypted   # Trims address string then encrypts
+  field :postcode, Fields.PostcodeEncrypted # Validates postcode then encrypts
+  field :password, Fields.Password          # Hash password with argon2
 
   timestamps()
 end
 ```
+
+
 
 Each field is defined as an
 [Ecto type](https://hexdocs.pm/ecto/Ecto.Type.html),
@@ -98,56 +146,41 @@ E.g:
 
 The currently existing fields are:
 
-- [Address](lib/address.ex)
-- [AddressEncrypted](lib/address_encrypted.ex)
-- [DescriptionPlaintextUnlimited](lib/description_plaintext_unlimited.ex)
-- [Encrypted](lib/encrypted.ex)
-- [EmailPlaintext](lib/email_plaintext.ex)
-- [EmailHash](lib/email_hash.ex)
-- [EmailEncrypted](lib/email_encrypted.ex)
-- [Hash](lib/hash.ex)
-- [HtmlBody](lib/html-body.ex)
-- [Password](lib/password.ex)
-- [PhoneNumber](lib/phone_number.ex)
-- [PhoneNumberEncrypted](lib/phone_number_encrypted.ex)
-- [Postcode](lib/postcode.ex)
-- [PostcodeEncrypted](lib/postcode_encrypted.ex)
-- [Url](lib/url.ex)
++ [`Address`](lib/address.ex) - an address for a physical location.
+Validated and stored as a (`plaintext`) `String`.
++ [`AddressEncrypted`](lib/address_encrypted.ex) - an address for a customer
+or user which should be stored encrypted for data protection.
++ [`DescriptionPlaintextUnlimited`](lib/description_plaintext_unlimited.ex)
++ [`Encrypted`](lib/encrypted.ex)
++ [`EmailPlaintext`](lib/email_plaintext.ex)
++ [`EmailHash`](lib/email_hash.ex)
++ [`EmailEncrypted`](lib/email_encrypted.ex)
++ [`Hash`](lib/hash.ex)
++ [`HtmlBody`](lib/html-body.ex)
++ [`Password`](lib/password.ex)
++ [`PhoneNumber`](lib/phone_number.ex)
++ [`PhoneNumberEncrypted`](lib/phone_number_encrypted.ex)
++ [`Postcode`](lib/postcode.ex)
++ [`PostcodeEncrypted`](lib/postcode_encrypted.ex)
++ [`Url`](lib/url.ex) - validate a URL and store as `plaintext` (_not encrypted_) `String`
++ [`UrlEncrypted`](lib/url_encrypted.ex) - validate a URL and store as AES _encrypted_ `Binary`
 
+Detailed documentation available on HexDocs:
+[https://hexdocs.pm/fields](https://hexdocs.pm/fields)
 
-## Config
+## Contributing
 
-If you use any of the `Encrypted` fields,
-you will need to set a list of
-one or more encryption keys in your config:
+If there is a field that you need in your app
+that is not already in the **`Fields`** package,
+please open an issue so we can add it!
 
-``` elixir
-config :fields, Fields.AES,
-  keys:
-    System.get_env("ENCRYPTION_KEYS")
-    # remove single-quotes around key list in .env
-    |> String.replace("'", "")
-    # split the CSV list of keys
-    |> String.split(",")
-    # decode the key.
-    |> Enum.map(fn key -> :base64.decode(key) end)
-```
-
-If you use any of the `Hash` fields, you will need to set a secret key base:
-
-``` elixir
-config :fields, Fields,
-  secret_key_base: "rVOUu+QTva+VlRJJI3wSYONRoffFQH167DfiZcegvYY/PEasjPLKIDz7wPTvTPIP"
-```
 
 ## Background / Further Reading
 
+If you want an in-depth understanding of how automatic/transparent
+encryption/decryption works using Ecto Types, see:
+[github.com/dwyl/**phoenix-ecto-encryption-example**](https://github.com/dwyl/phoenix-ecto-encryption-example)
 
-### How to Create a Re-useable Elixir Package and Publish to `hex.pm`
-+ https://hex.pm/docs/publish
-+ https://medium.com/kkempin/how-to-create-and-publish-hex-pm-package-elixir-90cb33e2592d
-+ https://medium.com/blackode/how-to-write-elixir-packages-and-publish-to-hex-pm-8723038ebe76
-
-### How to _Use_ the Package Locally _Before_ Publishing it to `hex.pm`
-
-+ https://stackoverflow.com/questions/28185003/using-a-package-locally-with-hex-pm
+If you are rusty/new on Binaries in Elixir,
+take a look at this post by @blackode:
+https://medium.com/blackode/playing-with-elixir-binaries-strings-dd01a40039d5
