@@ -3,7 +3,7 @@
 # Fields
 
 A collection of commonly used fields implemented as custom Ecto types
-with the validation, sanitising and encryption/hashing. <br />
+with validation, sanitising and encryption/hashing. <br />
 <!--
 TODO: update intro copy once we ship better docs!
 Ship your Phoenix App _much_ faster by using well-documented fields
