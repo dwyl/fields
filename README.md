@@ -184,8 +184,8 @@ filters any HTML/JS to avoid security issues. Perfect for blog post comments.
 email address to ensure they are kept private and secure.
 + [`EmailHash`](lib/email_hash.ex) - when an email needs to be looked up fast
 without decrypting. Salted and hashed with `:sha256`.
-+ [`EmailPlaintext`](lib/email_plaintext.ex) - useful on the rare occasion when
-it is acceptable to store an email in `plaintext` e.g. your local pizzeria.
++ [`EmailPlaintext`](lib/email_plaintext.ex) - when an email address is `public`
+there's no advantage to encrypting it. e.g. a customer support email.
 + [`Hash`](lib/hash.ex) - a general-purpose hash field using `:sha256`,
 useful if you need to store the hash of a value. (_one way_)
 + [`HtmlBody`](lib/html-body.ex) - useful for storing HTML data e.g in a CMS.
