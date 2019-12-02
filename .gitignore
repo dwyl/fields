@@ -25,3 +25,4 @@ fields-*.tar
 .env
 
 .elixir_ls
+.DS_Store

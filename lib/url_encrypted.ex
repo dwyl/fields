@@ -1,19 +1,21 @@
-defmodule Fields.Url do
+defmodule Fields.UrlEncrypted do
   @moduledoc """
-  An Ecto Type for urls.
-  Use `Fields.UrlEncrypted` for encrypted urls.
+  An Ecto Type for urls that need to be stored securely.
 
   ## Example
+      ```
+      schema "bookmarks" do
+        field :url, Fields.UrlEncrypted
 
-      schema "retailers" do
-        field :url, Fields.Url
+        timestamps()
       end
+      ```
   """
-  alias Fields.Validate
+  alias Fields.{Validate, Encrypted}
 
   @behaviour Ecto.Type
 
-  def type, do: :string
+  def type, do: :binary
 
   def cast(value) do
     value = value |> to_string() |> String.trim()
@@ -24,11 +26,11 @@ defmodule Fields.Url do
   end
 
   def dump(value) do
-    {:ok, to_string(value)}
+    Encrypted.dump(value)
   end
 
   def load(value) do
-    {:ok, value}
+    Encrypted.load(value)
   end
 
   def embed_as(_), do: :self

@@ -2,13 +2,15 @@ defmodule Fields.Address do
   @moduledoc """
   An Ecto Type for plaintext addresses.
   Useful for publicly available addressses.
-  See `Fields.AddressEncrypted` for storing addresses that are Personally Identifiable Information.
+  See `Fields.AddressEncrypted` for storing addresses
+  that are Personally Identifiable Information.
 
   ## Example
-
-        schema "retailers" do
-          field(:address, Fields.Address)
-        end
+    ```
+    schema "retailers" do
+      field :address, Fields.Address
+    end
+    ```
   """
   alias Fields.Validate
 
@@ -31,4 +33,8 @@ defmodule Fields.Address do
   def load(value) do
     {:ok, value}
   end
+
+  def embed_as(_), do: :self
+
+  def equal?(term1, term2), do: term1 == term2
 end

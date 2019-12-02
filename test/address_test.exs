@@ -45,4 +45,7 @@ defmodule Fields.AddressTest do
     end
   end
 
+  test "Address.equal?/2 confirms terms are equal" do
+    assert Address.equal?("hello", "hello")
+  end
 end

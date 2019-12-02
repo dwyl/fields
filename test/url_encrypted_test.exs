@@ -1,10 +1,11 @@
-defmodule Fields.UrlTest do
+defmodule Fields.UrlEncryptedTest do
   use ExUnit.Case
-  alias Fields.{Url}
+  alias Fields.UrlEncrypted, as: Url
+  alias Fields.Encrypted
 
   describe "types" do
     test "Url.type is :string" do
-      assert Url.type() == :string
+      assert Url.type() == :binary
     end
   end
 
@@ -29,18 +30,22 @@ defmodule Fields.UrlTest do
   end
 
   describe "dump" do
-    test "Url.dump returns a string" do
-      assert {:ok, "http://www.test.com"} == Url.dump("http://www.test.com")
+    test "Url.dump returns an encrypted string" do
+      {:ok, ciphertext } = Encrypted.dump("http://www.test.com")
+      # IO.inspect ciphertext
+      assert is_binary ciphertext
     end
   end
 
   describe "load" do
-    test "Url.load returns a string" do
-      assert {:ok, "http://www.test.com"} == Url.load("http://www.test.com")
+    test "Url.load returns a decrypted string" do
+      {:ok, ciphertext} = Url.dump("http://www.test.com")
+      {:ok, decrypted} = Url.load(ciphertext)
+      assert "http://www.test.com" == decrypted
     end
   end
 
-  test "Url.equal?/2 confirms terms are equal" do
+  test "UrlEncrypted.equal?/2 confirms terms are equal" do
     assert Url.equal?("hello", "hello")
   end
 end
