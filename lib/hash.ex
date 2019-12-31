@@ -26,4 +26,8 @@ defmodule Fields.Hash do
   def load(value) do
     {:ok, value}
   end
+
+  def embed_as(_), do: :self
+
+  def equal?(term1, term2), do: term1 == term2
 end

@@ -19,7 +19,9 @@ defmodule Fields.EncryptedTest do
   end
 
   test ".dump with google token" do
-    token = "ya29.Il-yB-eegeLyTvygvFAtX-gJhq-LIfR1UskKVsczYPKtOeMB3l0P4ipcYNs0IrI2S5f1jZXPzgRSIYFhdsSx6ws6FYlNySzxeixEDbnTTtcrBg2a9fQJHzvWM6i9DWp2HA"
+    token =
+      "ya29.Il-yB-eegeLyTvygvFAtX-gJhq-LIfR1UskKVsczYPKtOeMB3l0P4ipcYNs0IrI2S5f1jZXPzgRSIYFhdsSx6ws6FYlNySzxeixEDbnTTtcrBg2a9fQJHzvWM6i9DWp2HA"
+
     {:ok, ciphertext} = Encrypted.dump(token)
     {:ok, decrypted} = Encrypted.load(ciphertext)
     assert token == decrypted

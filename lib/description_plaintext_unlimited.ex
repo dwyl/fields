@@ -14,7 +14,7 @@ defmodule Fields.DescriptionPlaintextUnlimited do
   def type, do: :string
 
   def cast(value) do
-    {:ok, to_string(value) }
+    {:ok, to_string(value)}
   end
 
   def dump(value) do
@@ -26,4 +26,8 @@ defmodule Fields.DescriptionPlaintextUnlimited do
   end
 
   def input_type, do: :textarea
+
+  def embed_as(_), do: :self
+
+  def equal?(term1, term2), do: term1 == term2
 end

@@ -39,74 +39,76 @@ defmodule Fields.ValidatePostcodeTest do
   end
 
   property "AA9A 9AA is valid format" do
-    check all postcode <- postcode([:s, :s, :i, :s, :space]) do
+    check all(postcode <- postcode([:s, :s, :i, :s, :space])) do
       assert Validate.postcode(postcode)
     end
 
-    check all postcode <- postcode([:s, :s, :i, :s]) do
+    check all(postcode <- postcode([:s, :s, :i, :s])) do
       assert Validate.postcode(postcode)
     end
   end
 
   property "A9A 9AA is valid format" do
-    check all postcode <- postcode([:s, :i, :s, :space]) do
+    check all(postcode <- postcode([:s, :i, :s, :space])) do
       assert Validate.postcode(postcode)
     end
 
-    check all postcode <- postcode([:s, :i, :s]) do
+    check all(postcode <- postcode([:s, :i, :s])) do
       assert Validate.postcode(postcode)
     end
   end
 
   property "A9 9AA is valid format" do
-    check all postcode <- postcode([:s, :i, :space]) do
+    check all(postcode <- postcode([:s, :i, :space])) do
       assert Validate.postcode(postcode)
     end
 
-    check all postcode <- postcode([:s, :i]) do
+    check all(postcode <- postcode([:s, :i])) do
       assert Validate.postcode(postcode)
     end
   end
 
   property "A99 9AA is valid format" do
-    check all postcode <- postcode([:s, :i, :i, :space]) do
+    check all(postcode <- postcode([:s, :i, :i, :space])) do
       assert Validate.postcode(postcode)
     end
 
-    check all postcode <- postcode([:s, :i, :i]) do
+    check all(postcode <- postcode([:s, :i, :i])) do
       assert Validate.postcode(postcode)
     end
   end
 
   property "AA9 9AA is valid format" do
-    check all postcode <- postcode([:s, :s, :i, :space]) do
+    check all(postcode <- postcode([:s, :s, :i, :space])) do
       assert Validate.postcode(postcode)
     end
 
-    check all postcode <- postcode([:s, :s, :i]) do
+    check all(postcode <- postcode([:s, :s, :i])) do
       assert Validate.postcode(postcode)
     end
   end
 
   property "AA99 9AA is valid format" do
-    check all postcode <- postcode([:s, :s, :i, :i, :space]) do
+    check all(postcode <- postcode([:s, :s, :i, :i, :space])) do
       assert Validate.postcode(postcode)
     end
 
-    check all postcode <- postcode([:s, :s, :i, :i]) do
+    check all(postcode <- postcode([:s, :s, :i, :i])) do
       assert Validate.postcode(postcode)
     end
   end
 
   property "postcode that is too long is not valid" do
-    check all postcode <- string(:alphanumeric, min_length: 8) do
+    check all(postcode <- string(:alphanumeric, min_length: 8)) do
       refute Validate.postcode(postcode)
     end
   end
 
   property "all other formats are invalid" do
-    check all format <- invalid_format(),
-              postcode <- postcode(format) do
+    check all(
+            format <- invalid_format(),
+            postcode <- postcode(format)
+          ) do
       refute Validate.postcode(postcode)
     end
   end

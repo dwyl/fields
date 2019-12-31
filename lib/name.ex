@@ -20,6 +20,7 @@ defmodule Fields.Name do
 
   def cast(value) do
     value = value |> to_string() |> String.trim()
+
     case Validate.name(value) do
       true -> {:ok, value}
       false -> :error
