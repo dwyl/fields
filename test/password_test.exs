@@ -27,4 +27,10 @@ defmodule Fields.PasswordTest do
     hash = Helpers.hash(:argon2, "password")
     assert {:ok, ^hash} = Password.load(hash)
   end
+
+  describe "equal?" do
+    test "Password.equal?/2 confirms terms are equal" do
+      assert Password.equal?("hello", "hello")
+    end
+  end
 end

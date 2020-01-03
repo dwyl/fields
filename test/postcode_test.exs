@@ -47,4 +47,14 @@ defmodule Fields.PostcodeTest do
       assert {:ok, "EC4M 8AD"} == Postcode.load("EC4M 8AD")
     end
   end
+
+  describe "equal?" do
+    test "PostCode.equal?/2 confirms terms are equal" do
+      assert Postcode.equal?("hello", "hello")
+    end
+
+    test "PostcodeEncrypted.equal?/2 confirms terms are equal" do
+      assert PostcodeEncrypted.equal?("hello", "hello")
+    end
+  end
 end

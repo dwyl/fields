@@ -34,4 +34,10 @@ defmodule Fields.HtmlBodyTest do
       assert Body.input_type() == :textarea
     end
   end
+
+  describe "equal?" do
+    test "Body.equal?/2 confirms terms are equal" do
+      assert Body.equal?("hello", "hello")
+    end
+  end
 end

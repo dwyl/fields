@@ -26,4 +26,10 @@ defmodule Fields.EncryptedTest do
     {:ok, decrypted} = Encrypted.load(ciphertext)
     assert token == decrypted
   end
+
+  describe "equal?" do
+    test "Encrypted.equal?/2 confirms terms are equal" do
+      assert Encrypted.equal?("hello", "hello")
+    end
+  end
 end

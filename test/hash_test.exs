@@ -26,4 +26,10 @@ defmodule Fields.HashTest do
 
     assert {:ok, ^hash} = Hash.load(hash)
   end
+
+  describe "equal?" do
+    test "Hash.equal?/2 confirms terms are equal" do
+      assert Hash.equal?("hello", "hello")
+    end
+  end
 end
