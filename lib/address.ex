@@ -20,6 +20,7 @@ defmodule Fields.Address do
 
   def cast(value) do
     value = value |> to_string() |> String.trim()
+
     case Validate.address(value) do
       true -> {:ok, value}
       false -> :error

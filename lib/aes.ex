@@ -35,9 +35,11 @@ defmodule Fields.AES do
     key_id = get_key_id()
     key = get_key(key_id)
     {ciphertext, tag} = :crypto.block_encrypt(:aes_gcm, key, iv, {@aad, to_string(plaintext), 16})
-    key_id_str = String.pad_leading(to_string(key_id), 4, "0") # 1 >> "0001"
+    # 1 >> "0001"
+    key_id_str = String.pad_leading(to_string(key_id), 4, "0")
     # "return" key_id_str with the iv, cipher tag & ciphertext
-    key_id_str <> iv <> tag <> ciphertext # "concat" key_id iv cipher tag & ciphertext
+    # "concat" key_id iv cipher tag & ciphertext
+    key_id_str <> iv <> tag <> ciphertext
   end
 
   @doc """
@@ -82,5 +84,4 @@ defmodule Fields.AES do
     keys = Application.get_env(:fields, Fields.AES)[:keys]
     Enum.at(keys, key_id)
   end
-
 end

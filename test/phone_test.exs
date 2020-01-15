@@ -42,7 +42,6 @@ defmodule Fields.PhoneNumberTest do
   end
 
   describe "load" do
-
     test "PhoneNumberEncrypted.load/1 decrypts a value" do
       {:ok, ciphertext} = PhoneNumberEncrypted.dump("01234567890")
       assert {:ok, "01234567890"} == PhoneNumberEncrypted.load(ciphertext)
@@ -50,6 +49,16 @@ defmodule Fields.PhoneNumberTest do
 
     test "PhoneNumber.load returns a string" do
       assert {:ok, "01234567890"} == PhoneNumber.load("01234567890")
+    end
+  end
+
+  describe "equal?" do
+    test "PhoneNumber.equal?/2 confirms terms are equal" do
+      assert PhoneNumber.equal?("hello", "hello")
+    end
+
+    test "PhoneNumberEncrypted.equal?/2 confirms terms are equal" do
+      assert PhoneNumberEncrypted.equal?("hello", "hello")
     end
   end
 end

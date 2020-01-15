@@ -41,5 +41,4 @@ config :fields, Fields.AES,
     # decode the key.
     |> Enum.map(fn key -> :base64.decode(key) end)
 
-config :fields, Fields,
-  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE")
+config :fields, Fields, secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE")

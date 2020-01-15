@@ -1,6 +1,6 @@
 defmodule Fields.EmailTest do
   use ExUnit.Case
-  alias Fields.{EmailPlaintext, EmailHash, EmailEncrypted}
+  alias Fields.{EmailEncrypted, EmailHash, EmailPlaintext}
 
   describe "types" do
     test "EmailPlaintext.type is :string" do
@@ -42,8 +42,8 @@ defmodule Fields.EmailTest do
       {:ok, hash} = EmailHash.dump("test@test.com")
 
       assert hash ==
-      <<103, 114, 92, 212, 226, 97, 200, 230, 71, 197, 27, 156, 126, 168, 170, 
-      75, 31, 207, 35, 77, 9, 70, 248, 145, 194, 123, 61, 250, 176, 71, 13, 240>>
+               <<103, 114, 92, 212, 226, 97, 200, 230, 71, 197, 27, 156, 126, 168, 170, 75, 31,
+                 207, 35, 77, 9, 70, 248, 145, 194, 123, 61, 250, 176, 71, 13, 240>>
     end
 
     test "EmailPlaintext.dump returns a string" do
@@ -67,6 +67,20 @@ defmodule Fields.EmailTest do
 
     test "EmailPlaintext.load returns a string" do
       assert {:ok, "test@test.com"} == EmailPlaintext.load("test@test.com")
+    end
+  end
+
+  describe "equal?" do
+    test "EmailHash.equal?/2 confirms terms are equal" do
+      assert EmailHash.equal?("hello", "hello")
+    end
+
+    test "EmailPlainText.equal?/2 confirms terms are equal" do
+      assert EmailPlaintext.equal?("hello", "hello")
+    end
+
+    test "EmailEncrypted.equal?/2 confirms terms are equal" do
+      assert EmailEncrypted.equal?("hello", "hello")
     end
   end
 end

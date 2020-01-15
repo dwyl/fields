@@ -42,4 +42,10 @@ defmodule Fields.DescriptionPlaintextUnlimitedTest do
       assert Description.input_type() == :textarea
     end
   end
+
+  describe "equal?" do
+    test "Description.equal?/2 confirms terms are equal" do
+      assert Description.equal?("hello", "hello")
+    end
+  end
 end

@@ -27,4 +27,8 @@ defmodule Fields.HtmlBody do
   end
 
   def input_type, do: :textarea
+
+  def embed_as(_), do: :self
+
+  def equal?(term1, term2), do: term1 == term2
 end

@@ -19,14 +19,15 @@ defmodule Fields.NameTest do
 
     test "Name.cast validates if name is too long" do
       assert :error == Name.cast("supercalifragilisticexpialidocious36")
-      assert :error == Name.cast(1) # test to_string works for numbers
+      # test to_string works for numbers
+      assert :error == Name.cast(1)
     end
   end
 
   describe "dump" do
     test "Name.dump returns an encrypted string" do
-      {:ok, ciphertext } = Encrypted.dump("Jimmy Eats World")
-      assert is_binary ciphertext
+      {:ok, ciphertext} = Encrypted.dump("Jimmy Eats World")
+      assert is_binary(ciphertext)
     end
   end
 
