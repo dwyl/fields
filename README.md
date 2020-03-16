@@ -3,7 +3,7 @@
 # Fields
 
 A collection of commonly used fields implemented as custom Ecto types
-with the validation, sanitising and encryption/hashing. <br />
+with validation, sanitising and encryption/hashing. <br />
 <!--
 TODO: update intro copy once we ship better docs!
 Ship your Phoenix App _much_ faster by using well-documented fields
@@ -69,7 +69,7 @@ def deps do
   [
     {:fields, "~> 2.1.0"}
   ]
-ent d
+end
 ```
 
 Once you have saved the `mix.exs` file,
@@ -109,7 +109,7 @@ e.g:
 
 Each field can be used in place of an Ecto type when defining your schema.
 
-An example fo defining a "user" schema using **Fields**:
+An example for defining a "user" schema using **Fields**:
 
 ```elixir
 schema "users" do
