@@ -83,7 +83,7 @@ you will need to have environment variables
 defined for `ENCRYPTION_KEYS` and `SECRET_KEY_BASE` respectively.
 
 ```yaml
-export ENCRYPTION_KEYS='nMdayQpR0aoasLaq1g94FLba=,L+ZVX8iheoqgqb22mUpATmMDsvVGtafoAeb='
+export ENCRYPTION_KEYS=nMdayQpR0aoasLaq1g94FLba+A+wB44JLko47sVQXMg=
 export SECRET_KEY_BASE=GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO61z0DMOF
 ```
 
