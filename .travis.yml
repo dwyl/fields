@@ -9,7 +9,9 @@ env:
     - ENCRYPTION_KEYS="nMdayQpR0aoasLaq1g94FLba+A+wB44JLko47sVQXMg=,L+ZVX8iheoqgqb22mUpATmMDsvVGtafoAeb0KN5uWf0="
     - SECRET_KEY_BASE="GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO61z0DMOF"
 script:
-  - mix do deps.get, coveralls.json
+  - mix deps.get
+  - mix compile --warnings-as-errors
+  - mix coveralls.json
 after_script:
   - MIX_ENV=docs mix deps.get
   - MIX_ENV=docs mix inch.report
