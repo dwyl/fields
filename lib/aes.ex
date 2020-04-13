@@ -9,9 +9,12 @@ defmodule Fields.AES do
   # Use AES 256 Bit Keys for Encryption.
   @aad "AES256GCM"
   @keys System.get_env("ENCRYPTION_KEYS")
-    |> String.replace("'", "") # remove single-quotes around key list in .env
-    |> String.split(",") # split the CSV list of keys
-    |> Enum.map(fn key -> :base64.decode(key) end) # decode the keys
+        # remove single-quotes around key list in .env
+        |> String.replace("'", "")
+        #  split the CSV list of keys
+        |> String.split(",")
+        # decode the keys
+        |> Enum.map(fn key -> :base64.decode(key) end)
   @doc """
   Encrypt Using AES Galois/Counter Mode (GCM)
   https://en.wikipedia.org/wiki/Galois/Counter_Mode
