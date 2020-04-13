@@ -4,6 +4,8 @@ defmodule Fields.Helpers do
   Argon2. Argon2 is a strong but slow hashing function, so is recommended
   for passwords.
   """
+  @secret_key_base System.get_env("SECRET_KEY_BASE")
+
   @spec hash(atom(), String.Chars.t()) :: String.t()
   def hash(:argon2, value) do
     Argon2.Base.hash_password(to_string(value), Argon2.gen_salt(), [{:argon2_type, 2}])
@@ -20,7 +22,6 @@ defmodule Fields.Helpers do
   end
 
   defp get_salt(value) do
-    secret_key_base = Application.get_env(:fields, Fields)[:secret_key_base]
-    :crypto.hash(:sha256, value <> secret_key_base)
+    :crypto.hash(:sha256, value <> @secret_key_base)
   end
 end
