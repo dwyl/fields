@@ -28,17 +28,3 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 if Mix.env() == :test, do: import_config("#{Mix.env()}.exs")
-
-# Set the Encryption Keys as an "Application Variable" accessible in aes.ex
-config :fields, Fields.AES,
-  # get the ENCRYPTION_KEYS env variable
-  keys:
-    Map.fetch!(System.get_env(), "ENCRYPTION_KEYS")
-    # remove single-quotes around key list in .env
-    |> String.replace("'", "")
-    # split the CSV list of keys
-    |> String.split(",")
-    # decode the key.
-    |> Enum.map(fn key -> :base64.decode(key) end)
-
-config :fields, Fields, secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE")
