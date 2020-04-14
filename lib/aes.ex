@@ -8,7 +8,13 @@ defmodule Fields.AES do
   """
   # Use AES 256 Bit Keys for Encryption.
   @aad "AES256GCM"
-
+  @keys System.get_env("ENCRYPTION_KEYS")
+        # remove single-quotes around key list in .env
+        |> String.replace("'", "")
+        #  split the CSV list of keys
+        |> String.split(",")
+        # decode the keys
+        |> Enum.map(fn key -> :base64.decode(key) end)
   @doc """
   Encrypt Using AES Galois/Counter Mode (GCM)
   https://en.wikipedia.org/wiki/Galois/Counter_Mode
@@ -67,8 +73,7 @@ defmodule Fields.AES do
   # The key used for the encryption is always the latest key in the list (ie most recent created key)
   # """
   defp get_key_id() do
-    keys = Application.get_env(:fields, Fields.AES)[:keys]
-    Enum.count(keys) - 1
+    Enum.count(@keys) - 1
   end
 
   # @doc """
@@ -81,7 +86,6 @@ defmodule Fields.AES do
   # """ # doc commented out because https://stackoverflow.com/q/45171024/1148249
   @spec get_key(number) :: String
   defp get_key(key_id) do
-    keys = Application.get_env(:fields, Fields.AES)[:keys]
-    Enum.at(keys, key_id)
+    Enum.at(@keys, key_id)
   end
 end
