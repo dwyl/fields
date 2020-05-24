@@ -200,6 +200,9 @@ sensitive information and can be stored in plaintext.
 + [`Url`](lib/url.ex) - validate a URL and store as `plaintext`
 (_not encrypted_) `String`
 + [`UrlEncrypted`](lib/url_encrypted.ex) - validate a URL and store as AES _encrypted_ `Binary`
++ [`IpAddressPlaintext`](lib/ip_address_plaintext.ex) - validate an ipv4 and ipv6 address and store as `plaintext`
++ [`IpAddressHash`](lib/ip_address_hash.ex) - hash for ipv4 or ipv6
++ [`IpAddressEncrypted`](lib/ip_address_encrypted.ex) - validate an ipv4 and ipv6 address and store as AES _encrypted_ `Binary`
 
 ***Detailed documentation*** available on **HexDocs**:
 [hexdocs.pm/**fields**](https://hexdocs.pm/fields)
