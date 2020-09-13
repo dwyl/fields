@@ -13,9 +13,8 @@ defmodule Fields.AES do
         |> String.replace("'", "")
         #  split the CSV list of keys
         |> String.split(",")
-        |> IO.inspect()
         # decode the keys
-        |> Enum.map(fn key -> :base64.decode(to_string(key)) end)
+        |> Enum.map(fn key -> :base64.decode(key) end)
   @doc """
   Encrypt Using AES Galois/Counter Mode (GCM)
   https://en.wikipedia.org/wiki/Galois/Counter_Mode
