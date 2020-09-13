@@ -9,8 +9,7 @@ defmodule Fields.EmailEncrypted do
       end
   """
   alias Fields.{EmailPlaintext, Encrypted}
-
-  @behaviour Ecto.Type
+  use Ecto.Type
 
   def type, do: :binary
 

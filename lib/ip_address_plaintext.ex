@@ -9,8 +9,7 @@ defmodule Fields.IpAddressPlaintext do
         end
   """
   alias Fields.Validate
-
-  @behaviour Ecto.Type
+  use Ecto.Type
 
   def type, do: :string
 

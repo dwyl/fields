@@ -9,8 +9,7 @@ defmodule Fields.PhoneNumberEncrypted do
       end
   """
   alias Fields.{PhoneNumber, Encrypted}
-
-  @behaviour Ecto.Type
+  use Ecto.Type
 
   def type, do: :binary
 

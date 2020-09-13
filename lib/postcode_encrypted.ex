@@ -11,8 +11,7 @@ defmodule Fields.PostcodeEncrypted do
       end
   """
   alias Fields.{Postcode, Encrypted}
-
-  @behaviour Ecto.Type
+  use Ecto.Type
 
   def type, do: :binary
 

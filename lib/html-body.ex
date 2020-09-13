@@ -10,7 +10,7 @@ defmodule Fields.HtmlBody do
         field(:body, Fields.HtmlBody)
       end
   """
-  @behaviour Ecto.Type
+  use Ecto.Type
 
   def type, do: :string
 
