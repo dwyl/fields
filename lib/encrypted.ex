@@ -10,8 +10,7 @@ defmodule Fields.Encrypted do
         end
   """
   alias Fields.AES
-
-  @behaviour Ecto.Type
+  use Ecto.Type
   def type, do: :binary
 
   def cast(value) do

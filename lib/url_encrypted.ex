@@ -12,8 +12,7 @@ defmodule Fields.UrlEncrypted do
       ```
   """
   alias Fields.{Validate, Encrypted}
-
-  @behaviour Ecto.Type
+  use Ecto.Type
 
   def type, do: :binary
 

@@ -9,7 +9,7 @@ defmodule Fields.DescriptionPlaintextUnlimited do
         field(:description, Fields.DescriptionPlaintextUnlimited)
       end
   """
-  @behaviour Ecto.Type
+  use Ecto.Type
 
   def type, do: :string
 

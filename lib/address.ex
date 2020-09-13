@@ -13,8 +13,7 @@ defmodule Fields.Address do
     ```
   """
   alias Fields.Validate
-
-  @behaviour Ecto.Type
+  use Ecto.Type
 
   def type, do: :string
 

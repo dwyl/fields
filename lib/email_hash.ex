@@ -12,8 +12,7 @@ defmodule Fields.EmailHash do
       end
   """
   alias Fields.{EmailPlaintext, Hash}
-
-  @behaviour Ecto.Type
+  use Ecto.Type
 
   def type, do: :binary
 

@@ -10,8 +10,7 @@ defmodule Fields.Password do
         field(:password, Fields.Password)
       end
   """
-  @behaviour Ecto.Type
-
+  use Ecto.Type
   alias Fields.Helpers
 
   def type, do: :binary
