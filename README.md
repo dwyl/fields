@@ -26,7 +26,7 @@ See below for examples!
 # _Why_? 🤷
 
 We found ourselves repeating code
-for commonly used fields on each new Phoenix project/App.  
+for commonly used fields on each new Phoenix project/App.
 We wanted a _much_ easier/faster way of building apps
 so we created a collection of pre-defined fields
 with built-in validation, sanitising and security.
@@ -208,6 +208,14 @@ sensitive information and can be stored in plaintext.
 [hexdocs.pm/**fields**](https://hexdocs.pm/fields)
 
 <br />
+
+## Testing
+
+To run tests locally, you'll need to specify two env vars. You can pull example values for these variables from the travis CI config file:
+
+```
+ENCRYPTION_KEYS="key1,key2" SECRET_KEY_BASE="key" mix test
+```
 
 ## Contributing ➕
 
