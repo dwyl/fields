@@ -8,7 +8,7 @@ defmodule Fields.AES do
   """
   # Use AES 256 Bit Keys for Encryption.
   @aad "AES256GCM"
-  @keys System.get_env("ENCRYPTION_KEYS")
+  @keys System.get_env("ENCRYPTION_KEYS", "")
         # remove single-quotes around key list in .env
         |> String.replace("'", "")
         #  split the CSV list of keys
