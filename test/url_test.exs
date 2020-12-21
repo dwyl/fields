@@ -13,6 +13,18 @@ defmodule Fields.UrlTest do
       assert {:ok, "http://www.test.com"} == Url.cast("http://www.test.com")
     end
 
+    test "Url.cast accepts a string with uppercase characters" do
+      assert {:ok, "http://www.Test.com"} == Url.cast("http://www.Test.com")
+    end
+
+    test "Url.cast accepts a url with a query string" do
+      assert {:ok, "http://www.test.com?foo=bar"} == Url.cast("http://www.test.com?foo=bar")
+    end
+
+    test "Url.cast accepts a url with a fragment" do
+      assert {:ok, "http://www.test.com#something"} == Url.cast("http://www.test.com#something")
+    end
+
     test "Url.cast requires a protocol scheme" do
       assert {:ok, "https://www.test.com"} == Url.cast("https://www.test.com")
       assert {:ok, "http://www.test.com"} == Url.cast("http://www.test.com")
