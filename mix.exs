@@ -34,7 +34,7 @@ defmodule Fields.MixProject do
       # password hashing
       {:argon2_elixir, "~> 2.3.0"},
       # ecto types
-      {:ecto, "~> 3.4.6"},
+      {:ecto, "~> 3.4"},
       # strip noise from html field
       {:html_sanitize_ex, "~> 1.4.1"},
 
