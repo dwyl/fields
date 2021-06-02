@@ -40,7 +40,8 @@ defmodule Fields.AES do
     # get *specific* key (by id) from list of keys.
     key_id = get_key_id()
     key = get_key(key_id)
-    {ciphertext, tag} = :crypto.block_encrypt(:aes_gcm, key, iv, {@aad, to_string(plaintext), 16})
+    #{ciphertext, tag} = :crypto.block_encrypt(:aes_gcm, key, iv, {@aad, to_string(plaintext), 16})
+    {ciphertext, tag} = :crypto.crypto_one_time_aead(:aes_gcm, key, iv, to_string(plaintext), @aad, true)
     # 1 >> "0001"
     key_id_str = String.pad_leading(to_string(key_id), 4, "0")
     # "return" key_id_str with the iv, cipher tag & ciphertext
@@ -65,7 +66,8 @@ defmodule Fields.AES do
     <<key_id_str::binary-4, iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
     key_id = String.to_integer(key_id_str)
     key = get_key(key_id)
-    :crypto.block_decrypt(:aes_gcm, key, iv, {@aad, ciphertext, tag})
+    #:crypto.block_decrypt(:aes_gcm, key, iv, {@aad, ciphertext, tag})
+    :crypto.crypto_one_time_aead(:aes_gcm, key, iv, ciphertext, @aad, tag, false)
   end
 
   # @doc """
