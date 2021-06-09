@@ -1,5 +1,5 @@
 defmodule Fields.HelpersTest do
-  use ExUnit.Case
+  use Fields.TestCase
   alias Fields.Helpers
 
   test "hash/2 uses Argon2id to Hash a value" do

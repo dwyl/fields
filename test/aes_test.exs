@@ -1,5 +1,5 @@
 defmodule Fields.AESTest do
-  use ExUnit.Case
+  use Fields.TestCase
   alias Fields.AES
 
   doctest Fields.AES

@@ -8,13 +8,6 @@ defmodule Fields.AES do
   """
   # Use AES 256 Bit Keys for Encryption.
   @aad "AES256GCM"
-  @keys System.get_env("ENCRYPTION_KEYS", "")
-        # remove single-quotes around key list in .env
-        |> String.replace("'", "")
-        #  split the CSV list of keys
-        |> String.split(",")
-        # decode the keys
-        |> Enum.map(fn key -> :base64.decode(key) end)
   @doc """
   Encrypt Using AES Galois/Counter Mode (GCM)
   https://en.wikipedia.org/wiki/Galois/Counter_Mode
@@ -41,7 +34,7 @@ defmodule Fields.AES do
     key_id = get_key_id()
     IO.puts "key_id = #{key_id}"
     key = get_key(key_id)
-    IO.inspect key
+    IO.inspect bit_size(key)
     try do
       {ciphertext, tag} = :crypto.crypto_one_time_aead(:aes_256_gcm, key, iv, to_string(plaintext), @aad, true)
     # 1 >> "0001"
@@ -83,7 +76,7 @@ defmodule Fields.AES do
       :crypto.crypto_one_time_aead(:aes_256_gcm, key, iv, ciphertext, @aad, tag, false)
     rescue
       ArgumentError ->
-        IO.puts "Missing :aes_256_gcm?"
+        IO.puts "Missing :aes_192_gcm?"
     end
   end
 
@@ -92,7 +85,7 @@ defmodule Fields.AES do
   # The key used for the encryption is always the latest key in the list (ie most recent created key)
   # """
   defp get_key_id() do
-    Enum.count(@keys) - 1
+    Enum.count(fetch_keys()) - 1
   end
 
   # @doc """
@@ -105,6 +98,19 @@ defmodule Fields.AES do
   # """ # doc commented out because https://stackoverflow.com/q/45171024/1148249
   @spec get_key(number) :: String
   defp get_key(key_id) do
-    Enum.at(@keys, key_id)
+    Enum.at(fetch_keys(), key_id)
+  end
+
+  # Dependency injection of encryption keys to allow flexibility in tests and consumers.
+  # I don't think fetching the keys from the env is going to be too slow, but
+  # consider optimizing if benchmarking shows it is.
+  defp fetch_keys(keys \\ "") do
+    System.get_env("ENCRYPTION_KEYS", "")
+          # remove single-quotes around key list in .env
+          |> String.replace("'", "")
+          #  split the CSV list of keys
+          |> String.split(",")
+          # decode the keys
+          |> Enum.map(fn key -> :base64.decode(key) end)
   end
 end

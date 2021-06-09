@@ -1,5 +1,5 @@
 defmodule Fields.HashTest do
-  use ExUnit.Case
+  use Fields.TestCase
   alias Fields.Hash
 
   test ".type is :binary" do

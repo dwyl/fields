@@ -1,5 +1,5 @@
 defmodule Fields.IpAddressTest do
-  use ExUnit.Case
+  use Fields.TestCase
   alias Fields.{IpAddressPlaintext, IpAddressHash, IpAddressEncrypted}
 
   describe "types" do

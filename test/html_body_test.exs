@@ -1,5 +1,5 @@
 defmodule Fields.HtmlBodyTest do
-  use ExUnit.Case
+  use Fields.TestCase
   alias Fields.HtmlBody, as: Body
 
   describe "types" do
