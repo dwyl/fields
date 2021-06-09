@@ -14,6 +14,7 @@ defmodule Fields.HelpersTest do
     assert Argon2.verify_pass(to_string(password), hash)
   end
 
+  @tag :skip
   test "hash/2 uses sha256 to hash a value" do
     hash = Helpers.hash(:sha256, "alex@example.com")
 

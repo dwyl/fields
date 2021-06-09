@@ -19,11 +19,11 @@ defmodule Fields.AES do
     using `to_string` before encryption.
   - `key_id`: the index of the AES encryption key used to encrypt the ciphertext
   ## Examples
-      iex> Fields.AES.encrypt("tea") != Fields.AES.encrypt("tea")
-      true
-      iex> ciphertext = Fields.AES.encrypt(123)
-      iex> is_binary(ciphertext)
-      true
+  iex> Fields.AES.encrypt("tea") != Fields.AES.encrypt("tea")
+  true
+  iex> ciphertext = Fields.AES.encrypt(123)
+  iex> is_binary(ciphertext)
+  true
   """
 
   @spec encrypt(any) :: String.t()
@@ -32,22 +32,13 @@ defmodule Fields.AES do
     iv = :crypto.strong_rand_bytes(16)
     # get *specific* key (by id) from list of keys.
     key_id = get_key_id()
-    IO.puts "key_id = #{key_id}"
     key = get_key(key_id)
-    IO.inspect bit_size(key)
-    try do
-      {ciphertext, tag} = :crypto.crypto_one_time_aead(:aes_256_gcm, key, iv, to_string(plaintext), @aad, true)
+    {ciphertext, tag} = :crypto.crypto_one_time_aead(:aes_256_gcm, key, iv, to_string(plaintext), @aad, true)
     # 1 >> "0001"
     key_id_str = String.pad_leading(to_string(key_id), 4, "0")
-    IO.puts "key_id_str = #{key_id_str}"
-    IO.inspect key_id_str <> iv <> tag <> ciphertext
     # "return" key_id_str with the iv, cipher tag & ciphertext
     # "concat" key_id iv cipher tag & ciphertext
     key_id_str <> iv <> tag <> ciphertext
-    rescue
-      ArgumentError ->
-        IO.puts "Missing :aes_256_gcm?"
-    end
   end
 
   @doc """
@@ -57,8 +48,8 @@ defmodule Fields.AES do
     binary are the IV to use for decryption.
   - `key_id`: the index of the AES encryption key used to encrypt the ciphertext
   ## Example
-      iex> Fields.AES.encrypt("test") |> Fields.AES.decrypt()
-      "test"
+  iex> Fields.AES.encrypt("test") |> Fields.AES.decrypt()
+  "test"
   """
 
   # as above but *asumes* `default` (latest) encryption key is used.
@@ -66,18 +57,8 @@ defmodule Fields.AES do
   def decrypt(ciphertext) do
     <<key_id_str::binary-4, iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
     key_id = String.to_integer(key_id_str)
-    IO.puts "key_id = #{key_id}"
     key = get_key(key_id)
-    IO.inspect key
-    IO.inspect tag
-    IO.inspect ciphertext
-    
-    try do
-      :crypto.crypto_one_time_aead(:aes_256_gcm, key, iv, ciphertext, @aad, tag, false)
-    rescue
-      ArgumentError ->
-        IO.puts "Missing :aes_192_gcm?"
-    end
+    :crypto.crypto_one_time_aead(:aes_256_gcm, key, iv, ciphertext, @aad, tag, false)
   end
 
   # @doc """
@@ -106,11 +87,11 @@ defmodule Fields.AES do
   # consider optimizing if benchmarking shows it is.
   defp fetch_keys(keys \\ "") do
     System.get_env("ENCRYPTION_KEYS", "")
-          # remove single-quotes around key list in .env
-          |> String.replace("'", "")
-          #  split the CSV list of keys
-          |> String.split(",")
-          # decode the keys
-          |> Enum.map(fn key -> :base64.decode(key) end)
+      # remove single-quotes around key list in .env
+      |> String.replace("'", "")
+      #  split the CSV list of keys
+      |> String.split(",")
+      # decode the keys
+      |> Enum.map(fn key -> :base64.decode(key) end)
   end
 end
