@@ -1,5 +1,5 @@
 defmodule Fields.HashTest do
-  use ExUnit.Case
+  use Fields.TestCase
   alias Fields.Hash
 
   test ".type is :binary" do
@@ -11,6 +11,7 @@ defmodule Fields.HashTest do
     assert {:ok, "atom"} == Hash.cast(:atom)
   end
 
+  @tag :skip
   test ".dump converts a value to a sha256 hash" do
     {:ok, hash} = Hash.dump("hello")
 
@@ -19,6 +20,7 @@ defmodule Fields.HashTest do
                30, 49, 50, 86, 91, 17, 108, 189, 90, 54, 16, 21, 172>>
   end
 
+  @tag :skip
   test ".load does not modify the hash, since the hash cannot be reversed" do
     hash =
       <<16, 231, 67, 229, 9, 181, 13, 87, 69, 76, 227, 205, 43, 124, 16, 75, 46, 161, 206, 219,

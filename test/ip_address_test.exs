@@ -1,5 +1,5 @@
 defmodule Fields.IpAddressTest do
-  use ExUnit.Case
+  use Fields.TestCase
   alias Fields.{IpAddressPlaintext, IpAddressHash, IpAddressEncrypted}
 
   describe "types" do
@@ -42,6 +42,7 @@ defmodule Fields.IpAddressTest do
       assert String.length(ciphertext) != 0
     end
 
+    @tag :skip
     test "IPAddressHash.dump converts a value to a sha256 hash" do
       {:ok, hash} = IpAddressHash.dump("168.212.226.204")
 

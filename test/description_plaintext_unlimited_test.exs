@@ -1,5 +1,5 @@
 defmodule Fields.DescriptionPlaintextUnlimitedTest do
-  use ExUnit.Case
+  use Fields.TestCase
   alias Fields.DescriptionPlaintextUnlimited, as: Description
 
   describe "types" do

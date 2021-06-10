@@ -1,5 +1,5 @@
 defmodule Fields.PhoneNumberTest do
-  use ExUnit.Case
+  use Fields.TestCase
   alias Fields.{PhoneNumber, PhoneNumberEncrypted}
 
   describe "types" do
