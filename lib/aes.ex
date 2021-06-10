@@ -85,7 +85,7 @@ defmodule Fields.AES do
   # Dependency injection of encryption keys to allow flexibility in tests and consumers.
   # I don't think fetching the keys from the env is going to be too slow, but
   # consider optimizing if benchmarking shows it is.
-  defp fetch_keys(keys \\ "") do
+  defp fetch_keys() do
     System.get_env("ENCRYPTION_KEYS", "")
       # remove single-quotes around key list in .env
       |> String.replace("'", "")

@@ -5,6 +5,8 @@ matrix:
       otp_release: 22.3.4
     - elixir: 1.11.0
       otp_release: 23.0.4
+    - elixir: 1.12.0
+      otp_release: 24.0.0
 env:
   global:
     - MIX_ENV=test
