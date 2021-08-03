@@ -1,5 +1,5 @@
 defmodule Fields.PasswordTest do
-  use Fields.TestCase
+  use ExUnit.Case
   alias Fields.{Password, Helpers}
 
   test ".type is :binary" do

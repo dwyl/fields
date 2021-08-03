@@ -1,5 +1,5 @@
 defmodule Fields.NameTest do
-  use Fields.TestCase
+  use ExUnit.Case
   alias Fields.{Name, Encrypted}
 
   describe "types" do

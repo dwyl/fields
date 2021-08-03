@@ -19,6 +19,6 @@ defmodule Fields.Helpers do
   end
 
   defp fetch_secret_key_base do
-    System.get_env("SECRET_KEY_BASE", "")
+    Application.fetch_env!(:fields, :secret_key_base)
   end
 end

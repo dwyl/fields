@@ -86,7 +86,7 @@ defmodule Fields.AES do
   # I don't think fetching the keys from the env is going to be too slow, but
   # consider optimizing if benchmarking shows it is.
   defp fetch_keys() do
-    System.get_env("ENCRYPTION_KEYS", "")
+    Application.fetch_env!(:fields, :encryption_keys)
       # remove single-quotes around key list in .env
       |> String.replace("'", "")
       #  split the CSV list of keys

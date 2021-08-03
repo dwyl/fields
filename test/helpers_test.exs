@@ -1,5 +1,5 @@
 defmodule Fields.HelpersTest do
-  use Fields.TestCase
+  use ExUnit.Case
   alias Fields.Helpers
 
   test "hash/2 uses Argon2id to Hash a value" do
@@ -14,7 +14,6 @@ defmodule Fields.HelpersTest do
     assert Argon2.verify_pass(to_string(password), hash)
   end
 
-  @tag :skip
   test "hash/2 uses sha256 to hash a value" do
     hash = Helpers.hash(:sha256, "alex@example.com")
 

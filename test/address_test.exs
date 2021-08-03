@@ -1,5 +1,5 @@
 defmodule Fields.AddressTest do
-  use Fields.TestCase 
+  use ExUnit.Case
   alias Fields.{Address, AddressEncrypted}
 
   describe "types" do

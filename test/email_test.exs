@@ -1,5 +1,5 @@
 defmodule Fields.EmailTest do
-  use Fields.TestCase
+  use ExUnit.Case
   alias Fields.{EmailEncrypted, EmailHash, EmailPlaintext}
 
   describe "types" do
@@ -38,7 +38,6 @@ defmodule Fields.EmailTest do
       assert String.length(ciphertext) != 0
     end
 
-    @tag :skip
     test "EmailHash.dump converts a value to a sha256 hash" do
       {:ok, hash} = EmailHash.dump("test@test.com")
 
@@ -58,7 +57,6 @@ defmodule Fields.EmailTest do
       assert {:ok, "test@test.com"} == EmailEncrypted.load(ciphertext)
     end
 
-    @tag :skip 
     test "EmailHash.load does not modify the hash, since the hash cannot be reversed" do
       hash =
         <<16, 231, 67, 229, 9, 181, 13, 87, 69, 76, 227, 205, 43, 124, 16, 75, 46, 161, 206, 219,

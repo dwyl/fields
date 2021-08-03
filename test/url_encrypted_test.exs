@@ -1,5 +1,5 @@
 defmodule Fields.UrlEncryptedTest do
-  use Fields.TestCase
+  use ExUnit.Case
   alias Fields.UrlEncrypted, as: Url
   alias Fields.Encrypted
 
