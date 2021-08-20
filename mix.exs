@@ -6,10 +6,11 @@ defmodule Fields.MixProject do
       app: :fields,
       description: "A collection of useful fields for building Phoenix apps faster!",
       version: "2.7.1",
-      elixir: ">= 1.10.0 and < 1.12.0",
+      elixir: "> 1.10.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
+      elixirc_paths: elixirc_paths(Mix.env()),
 
       # coverage
       test_coverage: [tool: ExCoveralls],
@@ -27,6 +28,9 @@ defmodule Fields.MixProject do
       extra_applications: [:logger]
     ]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
