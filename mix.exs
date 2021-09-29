@@ -5,8 +5,8 @@ defmodule Fields.MixProject do
     [
       app: :fields,
       description: "A collection of useful fields for building Phoenix apps faster!",
-      version: "2.8.0",
-      elixir: "> 1.10.0",
+      version: "2.8.1",
+      elixir: ">= 1.12.3",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
@@ -36,20 +36,20 @@ defmodule Fields.MixProject do
   defp deps do
     [
       # password hashing
-      {:argon2_elixir, "~> 2.3.0"},
+      {:argon2_elixir, "~> 2.4.0"},
       # ecto types
-      {:ecto, "~> 3.4.6"},
+      {:ecto, "~> 3.7.1"},
       # strip noise from html field
-      {:html_sanitize_ex, "~> 1.4.1"},
+      {:html_sanitize_ex, "~> 1.4.2"},
 
       # stream_data for property based testing
       {:stream_data, "~> 0.5.0", only: :test},
       # tracking test coverage
-      {:excoveralls, "~> 0.13.1", only: [:test, :dev]},
+      {:excoveralls, "~> 0.14.2", only: [:test, :dev]},
 
       # documentation
-      {:ex_doc, "~> 0.22.5", only: :dev},
-      {:inch_ex, only: :docs}
+      {:ex_doc, "~> 0.25.3", only: :dev},
+      {:inch_ex, ">=2.0.0", only: :docs}
     ]
   end
 

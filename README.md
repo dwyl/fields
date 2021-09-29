@@ -48,7 +48,7 @@ _much_ easier for everyone.
 # _Who_? 👥
 
 This module is for people building Elixir/Phoenix apps
-who want to ship _simpler_ more maintainable code.
+who want to ship _simpler_ and more maintainable code.
 
 > We've attempted to make **`Fields`**
 as **beginner-friendly** as possible. <br />
@@ -67,7 +67,7 @@ Add the `fields` package to your list of dependencies in your `mix.exs` file:
 ```elixir
 def deps do
   [
-    {:fields, "~> 2.8.0"}
+    {:fields, "~> 2.8.1"}
   ]
 end
 ```
