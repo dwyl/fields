@@ -5,7 +5,7 @@ defmodule Fields.MixProject do
     [
       app: :fields,
       description: "A collection of useful fields for building Phoenix apps faster!",
-      version: "2.8.1",
+      version: "2.8.2",
       elixir: ">= 1.10.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -25,7 +25,11 @@ defmodule Fields.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger],
+      env: [
+        encryption_keys: System.get_env("ENCRYPTION_KEYS"),
+        secret_key_base: System.get_env("SECRET_KEY_BASE")
+      ]
     ]
   end
 

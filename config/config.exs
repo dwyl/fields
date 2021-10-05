@@ -27,9 +27,4 @@ use Mix.Config
 # Configuration from the imported file will override the ones defined
 # here (which is why it is important to import them last).
 
-config :fields,
-  encryption_keys: System.get_env("ENCRYPTION_KEYS"),
-  secret_key_base: System.get_env("SECRET_KEY_BASE")
-
-#
 if Mix.env() == :test, do: import_config("#{Mix.env()}.exs")
