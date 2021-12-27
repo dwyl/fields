@@ -16,7 +16,7 @@ See below for examples!
 [![Hex.pm](https://img.shields.io/hexpm/v/fields?color=brightgreen&style=flat-square)](https://hex.pm/packages/fields)
 [![docs](https://img.shields.io/badge/docs-maintained-brightgreen?style=flat-square)](https://hexdocs.pm/fields/api-reference.html)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/fields/issues)
-[![HitCount](http://hits.dwyl.io/dwyl/fields.svg)](http://hits.dwyl.io/dwyl/fields)
+[![HitCount](http://hits.dwyl.com/dwyl/fields.svg)](http://hits.dwyl.com/dwyl/fields)
 <!-- uncomment when service is working ...
 [![Inline docs](http://inch-ci.org/github/dwyl/fields.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/fields)
 -->
@@ -438,11 +438,21 @@ Imagine you have a database table called `people` that has just 3 columns: `id`,
 
 
 | `id`  | `email_hash`  | `email_encrypted` | 
-| ----- | ------------- | ----------------- |
+|:-----:| ------------- | ----------------- |
 |   1   | X/v7zLU77wTawSMU34PbZR4RYZJncwO55onaidFvMOw= | MDAwMc57Y1j0nhwOdw7EvNeUVEfYQoAr7aT6oX |
 |   2   | +zXMhia/Z2I64nul6pqoDZTVM1q2K21Pby6GtPcm9iE= | MDAwMXnS1uwGN/cZRFkQgArm2Sbj9y+hnUJIS7 |
 |   3   | maY4IxoRSOSqm6qyJDrnEN1JQssJRqRGhzwOown4DPU= | MDAwMa4v0FBko++zqfAkfisXOLosQfrDLAdPax |
 
+With this "database" table, 
+we can now _lookup_ an email address to find out their `id`:
+
+```elixir
+iex(4)> Fields.Helpers.hash(:sha256, "alice@gmail.com") |> :base64.encode
+"+zXMhia/Z2I64nul6pqoDZTVM1q2K21Pby6GtPcm9iE="
+```
+
+This matches the `email_hash` in the second row of our table,
+therefore **alice's** `id` is `2` in the database.
 
 <!--
 
