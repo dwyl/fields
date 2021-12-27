@@ -211,7 +211,9 @@ sensitive information and can be stored in plaintext.
 
 ## Testing
 
-To run tests locally, you'll need to specify two env vars. You can pull example values for these variables from the travis CI config file:
+To run tests locally, you'll need to specify two env vars. 
+You can pull example values for these variables from the 
+Travis CI config file:
 
 ```
 ENCRYPTION_KEYS="key1,key2" SECRET_KEY_BASE="key" mix test
@@ -226,6 +228,9 @@ please open an issue so we can add it!
 
 <br />
 
+
+<br />
+
 ## Background / Further Reading 🔗
 
 If you want an in-depth understanding of how automatic/transparent
@@ -235,3 +240,199 @@ encryption/decryption works using Ecto Types, <br />see:
 If you are rusty/new on Binaries in Elixir,
 take a look at this post by @blackode: <br />
 https://medium.com/blackode/playing-with-elixir-binaries-strings-dd01a40039d5
+
+
+# Questions?
+
+If you have questions, please open an issue:
+[github.com/dwyl/fields/issues](https://github.com/dwyl/fields/issues)
+
+A recent/good example is: [issues/169](https://github.com/dwyl/auth/issues/169)
+
+### Why do we have _both_ `EmailEncrypted` and `EmailHash` ?
+
+[`EmailEncrypted`](https://github.com/dwyl/fields/blob/main/lib/email_encrypted.ex)
+and
+[`EmailHash`](https://github.com/dwyl/fields/blob/main/lib/email_hash.ex)
+serve very different purposes.
+Briefly:
+with 
+[**encryption**](https://en.wikipedia.org/wiki/Encryption)
+the output is **_always_ different** 
+is meant for safely storing sensitive data
+that we want to **_decrypt_** later
+whereas with 
+[**hash**](https://en.wikipedia.org/wiki/Hash_function)
+the output is **_always_ the same**
+it cannot be "unhashed" but 
+can be used to
+[***check***](https://en.wikipedia.org/wiki/Checksum) a value,
+i.e. you can lookup a _hashed_ value in a database.
+
+The best way to understand how these work 
+is to see it for yourself. 
+Start an 
+[`IEx`](https://hexdocs.pm/iex/1.1.1/IEx.html) 
+session in your terminal:
+
+```sh
+iex -S mix
+```
+
+You should see output similar to the following:
+
+```sh
+Erlang/OTP 24 [erts-12.0.3] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [jit] [dtrace]
+
+Compiling 23 files (.ex)
+Generated fields app
+Interactive Elixir (1.12.3) - press Ctrl+C to exit (type h() ENTER for help)
+```
+That confirms the `fields` module has compiled.
+
+#### Encryption
+
+Now that you've initialized `IEx`,
+issue the following commands:
+
+```sh
+iex> email = "alex@gmail.com"
+
+"alex@gmail.com"
+
+iex(2)> encrypted = Fields.AES.encrypt(email)
+
+<<48, 48, 48, 49, 20, 6, 117, 239, 107, 251, 80, 156, 109, 46, 6, 75, 119, 89,
+  72, 163, 156, 243, 60, 6, 17, 166, 130, 239, 93, 222, 65, 186, 185, 78, 77, 2,
+  80, 194, 241, 31, 28, 24, 155, 172, 208, 185, 142, 64, 65, 127>>
+```
+
+> **Note**: the `Fields.EmailEncrypted` 
+uses the `AES.encrypt/1` behind the scenes,
+that's why we are using it here directly. 
+You could just as easily have written: 
+`{:ok, encrypted} = Fields.EmailEncrypted.dump(email)`
+this is just a shorthand.
+
+That output `<<48, 48, 48 ... 64, 65, 127>>` is a 
+[**bitstring**](https://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html#bitstrings)
+which is the sequence of bits in memory.
+The encrypted data - usually called 
+["ciphertext"](https://en.wikipedia.org/wiki/Ciphertext) - 
+is not human readable, that's a feature.
+But if you want to _decrypt_ it back to its human-readable form,
+simply run:
+
+```
+iex(3)> decrypted = Fields.AES.decrypt(encrypted)
+
+"alex@gmail.com"
+```
+
+So we know that an encrypted value can be decrypted.
+In the case of `EmailEncrypted` this is useful
+when we want to send someone an email message.
+For security/privacy, 
+we want their sensitive personal data to be stored
+_encrypted_ in the Database,
+but when we need to decrypt it to send them a message,
+it's easy enough.
+
+If you run the `Fields.AES.encrypt/1` function 
+multiple times in your terminal,
+you will _always_ see different output:
+
+```elixir
+iex(4)> Fields.AES.encrypt(email)
+ <<48, 48, 48, 49, 168, 212, 210, 53, 233, 104, 27, 235, 199, 43, 87, 74, 3, 2,
+   211, 114, 187, 229, 157, 182, 37, 34, 209, 37, 66, 160, 30, 126, 238, 180,
+   146, 133, 227, 53, 245, 228, 119, 191, 117, 247, 37, 176, 130, 110, ...>>
+iex(5)> Fields.AES.encrypt(email)
+ <<48, 48, 48, 49, 196, 170, 48, 97, 75, 206, 148, 204, 41, 149, 64, 50, 27, 56,
+   112, 19, 53, 108, 86, 153, 154, 53, 53, 97, 232, 133, 97, 88, 214, 254, 40,
+   84, 65, 227, 75, 123, 212, 222, 63, 221, 176, 130, 11, 173, ...>>
+iex(6)> Fields.AES.encrypt(email)
+ <<48, 48, 48, 49, 201, 239, 104, 101, 140, 232, 0, 216, 183, 168, 220, 130, 24,
+   236, 205, 220, 239, 112, 112, 168, 86, 235, 84, 115, 108, 116, 16, 234, 184,
+   72, 111, 144, 245, 1, 125, 207, 230, 68, 126, 111, 84, 83, 23, 90, ...>>
+iex(7)> Fields.AES.encrypt(email)
+ <<48, 48, 48, 49, 176, 131, 145, 182, 128, 43, 11, 100, 253, 73, 179, 144, 139,
+   45, 211, 156, 155, 117, 119, 59, 152, 148, 45, 36, 95, 141, 35, 242, 182, 51,
+   235, 162, 186, 132, 23, 34, 174, 171, 157, 115, 54, 211, 124, 247, ...>>
+```
+
+The first 4 bytes `<<48, 48, 48, 49,` are the same 
+because we are using the same encryption key.
+But the rest is _always_ different. 
+
+
+#### Hashing
+
+A `hash` function 
+can be used to map data of arbitrary size 
+to fixed-size values.
+i.e. _any_ length of `plaintext` will 
+result in the _same_ length `hash` _value_.
+A `hash` function is _one-way_,
+it cannot be reversed or "un-hashed".
+The the `hash` _value_ is _always_ the same
+for a given string of plaintext.
+
+
+Try it in `IEx`:
+
+```elixir
+iex(1)> email = "alex@gmail.com"
+"alex@gmail.com"
+
+iex(2)> Fields.Helpers.hash(:sha256, email)
+<<95, 251, 251, 204, 181, 59, 239, 4, 218, 193, 35, 20, 223, 131, 219, 101, 30,
+  17, 97, 146, 103, 115, 3, 185, 230, 137, 218, 137, 209, 111, 48, 236>>
+iex(3)> Fields.Helpers.hash(:sha256, email)
+<<95, 251, 251, 204, 181, 59, 239, 4, 218, 193, 35, 20, 223, 131, 219, 101, 30,
+  17, 97, 146, 103, 115, 3, 185, 230, 137, 218, 137, 209, 111, 48, 236>>
+iex(4)> Fields.Helpers.hash(:sha256, email)
+<<95, 251, 251, 204, 181, 59, 239, 4, 218, 193, 35, 20, 223, 131, 219, 101, 30,
+  17, 97, 146, 103, 115, 3, 185, 230, 137, 218, 137, 209, 111, 48, 236>>
+```
+
+The hash _value_ is identical for the given text.
+If you use the `Fields.EmailHash` function,
+you will see the same hash value 
+(_because the same helper function is invoked_):
+
+```elixir
+iex(5)> Fields.EmailHash.dump(email)
+{:ok,
+ <<95, 251, 251, 204, 181, 59, 239, 4, 218, 193, 35, 20, 223, 131, 219, 101, 30,
+   17, 97, 146, 103, 115, 3, 185, 230, 137, 218, 137, 209, 111, 48, 236>>}
+iex(6)> Fields.EmailHash.dump(email)
+{:ok,
+ <<95, 251, 251, 204, 181, 59, 239, 4, 218, 193, 35, 20, 223, 131, 219, 101, 30,
+   17, 97, 146, 103, 115, 3, 185, 230, 137, 218, 137, 209, 111, 48, 236>>}
+```
+
+
+
+
+<!--
+
+[AES.encrypt/1](https://github.com/dwyl/fields/blob/519f2e9da9c6267e9b9b5359370b21a78390d020/lib/aes.ex#L30)
+has an 
+[Initialization Vector](https://en.wikipedia.org/wiki/Initialization_vector) (**`IV`**)
+which is a random set of bytes 
+prepended to the data each time it gets encrypted.
+This increases the randomness of the **`ciphertext`**
+and thus makes it more difficult to `decrypt` 
+in the event an attacker accesses the DB.
+
+
+The `IV` is included in the `bitstring` returned by `AES.encrypt/1`
+which could be split and stored separately in a high security system.
+We are storing them together for now as we feel that having a unique key 
+stored in a Key Management System (KMS) is adequate for our needs.
+-->
+
+
+### How does 
+
