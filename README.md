@@ -396,8 +396,10 @@ iex(4)> Fields.Helpers.hash(:sha256, email)
   17, 97, 146, 103, 115, 3, 185, 230, 137, 218, 137, 209, 111, 48, 236>>
 ```
 
-The hash _value_ is identical for the given text.
-If you use the `Fields.EmailHash` function,
+The hash _value_ is identical for the given input text 
+in this case the the email address `"alex@gmail.com"`.
+
+If you use the `Fields.EmailHash.dump/1` function,
 you will see the same hash value 
 (_because the same helper function is invoked_):
 
@@ -412,7 +414,34 @@ iex(6)> Fields.EmailHash.dump(email)
    17, 97, 146, 103, 115, 3, 185, 230, 137, 218, 137, 209, 111, 48, 236>>}
 ```
 
+When the `EmailHash` is stored in a database
+we can lookup an email address by hashing it
+and comparing to the list. 
 
+The best way of _visualizing_ this 
+is to convert the hash value (bitstring) 
+to `base64` so that it is _human-readable_:
+
+
+```elixir
+iex(1)> email = "alex@gmail.com"
+"alex@gmail.com"
+
+iex(2)> Fields.Helpers.hash(:sha256, email) |> :base64.encode
+"X/v7zLU77wTawSMU34PbZR4RYZJncwO55onaidFvMOw="
+
+iex(3)> Fields.Helpers.hash(:sha256, email) |> :base64.encode
+"X/v7zLU77wTawSMU34PbZR4RYZJncwO55onaidFvMOw="
+```
+
+Imagine you have a database table called `people` that has just 3 columns: `id`, `email_hash` and `email_encrypted`
+
+
+| `id`  | `email_hash`  | `email_encrypted` | 
+| ----- | ------------- | ----------------- |
+|   1   | X/v7zLU77wTawSMU34PbZR4RYZJncwO55onaidFvMOw= | MDAwMc57Y1j0nhwOdw7EvNeUVEfYQoAr7aT6oX |
+|   2   | +zXMhia/Z2I64nul6pqoDZTVM1q2K21Pby6GtPcm9iE= | MDAwMXnS1uwGN/cZRFkQgArm2Sbj9y+hnUJIS7 |
+|   3   | maY4IxoRSOSqm6qyJDrnEN1JQssJRqRGhzwOown4DPU= | MDAwMa4v0FBko++zqfAkfisXOLosQfrDLAdPax |
 
 
 <!--
@@ -431,8 +460,9 @@ The `IV` is included in the `bitstring` returned by `AES.encrypt/1`
 which could be split and stored separately in a high security system.
 We are storing them together for now as we feel that having a unique key 
 stored in a Key Management System (KMS) is adequate for our needs.
--->
+
 
 
 ### How does 
 
+-->
