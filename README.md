@@ -16,7 +16,7 @@ See below for examples!
 [![Hex.pm](https://img.shields.io/hexpm/v/fields?color=brightgreen&style=flat-square)](https://hex.pm/packages/fields)
 [![docs](https://img.shields.io/badge/docs-maintained-brightgreen?style=flat-square)](https://hexdocs.pm/fields/api-reference.html)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/fields/issues)
-[![HitCount](http://hits.dwyl.com/dwyl/fields.svg)](http://hits.dwyl.com/dwyl/fields)
+[![HitCount](https://hits.dwyl.com/dwyl/fields.svg)](https://hits.dwyl.com/dwyl/fields)
 <!-- uncomment when service is working ...
 [![Inline docs](http://inch-ci.org/github/dwyl/fields.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/fields)
 -->
