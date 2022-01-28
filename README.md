@@ -416,7 +416,7 @@ iex(6)> Fields.EmailHash.dump(email)
 
 When the `EmailHash` is stored in a database
 we can lookup an email address by hashing it
-and comparing to the list. 
+and comparing it to the list. 
 
 The best way of _visualizing_ this 
 is to convert the hash value (bitstring) 
