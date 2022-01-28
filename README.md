@@ -375,7 +375,7 @@ i.e. _any_ length of `plaintext` will
 result in the _same_ length `hash` _value_.
 A `hash` function is _one-way_,
 it cannot be reversed or "un-hashed".
-The the `hash` _value_ is _always_ the same
+The `hash` _value_ is _always_ the same
 for a given string of plaintext.
 
 
