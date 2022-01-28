@@ -397,7 +397,7 @@ iex(4)> Fields.Helpers.hash(:sha256, email)
 ```
 
 The hash _value_ is identical for the given input text 
-in this case the the email address `"alex@gmail.com"`.
+in this case the email address `"alex@gmail.com"`.
 
 If you use the `Fields.EmailHash.dump/1` function,
 you will see the same hash value 
