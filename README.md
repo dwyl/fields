@@ -452,7 +452,7 @@ iex(4)> Fields.Helpers.hash(:sha256, "alice@gmail.com") |> :base64.encode
 ```
 
 This matches the `email_hash` in the second row of our table,
-therefore **alice's** `id` is `2` in the database.
+therefore **Alice's** `id` is `2` in the database.
 
 <!--
 
