@@ -40,7 +40,7 @@ defmodule Fields.MixProject do
   defp deps do
     [
       # password hashing
-      {:argon2_elixir, "~> 2.4.0"},
+      {:argon2_elixir, "~> 3.0.0"},
       # ecto types
       {:ecto, "~> 3.7.1"},
       # strip noise from html field
