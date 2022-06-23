@@ -2,7 +2,7 @@
 
 # Fields
 
-A collection of commonly used fields implemented as custom Ecto types
+A collection of commonly used fields implemented as custom `Ecto` types <br />
 with validation, sanitising and encryption/hashing. <br />
 <!--
 TODO: update intro copy once we ship better docs!
@@ -26,8 +26,8 @@ See below for examples!
 # _Why_? 🤷
 
 We found ourselves repeating code
-for commonly used fields on each new Phoenix project/App.
-We wanted a _much_ easier/faster way of building apps
+for commonly used fields on each new **`Phoenix`** project/App ... <br />
+We wanted a **_much_ easier/faster** way of building apps
 so we created a collection of pre-defined fields
 with built-in validation, sanitising and security.
 **`Fields`** makes defining Ecto Schemas faster
@@ -44,6 +44,10 @@ to your Phoenix/Ecto schemas so you can build apps faster!
 i.e. all "user" data should be encrypted _before_ being stored in the database.
 This project makes hashing, encryption and _decryption_ for secure data storage
 _much_ easier for everyone.
+
+> This package was born out of our research 
+> into the best/easiest way to encrypt data in **`Phoenix`**:
+> [dwyl/phoenix-ecto-encryption-example](https://github.com/dwyl/phoenix-ecto-encryption-example)
 
 # _Who_? 👥
 
@@ -234,7 +238,7 @@ please open an issue so we can add it!
 ## Background / Further Reading 🔗
 
 If you want an in-depth understanding of how automatic/transparent
-encryption/decryption works using Ecto Types, <br />see:
+encryption/decryption works using Ecto Types, see:
 [github.com/dwyl/**phoenix-ecto-encryption-example**](https://github.com/dwyl/phoenix-ecto-encryption-example)
 
 If you are rusty/new on Binaries in Elixir,
