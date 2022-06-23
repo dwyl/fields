@@ -43,6 +43,10 @@ defmodule Fields.AddressTest do
       {:ok, ciphertext} = AddressEncrypted.dump("123 Test St")
       assert {:ok, "123 Test St"} == AddressEncrypted.load(ciphertext)
     end
+
+    test "Address.load returns a string" do
+      assert {:ok, "123 Test St"} == Address.load("123 Test St")
+    end
   end
 
   test "Address.equal?/2 confirms terms are equal" do
