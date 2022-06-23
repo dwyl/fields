@@ -5,19 +5,21 @@ defmodule Fields.MixProject do
     [
       app: :fields,
       description: "A collection of useful fields for building Phoenix apps faster!",
-      version: "2.8.2",
+      version: "2.9.0",
       elixir: ">= 1.10.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
       elixirc_paths: elixirc_paths(Mix.env()),
-
+      aliases: aliases(),
       # coverage
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
+        c: :test,
         coveralls: :test,
         "coveralls.json": :test,
-        "coveralls.html": :test
+        "coveralls.html": :test,
+        t: :test,
       ]
     ]
   end
@@ -40,7 +42,7 @@ defmodule Fields.MixProject do
   defp deps do
     [
       # password hashing
-      {:argon2_elixir, "~> 2.4.0"},
+      {:argon2_elixir, "~> 3.0.0"},
       # ecto types
       {:ecto, "~> 3.8"},
       # strip noise from html field
@@ -63,6 +65,15 @@ defmodule Fields.MixProject do
       licenses: ["GNU GPL v2.0"],
       links: %{github: "https://github.com/dwyl/fields"},
       files: ~w(lib LICENSE mix.exs README.md .formatter.exs)
+    ]
+  end
+
+  # See the documentation for `Mix` for more info on aliases:
+  # https://hexdocs.pm/mix/1.12.3/Mix.html#module-aliases
+  defp aliases do
+    [
+      c: ["coveralls.html"],
+      t: ["test"],
     ]
   end
 end

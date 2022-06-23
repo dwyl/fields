@@ -1,5 +1,10 @@
 defmodule Fields.Helpers do
-  @moduledoc false
+  @moduledoc """
+  Helper functions for hashing, 
+  generating (random) salt values
+  and fetching secrets form environment.
+  """
+
   @doc """
   Hash a string, or a value that implements the String.Chars protocol, using
   Argon2. Argon2 is a strong but slow hashing function, so is recommended
@@ -7,7 +12,7 @@ defmodule Fields.Helpers do
   """
   @spec hash(atom(), String.Chars.t()) :: String.t()
   def hash(:argon2, value) do
-    Argon2.Base.hash_password(to_string(value), Argon2.gen_salt(), [{:argon2_type, 2}])
+    Argon2.Base.hash_password(to_string(value), Argon2.Base.gen_salt(), [{:argon2_type, 2}])
   end
 
   @spec hash(atom(), String.Chars.t()) :: String.t()

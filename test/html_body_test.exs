@@ -40,4 +40,8 @@ defmodule Fields.HtmlBodyTest do
       assert Body.equal?("hello", "hello")
     end
   end
+
+  test "HtmlBody.embed_as/1 returns :self" do
+    assert Body.embed_as(:self) == :self
+  end
 end

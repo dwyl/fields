@@ -83,4 +83,10 @@ defmodule Fields.EmailTest do
       assert EmailEncrypted.equal?("hello", "hello")
     end
   end
+
+  test "Email embed_as/1 returns :self" do
+    assert EmailEncrypted.embed_as(:self) == :self
+    assert EmailHash.embed_as(:self) == :self
+    assert EmailPlaintext.embed_as(:self) == :self
+  end
 end

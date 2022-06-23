@@ -2,8 +2,15 @@
 
 # Fields
 
-A collection of commonly used fields implemented as custom Ecto types
-with validation, sanitising and encryption/hashing. <br />
+A **collection of frequently used fields** implemented as custom **`Ecto` types** <br />
+with 
+[validation](https://hexdocs.pm/fields/Fields.Validate.html), 
+[sanitising](https://hexdocs.pm/fields/Fields.HtmlBody.html) 
+and 
+[encryption](https://hexdocs.pm/fields/Fields.AES.html)
+/ 
+[hashing](https://hexdocs.pm/fields/Fields.Password.html)
+to **build `Phoenix` Apps _much_ faster!** 🚀<br />
 <!--
 TODO: update intro copy once we ship better docs!
 Ship your Phoenix App _much_ faster by using well-documented fields
@@ -26,8 +33,8 @@ See below for examples!
 # _Why_? 🤷
 
 We found ourselves repeating code
-for commonly used fields on each new Phoenix project/App.
-We wanted a _much_ easier/faster way of building apps
+for commonly used fields on each new **`Phoenix`** project/App ... <br />
+We wanted a **_much_ easier/faster** way of building apps
 so we created a collection of pre-defined fields
 with built-in validation, sanitising and security.
 **`Fields`** makes defining Ecto Schemas faster
@@ -44,6 +51,10 @@ to your Phoenix/Ecto schemas so you can build apps faster!
 i.e. all "user" data should be encrypted _before_ being stored in the database.
 This project makes hashing, encryption and _decryption_ for secure data storage
 _much_ easier for everyone.
+
+> This package was born out of our research 
+> into the best/easiest way to encrypt data in **`Phoenix`**:
+> [dwyl/phoenix-ecto-encryption-example](https://github.com/dwyl/phoenix-ecto-encryption-example)
 
 # _Who_? 👥
 
@@ -67,7 +78,7 @@ Add the `fields` package to your list of dependencies in your `mix.exs` file:
 ```elixir
 def deps do
   [
-    {:fields, "~> 2.8.1"}
+    {:fields, "~> 2.9.0"}
   ]
 end
 ```
@@ -211,12 +222,15 @@ sensitive information and can be stored in plaintext.
 
 ## Testing
 
-To run tests locally, you'll need to specify two env vars. 
-You can pull example values for these variables from the 
-Travis CI config file:
+```sh
+mix t
+```
+
+
+### _Coverage_
 
 ```
-ENCRYPTION_KEYS="key1,key2" SECRET_KEY_BASE="key" mix test
+mix c
 ```
 
 ## Contributing ➕
@@ -234,7 +248,7 @@ please open an issue so we can add it!
 ## Background / Further Reading 🔗
 
 If you want an in-depth understanding of how automatic/transparent
-encryption/decryption works using Ecto Types, <br />see:
+encryption/decryption works using Ecto Types, see:
 [github.com/dwyl/**phoenix-ecto-encryption-example**](https://github.com/dwyl/phoenix-ecto-encryption-example)
 
 If you are rusty/new on Binaries in Elixir,

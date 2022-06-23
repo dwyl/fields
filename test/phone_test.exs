@@ -61,4 +61,9 @@ defmodule Fields.PhoneNumberTest do
       assert PhoneNumberEncrypted.equal?("hello", "hello")
     end
   end
+
+  test "PhoneX embed_as/1 returns :self" do
+    assert PhoneNumber.embed_as(:self) == :self
+    assert PhoneNumberEncrypted.embed_as(:self) == :self
+  end
 end

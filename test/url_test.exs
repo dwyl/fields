@@ -1,6 +1,6 @@
 defmodule Fields.UrlTest do
   use ExUnit.Case
-  alias Fields.{Url}
+  alias Fields.{Url, UrlEncrypted}
 
   describe "types" do
     test "Url.type is :string" do
@@ -56,5 +56,10 @@ defmodule Fields.UrlTest do
 
   test "Url.equal?/2 confirms terms are equal" do
     assert Url.equal?("hello", "hello")
+  end
+
+  test "PhoneX embed_as/1 returns :self" do
+    assert Url.embed_as(:self) == :self
+    assert UrlEncrypted.embed_as(:self) == :self
   end
 end

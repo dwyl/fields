@@ -33,4 +33,8 @@ defmodule Fields.PasswordTest do
       assert Password.equal?("hello", "hello")
     end
   end
+
+  test "Password.embed_as/1 returns :self" do
+    assert Password.embed_as(:self) == :self
+  end
 end

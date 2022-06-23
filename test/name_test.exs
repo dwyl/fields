@@ -42,4 +42,8 @@ defmodule Fields.NameTest do
   test "Name.equal?/2 confirms terms are equal" do
     assert Name.equal?("hello", "hello")
   end
+
+  test "Name.embed_as/1 returns :self" do
+    assert Name.embed_as(:self) == :self
+  end
 end

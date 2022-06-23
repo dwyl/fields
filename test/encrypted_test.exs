@@ -32,4 +32,8 @@ defmodule Fields.EncryptedTest do
       assert Encrypted.equal?("hello", "hello")
     end
   end
+
+  test "Encrypted.embed_as/1 returns :self" do
+    assert Encrypted.embed_as(:self) == :self
+  end
 end
