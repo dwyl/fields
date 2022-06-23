@@ -48,4 +48,8 @@ defmodule Fields.DescriptionPlaintextUnlimitedTest do
       assert Description.equal?("hello", "hello")
     end
   end
+
+  test "Description.embed_as/1 returns :self" do
+    assert Description.embed_as(:self) == :self
+  end
 end

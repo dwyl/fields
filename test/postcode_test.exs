@@ -57,4 +57,9 @@ defmodule Fields.PostcodeTest do
       assert PostcodeEncrypted.equal?("hello", "hello")
     end
   end
+
+  test "PhoneX embed_as/1 returns :self" do
+    assert Postcode.embed_as(:self) == :self
+    assert PostcodeEncrypted.embed_as(:self) == :self
+  end
 end

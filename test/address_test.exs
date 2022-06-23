@@ -56,4 +56,12 @@ defmodule Fields.AddressTest do
   test "AddressEncrypted.equal?/2 confirms terms are equal" do
     assert AddressEncrypted.equal?("hello", "hello")
   end
+
+  test "Address.embed_as/0 returns :self" do
+    assert Address.embed_as(:self) == :self
+  end
+
+  test "AddressEncrypted.embed_as/0 returns :self" do
+    assert AddressEncrypted.embed_as(:self) == :self
+  end
 end

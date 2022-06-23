@@ -32,4 +32,9 @@ defmodule Fields.HashTest do
       assert Hash.equal?("hello", "hello")
     end
   end
+
+
+  test "Hash.embed_as/1 returns :self" do
+    assert Hash.embed_as(:self) == :self
+  end
 end

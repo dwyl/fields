@@ -2,8 +2,15 @@
 
 # Fields
 
-A collection of commonly used fields implemented as custom `Ecto` types <br />
-with validation, sanitising and encryption/hashing. <br />
+A **collection of frequently used fields** implemented as custom **`Ecto` types** <br />
+with 
+[validation](https://hexdocs.pm/fields/Fields.Validate.html), 
+[sanitising](https://hexdocs.pm/fields/Fields.HtmlBody.html) 
+and 
+[encryption](https://hexdocs.pm/fields/Fields.AES.html)
+/ 
+[hashing](https://hexdocs.pm/fields/Fields.Password.html)
+to **build `Phoenix` Apps _much_ faster!** 🚀<br />
 <!--
 TODO: update intro copy once we ship better docs!
 Ship your Phoenix App _much_ faster by using well-documented fields
@@ -215,12 +222,15 @@ sensitive information and can be stored in plaintext.
 
 ## Testing
 
-To run tests locally, you'll need to specify two env vars. 
-You can pull example values for these variables from the 
-Travis CI config file:
+```sh
+mix t
+```
+
+
+### _Coverage_
 
 ```
-ENCRYPTION_KEYS="key1,key2" SECRET_KEY_BASE="key" mix test
+mix c
 ```
 
 ## Contributing ➕

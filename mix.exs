@@ -11,13 +11,15 @@ defmodule Fields.MixProject do
       deps: deps(),
       package: package(),
       elixirc_paths: elixirc_paths(Mix.env()),
-
+      aliases: aliases(),
       # coverage
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
+        c: :test,
         coveralls: :test,
         "coveralls.json": :test,
-        "coveralls.html": :test
+        "coveralls.html": :test,
+        t: :test,
       ]
     ]
   end
@@ -63,6 +65,15 @@ defmodule Fields.MixProject do
       licenses: ["GNU GPL v2.0"],
       links: %{github: "https://github.com/dwyl/fields"},
       files: ~w(lib LICENSE mix.exs README.md .formatter.exs)
+    ]
+  end
+
+  # See the documentation for `Mix` for more info on aliases:
+  # https://hexdocs.pm/mix/1.12.3/Mix.html#module-aliases
+  defp aliases do
+    [
+      c: ["coveralls.html"],
+      t: ["test"],
     ]
   end
 end

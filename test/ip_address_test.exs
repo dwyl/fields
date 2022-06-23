@@ -83,4 +83,10 @@ defmodule Fields.IpAddressTest do
       assert IpAddressEncrypted.equal?("168.212.226.204", "168.212.226.204")
     end
   end
+
+  test "IpAddressX embed_as/1 returns :self" do
+    assert IpAddressHash.embed_as(:self) == :self
+    assert IpAddressEncrypted.embed_as(:self) == :self
+    assert IpAddressPlaintext.embed_as(:self) == :self
+  end
 end
