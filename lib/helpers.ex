@@ -1,5 +1,10 @@
 defmodule Fields.Helpers do
-  @moduledoc false
+  @moduledoc """
+  Helper functions for hashing, 
+  generating (random) salt values
+  and fetching secrets form environment.
+  """
+
   @doc """
   Hash a string, or a value that implements the String.Chars protocol, using
   Argon2. Argon2 is a strong but slow hashing function, so is recommended
