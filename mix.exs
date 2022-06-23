@@ -5,7 +5,7 @@ defmodule Fields.MixProject do
     [
       app: :fields,
       description: "A collection of useful fields for building Phoenix apps faster!",
-      version: "2.8.2",
+      version: "2.9.0",
       elixir: ">= 1.10.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
