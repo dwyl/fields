@@ -78,7 +78,7 @@ Add the `fields` package to your list of dependencies in your `mix.exs` file:
 ```elixir
 def deps do
   [
-    {:fields, "~> 2.9.0"}
+    {:fields, "~> 2.9.1"}
   ]
 end
 ```
