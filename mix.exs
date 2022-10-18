@@ -5,7 +5,7 @@ defmodule Fields.MixProject do
     [
       app: :fields,
       description: "A collection of useful fields for building Phoenix apps faster!",
-      version: "2.9.1",
+      version: "2.10.0",
       elixir: ">= 1.10.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -19,7 +19,7 @@ defmodule Fields.MixProject do
         coveralls: :test,
         "coveralls.json": :test,
         "coveralls.html": :test,
-        t: :test,
+        t: :test
       ]
     ]
   end
@@ -49,7 +49,6 @@ defmodule Fields.MixProject do
       {:envar, "~> 1.0.8"},
       # strip noise from html field
       {:html_sanitize_ex, "~> 1.4.2"},
-      
 
       # stream_data for property based testing
       {:stream_data, "~> 0.5.0", only: :test},
@@ -76,7 +75,7 @@ defmodule Fields.MixProject do
   defp aliases do
     [
       c: ["coveralls.html"],
-      t: ["test"],
+      t: ["test"]
     ]
   end
 end
