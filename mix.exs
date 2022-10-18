@@ -5,7 +5,7 @@ defmodule Fields.MixProject do
     [
       app: :fields,
       description: "A collection of useful fields for building Phoenix apps faster!",
-      version: "2.10.0",
+      version: "2.10.1",
       elixir: ">= 1.10.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -44,7 +44,9 @@ defmodule Fields.MixProject do
       # password hashing
       {:argon2_elixir, "~> 3.0.0"},
       # ecto types
-      {:ecto, "~> 3.8"},
+      # require older version of ecto for Phoenix compatibility ...
+      #
+      {:ecto, "~> 3.3"},
       # Check/get Environment Variables: https://github.com/dwyl/envar
       {:envar, "~> 1.0.8"},
       # strip noise from html field
