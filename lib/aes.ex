@@ -6,8 +6,9 @@ defmodule Fields.AES do
   this makes "bruteforce" decryption much more difficult.
   See `encrypt/1` and `decrypt/1` for more details.
   """
-  # Use AES 256 Bit Keys for Encryption.
+  # Use AES 256 Bit Keys for Encryption. (aad = "Associated Authenticated Data")
   @aad "AES256GCM"
+  @cipher :aes_gcm
   @doc """
   Encrypt Using AES GCM.
   Uses a random IV for each call, and prepends the IV and Tag to the
@@ -34,7 +35,7 @@ defmodule Fields.AES do
     key = get_key(key_id)
 
     {ciphertext, tag} =
-      :crypto.crypto_one_time_aead(:aes_256_gcm, key, iv, to_string(plaintext), @aad, true)
+      :crypto.crypto_one_time_aead(@cipher, key, iv, to_string(plaintext), @aad, true)
 
     # 1 >> "0001"
     key_id_str = String.pad_leading(to_string(key_id), 4, "0")
