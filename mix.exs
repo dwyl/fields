@@ -64,7 +64,7 @@ defmodule Fields.MixProject do
   defp package do
     [
       maintainers: ["dwyl"],
-      licenses: ["GNU GPL v2.0"],
+      licenses: ["GPL-2.0-or-later"],
       links: %{github: "https://github.com/dwyl/fields"},
       files: ~w(lib LICENSE mix.exs README.md .formatter.exs)
     ]
