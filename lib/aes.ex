@@ -8,7 +8,7 @@ defmodule Fields.AES do
   """
   # Use AES 256 Bit Keys for Encryption. (aad = "Associated Authenticated Data")
   @aad "AES256GCM"
-  @cipher :aes_gcm
+  @cipher :aes_256_gcm
   @doc """
   Encrypt Using AES GCM.
   Uses a random IV for each call, and prepends the IV and Tag to the
