@@ -57,7 +57,7 @@ defmodule Fields.MixProject do
       {:excoveralls, "~> 0.15.0", only: [:test, :dev]},
 
       # documentation
-      {:ex_doc, "~> 0.28.3", only: :dev},
+      {:ex_doc, "~> 0.29.0", only: :dev},
       {:inch_ex, ">=2.0.0", only: :docs}
     ]
   end
