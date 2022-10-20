@@ -6,11 +6,11 @@ defmodule Fields.AES do
   this makes "bruteforce" decryption much more difficult.
   See `encrypt/1` and `decrypt/1` for more details.
   """
-  # Use AES 256 Bit Keys for Encryption.
+  # Use AES 256 Bit Keys for Encryption. (aad = "Associated Authenticated Data")
   @aad "AES256GCM"
+  @cipher :aes_256_gcm
   @doc """
-  Encrypt Using AES Galois/Counter Mode (GCM)
-  https://en.wikipedia.org/wiki/Galois/Counter_Mode
+  Encrypt Using AES GCM.
   Uses a random IV for each call, and prepends the IV and Tag to the
   ciphertext.  This means that `encrypt/1` will never return the same ciphertext
   for the same value. This makes "cracking" (bruteforce decryption) much harder!
@@ -33,7 +33,10 @@ defmodule Fields.AES do
     # get *specific* key (by id) from list of keys.
     key_id = get_key_id()
     key = get_key(key_id)
-    {ciphertext, tag} = :crypto.crypto_one_time_aead(:aes_256_gcm, key, iv, to_string(plaintext), @aad, true)
+
+    {ciphertext, tag} =
+      :crypto.crypto_one_time_aead(@cipher, key, iv, to_string(plaintext), @aad, true)
+
     # 1 >> "0001"
     key_id_str = String.pad_leading(to_string(key_id), 4, "0")
     # "return" key_id_str with the iv, cipher tag & ciphertext
@@ -87,11 +90,11 @@ defmodule Fields.AES do
   # consider optimizing if benchmarking shows it is.
   defp fetch_keys() do
     Envar.get("ENCRYPTION_KEYS", Application.fetch_env!(:fields, :encryption_keys))
-      # remove single-quotes around key list in .env
-      |> String.replace("'", "")
-      #  split the CSV list of keys
-      |> String.split(",")
-      # decode the keys
-      |> Enum.map(fn key -> :base64.decode(key) end)
+    # remove single-quotes around key list in .env
+    |> String.replace("'", "")
+    #  split the CSV list of keys
+    |> String.split(",")
+    # decode the keys
+    |> Enum.map(fn key -> :base64.decode(key) end)
   end
 end

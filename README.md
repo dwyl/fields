@@ -3,14 +3,15 @@
 # Fields
 
 A **collection of frequently used fields** implemented as custom **`Ecto` types** <br />
-with 
-[validation](https://hexdocs.pm/fields/Fields.Validate.html), 
-[sanitising](https://hexdocs.pm/fields/Fields.HtmlBody.html) 
-and 
+with
+[validation](https://hexdocs.pm/fields/Fields.Validate.html),
+[sanitising](https://hexdocs.pm/fields/Fields.HtmlBody.html)
+and
 [encryption](https://hexdocs.pm/fields/Fields.AES.html)
-/ 
+/
 [hashing](https://hexdocs.pm/fields/Fields.Password.html)
 to **build `Phoenix` Apps _much_ faster!** 🚀<br />
+
 <!--
 TODO: update intro copy once we ship better docs!
 Ship your Phoenix App _much_ faster by using well-documented fields
@@ -18,12 +19,13 @@ with built-in validation, testing, sanitising and encryption.
 See below for examples!
 -->
 
-[![Build Status](https://img.shields.io/travis/dwyl/fields/master.svg?style=flat-square)](https://travis-ci.org/dwyl/fields)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dwyl/fields/Elixir%20CI?label=build&style=flat-square)
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/fields/master.svg?style=flat-square)](http://codecov.io/github/dwyl/fields?branch=master)
 [![Hex.pm](https://img.shields.io/hexpm/v/fields?color=brightgreen&style=flat-square)](https://hex.pm/packages/fields)
 [![docs](https://img.shields.io/badge/docs-maintained-brightgreen?style=flat-square)](https://hexdocs.pm/fields/api-reference.html)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/fields/issues)
 [![HitCount](https://hits.dwyl.com/dwyl/fields.svg)](https://hits.dwyl.com/dwyl/fields)
+
 <!-- uncomment when service is working ...
 [![Inline docs](http://inch-ci.org/github/dwyl/fields.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/fields)
 -->
@@ -40,19 +42,18 @@ with built-in validation, sanitising and security.
 **`Fields`** makes defining Ecto Schemas faster
 and more precise.
 
-
 # _What_? 💭
 
 An Elixir package that helps you add popular custom types
 to your Phoenix/Ecto schemas so you can build apps faster!
 
 > **@dwyl** we are firm believers that personal data
-(_Personally Identifiable Information_ (PII)) should be encrypted "at rest"
-i.e. all "user" data should be encrypted _before_ being stored in the database.
-This project makes hashing, encryption and _decryption_ for secure data storage
-_much_ easier for everyone.
+> (_Personally Identifiable Information_ (PII)) should be encrypted "at rest"
+> i.e. all "user" data should be encrypted _before_ being stored in the database.
+> This project makes hashing, encryption and _decryption_ for secure data storage
+> _much_ easier for everyone.
 
-> This package was born out of our research 
+> This package was born out of our research
 > into the best/easiest way to encrypt data in **`Phoenix`**:
 > [dwyl/phoenix-ecto-encryption-example](https://github.com/dwyl/phoenix-ecto-encryption-example)
 
@@ -62,14 +63,13 @@ This module is for people building Elixir/Phoenix apps
 who want to ship _simpler_ and more maintainable code.
 
 > We've attempted to make **`Fields`**
-as **beginner-friendly** as possible. <br />
-If you get stuck using it or anything is unclear, please ask for
-[help!](https://github.com/dwyl/fields/issues)
+> as **beginner-friendly** as possible. <br />
+> If you get stuck using it or anything is unclear, please ask for
+> [help!](https://github.com/dwyl/fields/issues)
 
 # _How_? ✅
 
 Start using **`Fields`** in your Phoenix App today with these 3 easy steps:
-
 
 ## 1. Add the `fields` hex package to `deps` in `mix.exs` 📦
 
@@ -78,14 +78,13 @@ Add the `fields` package to your list of dependencies in your `mix.exs` file:
 ```elixir
 def deps do
   [
-    {:fields, "~> 2.9.1"}
+    {:fields, "~> 2.10.3"}
   ]
 end
 ```
 
 Once you have saved the `mix.exs` file,
 run **`mix deps.get`** in your terminal to download.
-
 
 ## 2. Ensure you have the necessary environment variables 🔑
 
@@ -103,18 +102,16 @@ If you need to create a secure `SECRET_KEY_BASE` value, please see:
 And for `ENCRYPTION_KEYS`, see:
 [How to create encryption keys](https://github.com/dwyl/phoenix-ecto-encryption-example#how-to-generate-aes-encryption-keys)
 
-
 > In our case we use a **`.env`** file
-to manage our environment variables.
-See:
-[github.com/dwyl/**learn-environment-variables**](https://git.io/JeMLg) <br />
-This allows us to securely manage our secret keys in dev
-without the risk of accidentally publishing them on Github. <br />
-When we _deploy_ our Apps, we use our service provider's
-built-in key management service to securely store Environment Variables.
-e.g:
-[Environment Variables on Heroku](https://github.com/dwyl/learn-environment-variables#environment-variables-on-heroku)
-
+> to manage our environment variables.
+> See:
+> [github.com/dwyl/**learn-environment-variables**](https://git.io/JeMLg) <br />
+> This allows us to securely manage our secret keys in dev
+> without the risk of accidentally publishing them on Github. <br />
+> When we _deploy_ our Apps, we use our service provider's
+> built-in key management service to securely store Environment Variables.
+> e.g:
+> [Environment Variables on Heroku](https://github.com/dwyl/learn-environment-variables#environment-variables-on-heroku)
 
 ## 3. Apply the relevant field(s) to your schema 📝
 
@@ -183,39 +180,39 @@ e.g:
 
 ## Available `Fields` 📖
 
-+ [`Address`](lib/address.ex) - an address for a physical location.
-Validated and stored as a (`plaintext`) `String`.
-+ [`AddressEncrypted`](lib/address_encrypted.ex) - an address for a customer
-or user which should be stored encrypted for data protection.
-+ [`DescriptionPlaintextUnlimited`](lib/description_plaintext_unlimited.ex) -
-filters any HTML/JS to avoid security issues. Perfect for blog post comments.
-+ [`Encrypted`](lib/encrypted.ex) - a general purpose encrypted field.
+- [`Address`](lib/address.ex) - an address for a physical location.
+  Validated and stored as a (`plaintext`) `String`.
+- [`AddressEncrypted`](lib/address_encrypted.ex) - an address for a customer
+  or user which should be stored encrypted for data protection.
+- [`DescriptionPlaintextUnlimited`](lib/description_plaintext_unlimited.ex) -
+  filters any HTML/JS to avoid security issues. Perfect for blog post comments.
+- [`Encrypted`](lib/encrypted.ex) - a general purpose encrypted field.
   converts any type of data `to_string` and then encrypts it.
-+ [`EmailEncrypted`](lib/email_encrypted.ex) - validate and strongly encrypt
-email address to ensure they are kept private and secure.
-+ [`EmailHash`](lib/email_hash.ex) - when an email needs to be looked up fast
-without decrypting. Salted and hashed with `:sha256`.
-+ [`EmailPlaintext`](lib/email_plaintext.ex) - when an email address is `public`
-there's no advantage to encrypting it. e.g. a customer support email.
-+ [`Hash`](lib/hash.ex) - a general-purpose hash field using `:sha256`,
-useful if you need to store the hash of a value. (_one way_)
-+ [`HtmlBody`](lib/html-body.ex) - useful for storing HTML data e.g in a CMS.
-+ [`Name`](lib/html-body.ex) - used for personal names
-that need to be kept private/secure. Max length 35 characters. AES Encrypted.
-+ [`Password`](lib/password.ex) - passwords hashed using `argon2`.
-+ [`PhoneNumberEncrypted`](lib/phone_number_encrypted.ex) - a phone number that should be kept private gets validated and encrypted.
-+ [`PhoneNumber`](lib/phone_number.ex) - when a phone number is _not_
-sensitive information and can be stored in plaintext.
-+ [`Postcode`](lib/postcode.ex) - validated postcode stored as `plaintext`.
-+ [`PostcodeEncrypted`](lib/postcode_encrypted.ex) - validated and encrypted.
-+ [`Url`](lib/url.ex) - validate a URL and store as `plaintext`
-(_not encrypted_) `String`
-+ [`UrlEncrypted`](lib/url_encrypted.ex) - validate a URL and store as AES _encrypted_ `Binary`
-+ [`IpAddressPlaintext`](lib/ip_address_plaintext.ex) - validate an ipv4 and ipv6 address and store as `plaintext`
-+ [`IpAddressHash`](lib/ip_address_hash.ex) - hash for ipv4 or ipv6
-+ [`IpAddressEncrypted`](lib/ip_address_encrypted.ex) - validate an ipv4 and ipv6 address and store as AES _encrypted_ `Binary`
+- [`EmailEncrypted`](lib/email_encrypted.ex) - validate and strongly encrypt
+  email address to ensure they are kept private and secure.
+- [`EmailHash`](lib/email_hash.ex) - when an email needs to be looked up fast
+  without decrypting. Salted and hashed with `:sha256`.
+- [`EmailPlaintext`](lib/email_plaintext.ex) - when an email address is `public`
+  there's no advantage to encrypting it. e.g. a customer support email.
+- [`Hash`](lib/hash.ex) - a general-purpose hash field using `:sha256`,
+  useful if you need to store the hash of a value. (_one way_)
+- [`HtmlBody`](lib/html-body.ex) - useful for storing HTML data e.g in a CMS.
+- [`Name`](lib/html-body.ex) - used for personal names
+  that need to be kept private/secure. Max length 35 characters. AES Encrypted.
+- [`Password`](lib/password.ex) - passwords hashed using `argon2`.
+- [`PhoneNumberEncrypted`](lib/phone_number_encrypted.ex) - a phone number that should be kept private gets validated and encrypted.
+- [`PhoneNumber`](lib/phone_number.ex) - when a phone number is _not_
+  sensitive information and can be stored in plaintext.
+- [`Postcode`](lib/postcode.ex) - validated postcode stored as `plaintext`.
+- [`PostcodeEncrypted`](lib/postcode_encrypted.ex) - validated and encrypted.
+- [`Url`](lib/url.ex) - validate a URL and store as `plaintext`
+  (_not encrypted_) `String`
+- [`UrlEncrypted`](lib/url_encrypted.ex) - validate a URL and store as AES _encrypted_ `Binary`
+- [`IpAddressPlaintext`](lib/ip_address_plaintext.ex) - validate an ipv4 and ipv6 address and store as `plaintext`
+- [`IpAddressHash`](lib/ip_address_hash.ex) - hash for ipv4 or ipv6
+- [`IpAddressEncrypted`](lib/ip_address_encrypted.ex) - validate an ipv4 and ipv6 address and store as AES _encrypted_ `Binary`
 
-***Detailed documentation*** available on **HexDocs**:
+**_Detailed documentation_** available on **HexDocs**:
 [hexdocs.pm/**fields**](https://hexdocs.pm/fields)
 
 <br />
@@ -225,7 +222,6 @@ sensitive information and can be stored in plaintext.
 ```sh
 mix t
 ```
-
 
 ### _Coverage_
 
@@ -242,7 +238,6 @@ please open an issue so we can add it!
 
 <br />
 
-
 <br />
 
 ## Background / Further Reading 🔗
@@ -254,7 +249,6 @@ encryption/decryption works using Ecto Types, see:
 If you are rusty/new on Binaries in Elixir,
 take a look at this post by @blackode: <br />
 https://medium.com/blackode/playing-with-elixir-binaries-strings-dd01a40039d5
-
 
 # Questions?
 
@@ -270,23 +264,23 @@ and
 [`EmailHash`](https://github.com/dwyl/fields/blob/main/lib/email_hash.ex)
 serve very different purposes.
 Briefly:
-with 
+with
 [**encryption**](https://en.wikipedia.org/wiki/Encryption)
-the output is **_always_ different** 
+the output is **_always_ different**
 is meant for safely storing sensitive data
 that we want to **_decrypt_** later
-whereas with 
+whereas with
 [**hash**](https://en.wikipedia.org/wiki/Hash_function)
 the output is **_always_ the same**
-it cannot be "unhashed" but 
+it cannot be "unhashed" but
 can be used to
-[***check***](https://en.wikipedia.org/wiki/Checksum) a value,
+[**_check_**](https://en.wikipedia.org/wiki/Checksum) a value,
 i.e. you can lookup a _hashed_ value in a database.
 
-The best way to understand how these work 
-is to see it for yourself. 
-Start an 
-[`IEx`](https://hexdocs.pm/iex/1.1.1/IEx.html) 
+The best way to understand how these work
+is to see it for yourself.
+Start an
+[`IEx`](https://hexdocs.pm/iex/1.1.1/IEx.html)
 session in your terminal:
 
 ```sh
@@ -302,6 +296,7 @@ Compiling 23 files (.ex)
 Generated fields app
 Interactive Elixir (1.12.3) - press Ctrl+C to exit (type h() ENTER for help)
 ```
+
 That confirms the `fields` module has compiled.
 
 #### Encryption
@@ -321,18 +316,18 @@ iex(2)> encrypted = Fields.AES.encrypt(email)
   80, 194, 241, 31, 28, 24, 155, 172, 208, 185, 142, 64, 65, 127>>
 ```
 
-> **Note**: the `Fields.EmailEncrypted` 
-uses the `AES.encrypt/1` behind the scenes,
-that's why we are using it here directly. 
-You could just as easily have written: 
-`{:ok, encrypted} = Fields.EmailEncrypted.dump(email)`
-this is just a shorthand.
+> **Note**: the `Fields.EmailEncrypted`
+> uses the `AES.encrypt/1` behind the scenes,
+> that's why we are using it here directly.
+> You could just as easily have written:
+> `{:ok, encrypted} = Fields.EmailEncrypted.dump(email)`
+> this is just a shorthand.
 
-That output `<<48, 48, 48 ... 64, 65, 127>>` is a 
+That output `<<48, 48, 48 ... 64, 65, 127>>` is a
 [**bitstring**](https://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html#bitstrings)
 which is the sequence of bits in memory.
-The encrypted data - usually called 
-["ciphertext"](https://en.wikipedia.org/wiki/Ciphertext) - 
+The encrypted data - usually called
+["ciphertext"](https://en.wikipedia.org/wiki/Ciphertext) -
 is not human readable, that's a feature.
 But if you want to _decrypt_ it back to its human-readable form,
 simply run:
@@ -346,13 +341,13 @@ iex(3)> decrypted = Fields.AES.decrypt(encrypted)
 So we know that an encrypted value can be decrypted.
 In the case of `EmailEncrypted` this is useful
 when we want to send someone an email message.
-For security/privacy, 
+For security/privacy,
 we want their sensitive personal data to be stored
 _encrypted_ in the Database,
 but when we need to decrypt it to send them a message,
 it's easy enough.
 
-If you run the `Fields.AES.encrypt/1` function 
+If you run the `Fields.AES.encrypt/1` function
 multiple times in your terminal,
 you will _always_ see different output:
 
@@ -375,23 +370,21 @@ iex(7)> Fields.AES.encrypt(email)
    235, 162, 186, 132, 23, 34, 174, 171, 157, 115, 54, 211, 124, 247, ...>>
 ```
 
-The first 4 bytes `<<48, 48, 48, 49,` are the same 
+The first 4 bytes `<<48, 48, 48, 49,` are the same
 because we are using the same encryption key.
-But the rest is _always_ different. 
-
+But the rest is _always_ different.
 
 #### Hashing
 
-A `hash` function 
-can be used to map data of arbitrary size 
+A `hash` function
+can be used to map data of arbitrary size
 to fixed-size values.
-i.e. _any_ length of `plaintext` will 
+i.e. _any_ length of `plaintext` will
 result in the _same_ length `hash` _value_.
 A `hash` function is _one-way_,
 it cannot be reversed or "un-hashed".
 The `hash` _value_ is _always_ the same
 for a given string of plaintext.
-
 
 Try it in `IEx`:
 
@@ -410,11 +403,11 @@ iex(4)> Fields.Helpers.hash(:sha256, email)
   17, 97, 146, 103, 115, 3, 185, 230, 137, 218, 137, 209, 111, 48, 236>>
 ```
 
-The hash _value_ is identical for the given input text 
+The hash _value_ is identical for the given input text
 in this case the email address `"alex@gmail.com"`.
 
 If you use the `Fields.EmailHash.dump/1` function,
-you will see the same hash value 
+you will see the same hash value
 (_because the same helper function is invoked_):
 
 ```elixir
@@ -430,12 +423,11 @@ iex(6)> Fields.EmailHash.dump(email)
 
 When the `EmailHash` is stored in a database
 we can lookup an email address by hashing it
-and comparing it to the list. 
+and comparing it to the list.
 
-The best way of _visualizing_ this 
-is to convert the hash value (bitstring) 
+The best way of _visualizing_ this
+is to convert the hash value (bitstring)
 to `base64` so that it is _human-readable_:
-
 
 ```elixir
 iex(1)> email = "alex@gmail.com"
@@ -450,14 +442,13 @@ iex(3)> Fields.Helpers.hash(:sha256, email) |> :base64.encode
 
 Imagine you have a database table called `people` that has just 3 columns: `id`, `email_hash` and `email_encrypted`
 
+| `id` | `email_hash`                                 | `email_encrypted`                      |
+| :--: | -------------------------------------------- | -------------------------------------- |
+|  1   | X/v7zLU77wTawSMU34PbZR4RYZJncwO55onaidFvMOw= | MDAwMc57Y1j0nhwOdw7EvNeUVEfYQoAr7aT6oX |
+|  2   | +zXMhia/Z2I64nul6pqoDZTVM1q2K21Pby6GtPcm9iE= | MDAwMXnS1uwGN/cZRFkQgArm2Sbj9y+hnUJIS7 |
+|  3   | maY4IxoRSOSqm6qyJDrnEN1JQssJRqRGhzwOown4DPU= | MDAwMa4v0FBko++zqfAkfisXOLosQfrDLAdPax |
 
-| `id`  | `email_hash`  | `email_encrypted` | 
-|:-----:| ------------- | ----------------- |
-|   1   | X/v7zLU77wTawSMU34PbZR4RYZJncwO55onaidFvMOw= | MDAwMc57Y1j0nhwOdw7EvNeUVEfYQoAr7aT6oX |
-|   2   | +zXMhia/Z2I64nul6pqoDZTVM1q2K21Pby6GtPcm9iE= | MDAwMXnS1uwGN/cZRFkQgArm2Sbj9y+hnUJIS7 |
-|   3   | maY4IxoRSOSqm6qyJDrnEN1JQssJRqRGhzwOown4DPU= | MDAwMa4v0FBko++zqfAkfisXOLosQfrDLAdPax |
-
-With this "database" table, 
+With this "database" table,
 we can now _lookup_ an email address to find out their `id`:
 
 ```elixir
@@ -471,22 +462,22 @@ therefore **Alice's** `id` is `2` in the database.
 <!--
 
 [AES.encrypt/1](https://github.com/dwyl/fields/blob/519f2e9da9c6267e9b9b5359370b21a78390d020/lib/aes.ex#L30)
-has an 
+has an
 [Initialization Vector](https://en.wikipedia.org/wiki/Initialization_vector) (**`IV`**)
-which is a random set of bytes 
+which is a random set of bytes
 prepended to the data each time it gets encrypted.
 This increases the randomness of the **`ciphertext`**
-and thus makes it more difficult to `decrypt` 
+and thus makes it more difficult to `decrypt`
 in the event an attacker accesses the DB.
 
 
 The `IV` is included in the `bitstring` returned by `AES.encrypt/1`
 which could be split and stored separately in a high security system.
-We are storing them together for now as we feel that having a unique key 
+We are storing them together for now as we feel that having a unique key
 stored in a Key Management System (KMS) is adequate for our needs.
 
 
 
-### How does 
+### How does
 
 -->

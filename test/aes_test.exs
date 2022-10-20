@@ -33,4 +33,11 @@ defmodule Fields.AESTest do
     plaintext = "hello" |> AES.encrypt() |> AES.decrypt()
     assert plaintext == "hello"
   end
+
+  test "encrypt/1 auth regression test #118" do
+    email = "admin@dwylauth.com"
+    ciphertext = email |> AES.encrypt()
+    plaintext = ciphertext |> AES.decrypt()
+    assert plaintext == email
+  end
 end
