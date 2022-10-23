@@ -20,14 +20,14 @@ See below for examples!
 -->
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dwyl/fields/Elixir%20CI?label=build&style=flat-square)
-[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/fields/master.svg?style=flat-square)](http://codecov.io/github/dwyl/fields?branch=master)
+[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/fields/master.svg?style=flat-square)](https://codecov.io/github/dwyl/fields?branch=master)
 [![Hex.pm](https://img.shields.io/hexpm/v/fields?color=brightgreen&style=flat-square)](https://hex.pm/packages/fields)
 [![docs](https://img.shields.io/badge/docs-maintained-brightgreen?style=flat-square)](https://hexdocs.pm/fields/api-reference.html)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/fields/issues)
 [![HitCount](https://hits.dwyl.com/dwyl/fields.svg)](https://hits.dwyl.com/dwyl/fields)
 
 <!-- uncomment when service is working ...
-[![Inline docs](http://inch-ci.org/github/dwyl/fields.svg?branch=master&style=flat-square)](http://inch-ci.org/github/dwyl/fields)
+[![Inline docs](https://inch-ci.org/github/dwyl/fields.svg?branch=master&style=flat-square)](https://inch-ci.org/github/dwyl/fields)
 -->
 
 </div>
