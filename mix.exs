@@ -48,7 +48,7 @@ defmodule Fields.MixProject do
       #
       {:ecto, "~> 3.3"},
       # Check/get Environment Variables: https://github.com/dwyl/envar
-      {:envar, "~> 1.0.8"},
+      {:envar, "~> 1.1.0"},
       # strip noise from html field
       {:html_sanitize_ex, "~> 1.4.2"},
 
