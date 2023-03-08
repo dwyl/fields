@@ -1,16 +1,17 @@
 <div align="center">
 
-# Fields
+# `fields`
 
-A **collection of frequently used fields** implemented as custom **`Ecto` types** <br />
-with
+A **collection of frequently used `fields`** implemented as custom **`Ecto` Types** <br />
+with best-practice following
 [validation](https://hexdocs.pm/fields/Fields.Validate.html),
-[sanitising](https://hexdocs.pm/fields/Fields.HtmlBody.html)
-and
-[encryption](https://hexdocs.pm/fields/Fields.AES.html)
-/
-[hashing](https://hexdocs.pm/fields/Fields.Password.html)
-to **build `Phoenix` Apps _much_ faster!** 🚀<br />
+[sanitising](https://hexdocs.pm/fields/Fields.HtmlBody.html),
+transparent 
+[encryption](https://hexdocs.pm/fields/Fields.AES.html) / 
+[decryption](https://hexdocs.pm/fields/Fields.AES.html#decrypt/1)
+&
+[hashing](https://hexdocs.pm/fields/Fields.Password.html) functions<br />
+to **build Privacy Compliant & Security-focussed `Phoenix` Apps _much_ faster!** 🚀<br />
 
 <!--
 TODO: update intro copy once we ship better docs!
@@ -19,7 +20,7 @@ with built-in validation, testing, sanitising and encryption.
 See below for examples!
 -->
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dwyl/fields/Elixir%20CI?label=build&style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dwyl/fields/ci.yml?label=build&style=flat-square&branch=main)
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/fields/master.svg?style=flat-square)](https://codecov.io/github/dwyl/fields?branch=master)
 [![Hex.pm](https://img.shields.io/hexpm/v/fields?color=brightgreen&style=flat-square)](https://hex.pm/packages/fields)
 [![docs](https://img.shields.io/badge/docs-maintained-brightgreen?style=flat-square)](https://hexdocs.pm/fields/api-reference.html)
@@ -39,7 +40,7 @@ for commonly used fields on each new **`Phoenix`** project/App ... <br />
 We wanted a **_much_ easier/faster** way of building apps
 so we created a collection of pre-defined fields
 with built-in validation, sanitising and security.
-**`Fields`** makes defining Ecto Schemas faster
+**`Fields`** makes defining `Ecto` Schemas faster
 and more precise.
 
 # _What_? 💭
@@ -125,7 +126,7 @@ schema "users" do
   field :email, Fields.EmailEncrypted       # Validates email then encrypts
   field :address, Fields.AddressEncrypted   # Trims address string then encrypts
   field :postcode, Fields.PostcodeEncrypted # Validates postcode then encrypts
-  field :password, Fields.Password          # Hash password with argon2
+  field :password, Fields.Password          # Hash password with argon2 industry standard
 
   timestamps()
 end
