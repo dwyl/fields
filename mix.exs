@@ -42,7 +42,7 @@ defmodule Fields.MixProject do
   defp deps do
     [
       # password hashing
-      {:argon2_elixir, "~> 3.0.0"},
+      {:argon2_elixir, "~> 3.1.0"},
       # ecto types
       # require older version of ecto for Phoenix compatibility ...
       #
