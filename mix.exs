@@ -53,7 +53,7 @@ defmodule Fields.MixProject do
       {:html_sanitize_ex, "~> 1.4.2"},
 
       # stream_data for property based testing
-      {:stream_data, "~> 0.5.0", only: :test},
+      {:stream_data, "~> 0.6.0", only: :test},
       # tracking test coverage
       {:excoveralls, "~> 0.16.0", only: [:test, :dev]},
 
