@@ -55,7 +55,7 @@ defmodule Fields.MixProject do
       # stream_data for property based testing
       {:stream_data, "~> 0.6.0", only: :test},
       # tracking test coverage
-      {:excoveralls, "~> 0.16.0", only: [:test, :dev]},
+      {:excoveralls, "~> 0.17.0", only: [:test, :dev]},
 
       # documentation
       {:ex_doc, "~> 0.30.3", only: :dev},
