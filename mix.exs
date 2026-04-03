@@ -50,7 +50,7 @@ defmodule Fields.MixProject do
       # Check/get Environment Variables: https://github.com/dwyl/envar
       {:envar, "~> 1.1.0"},
       # strip noise from html field
-      {:html_sanitize_ex, "~> 1.4.2"},
+      {:html_sanitize_ex, "~> 1.5.0"},
 
       # stream_data for property based testing
       {:stream_data, "~> 1.2.0", only: :test},
