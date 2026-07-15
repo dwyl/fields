@@ -65,9 +65,10 @@ and more precise.
 An `Elixir` package that helps you add popular custom types
 to your `Phoenix` / `Ecto` schemas so you can **build apps _faster_**!
 
-All data is **automatically validated**,
+All data is **automatically validated**
+and
 **securely encrypted** (or hashed)
-and before being **safely stored** in the database.
+before being **safely stored**.
 e.g:
 
 <img alt="sample people table with encrypted data" src="https://github.com/user-attachments/assets/529e1db7-2530-4c06-9a23-14cd99147202" />
