@@ -73,6 +73,11 @@ e.g:
 
 <img alt="sample people table with encrypted data" src="https://github.com/user-attachments/assets/529e1db7-2530-4c06-9a23-14cd99147202" />
 
+> The **data is illegible** to anyone
+> who doesn't have the encryption keys. <br />
+> So in the event of **database breach/compromise**
+> the **data is still safe**. <br />
+
 > **@dwyl** we are firm believers that **personal data**
 > (_Personally Identifiable Information_ (PII)) **should be encrypted**
 > [at rest](https://en.wikipedia.org/wiki/Digital_data#Data_at_rest)
