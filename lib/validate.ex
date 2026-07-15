@@ -63,7 +63,9 @@ defmodule Fields.Validate do
   See https://stackoverflow.com/questions/42522442/how-to-validate-a-url-via-a-check-constraint-in-postgres/51965621 for details on how the regex for validation was chosen
   """
   def url(url) do
-    regex = ~r/(?:https?|ftp):\/\/(www\\.)?[-a-zA-Z0-9@:%._\+~#=]{2,255}\.[a-z]{2,9}\b([-a-zA-Z0-9@:%_+.,~#?!&>\/\/=]*)$/
+    regex =
+      ~r/(?:https?|ftp):\/\/(www\\.)?[-a-zA-Z0-9@:%._\+~#=]{2,255}\.[a-z]{2,9}\b([-a-zA-Z0-9@:%_+.,~#?!&>\/\/=]*)$/
+
     Regex.match?(regex, url)
   end
 

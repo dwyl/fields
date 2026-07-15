@@ -22,14 +22,14 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7  # github.com/actions/checkout
       - name: Set up Elixir
-        uses: erlef/setup-beam@v1
+        uses: erlef/setup-beam@v1  # github.com/erlef/setup-beam
         with:
-          elixir-version: "1.14.2" # Define the elixir version [required]
-          otp-version: "25.1.2" # Define the OTP version [required]
+          elixir-version: "1.18.4" # Define the elixir version [required]
+          otp-version: "28.0.1"    # Define the OTP version [required]
       - name: Restore dependencies cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6     # github.com/actions/cache
         with:
           path: deps
           key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
@@ -46,4 +46,4 @@ jobs:
           ENCRYPTION_KEYS: "nMdayQpR0aoasLaq1g94FLba+A+wB44JLko47sVQXMg=,L+ZVX8iheoqgqb22mUpATmMDsvVGtafoAeb0KN5uWf0="
           SECRET_KEY_BASE: "GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO61z0DMOF"
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v7 # github.com/codecov/codecov-action

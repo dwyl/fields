@@ -5,16 +5,21 @@ defmodule Fields.MixProject do
     [
       app: :fields,
       description: "A collection of useful fields for building Phoenix apps faster!",
-      version: "2.11.0",
-      elixir: ">= 1.10.0",
+      version: "2.12.0",
+      elixir: ">= 1.18.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
       elixirc_paths: elixirc_paths(Mix.env()),
       aliases: aliases(),
       # coverage
-      test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: [
+      test_coverage: [tool: ExCoveralls]
+    ]
+  end
+
+  def cli do
+    [
+      preferred_envs: [
         c: :test,
         coveralls: :test,
         "coveralls.json": :test,
@@ -45,7 +50,6 @@ defmodule Fields.MixProject do
       {:argon2_elixir, "~> 4.1.0"},
       # ecto types
       # require older version of ecto for Phoenix compatibility ...
-      #
       {:ecto, "~> 3.3"},
       # Check/get Environment Variables: https://github.com/dwyl/envar
       {:envar, "~> 1.1.0"},

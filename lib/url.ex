@@ -14,6 +14,7 @@ defmodule Fields.Url do
 
   def type, do: :string
 
+  # Allow URLs to be blank (nil) #150
   def cast(nil), do: {:ok, nil}
 
   def cast(value) do

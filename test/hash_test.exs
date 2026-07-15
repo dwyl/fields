@@ -33,7 +33,6 @@ defmodule Fields.HashTest do
     end
   end
 
-
   test "Hash.embed_as/1 returns :self" do
     assert Hash.embed_as(:self) == :self
   end

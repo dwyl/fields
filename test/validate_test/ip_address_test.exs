@@ -18,5 +18,4 @@ defmodule Fields.ValidateIpAddressTest do
     ip_address = "0.0"
     refute Validate.ip_address(ip_address)
   end
-
 end

@@ -12,7 +12,7 @@ defmodule Fields.ValidatePostcodeTest do
     |> Enum.map(fn
       :i -> string(?0..?9, length: 1)
       :s -> string(?a..?z, length: 1)
-      :space -> string(' ', length: 1)
+      :space -> string(~c" ", length: 1)
     end)
     |> List.to_tuple()
     |> StreamData.map(fn sd -> sd |> Tuple.to_list() |> Enum.join("") end)
