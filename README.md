@@ -74,13 +74,17 @@ e.g:
 <img alt="sample people table with encrypted data" src="https://github.com/user-attachments/assets/529e1db7-2530-4c06-9a23-14cd99147202" />
 
 > **@dwyl** we are firm believers that **personal data**
-> (_Personally Identifiable Information_ (PII)) **should be encrypted** "at rest"
-> i.e. all "user" data should be encrypted _before_ being stored in the database.
-> This project makes hashing, encryption and _decryption_ for secure data storage
-> _much_ easier for everyone.
+> (_Personally Identifiable Information_ (PII)) **should be encrypted**
+> [at rest](https://en.wikipedia.org/wiki/Digital_data#Data_at_rest)
+> i.e. all "user" data should be encrypted
+> _before_ being stored in the database.
+> This project makes hashing, encryption
+> and _decryption_ for secure data storage
+> **_much_ easier** for everyone.
 
 > This package was born out of our research
-> into the best/easiest way to encrypt data in **`Phoenix`**:
+> into the best/easiest way <br />
+> to encrypt data in a **`Phoenix`** app:
 > [dwyl/phoenix-ecto-encryption-example](https://github.com/dwyl/phoenix-ecto-encryption-example)
 
 # _Who_? 👥
@@ -111,7 +115,8 @@ end
 ```
 
 Once you have saved the `mix.exs` file,
-run **`mix deps.get`** in your terminal to download.
+run **`mix deps.get`** in your terminal
+to download the package.
 
 ## 2. Ensure you have the necessary environment variables 🔑
 
@@ -124,7 +129,7 @@ export ENCRYPTION_KEYS=nMdayQpR0aoasLaq1g94FLba+A+wB44JLko47sVQXMg=
 export SECRET_KEY_BASE=GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO61z0DMOF
 ```
 
-If you need to create a secure `SECRET_KEY_BASE` value,
+If you need to create a secure `SECRET_KEY_BASE` value, <br />
 please see:
 [How to create Phoenix `secret_key_base`](https://github.com/dwyl/phoenix-ecto-encryption-example#generate-the-secret_key_base) <br />
 And for `ENCRYPTION_KEYS`, see:
@@ -278,14 +283,14 @@ If you are rusty/new on Binaries in Elixir,
 take a look at this post by @blackode: <br />
 https://medium.com/blackode/playing-with-elixir-binaries-strings-dd01a40039d5
 
-# Questions?
+# Questions? 🤔
 
 If you have questions, please open an issue:
 [github.com/dwyl/fields/issues](https://github.com/dwyl/fields/issues)
 
 A recent/good example is: [issues/169](https://github.com/dwyl/auth/issues/169)
 
-### Why do we have _both_ `EmailEncrypted` and `EmailHash` ?
+### Why do we have _both_ `EmailEncrypted` and `EmailHash` ? ✌️
 
 [`EmailEncrypted`](https://github.com/dwyl/fields/blob/main/lib/email_encrypted.ex)
 and
@@ -327,7 +332,7 @@ Interactive Elixir (1.12.3) - press Ctrl+C to exit (type h() ENTER for help)
 
 That confirms the `fields` module has compiled.
 
-#### Encryption
+#### Encryption 🙈
 
 Now that you've initialized `IEx`,
 issue the following commands:
@@ -402,7 +407,7 @@ The first 4 bytes `<<48, 48, 48, 49,` are the same
 because we are using the same encryption key.
 But the rest is _always_ different.
 
-#### Hashing
+#### Hashing #️⃣
 
 A `hash` function
 can be used to map data of arbitrary size
@@ -487,25 +492,19 @@ iex(4)> Fields.Helpers.hash(:sha256, "alice@gmail.com") |> :base64.encode
 This matches the `email_hash` in the second row of our table,
 therefore **Alice's** `id` is `2` in the database.
 
-<!--
+### `AES` Encryption 🔐
 
 [AES.encrypt/1](https://github.com/dwyl/fields/blob/519f2e9da9c6267e9b9b5359370b21a78390d020/lib/aes.ex#L30)
 has an
-[Initialization Vector](https://en.wikipedia.org/wiki/Initialization_vector) (**`IV`**)
+[Initialization Vector](https://en.wikipedia.org/wiki/Initialization_vector) 
+(**`IV`**)
 which is a random set of bytes
 prepended to the data each time it gets encrypted.
 This increases the randomness of the **`ciphertext`**
 and thus makes it more difficult to `decrypt`
 in the event an attacker accesses the DB.
 
-
 The `IV` is included in the `bitstring` returned by `AES.encrypt/1`
 which could be split and stored separately in a high security system.
-We are storing them together for now as we feel that having a unique key
+We are storing them together as we feel that having a **unique key**
 stored in a Key Management System (KMS) is adequate for our needs.
-
-
-
-### How does
-
--->
