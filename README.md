@@ -1,6 +1,7 @@
 <div align="center">
 
-<img alt="fields logo colorful text" src="https://github.com/user-attachments/assets/7ac20427-a169-4fa3-974b-fecff4bb48db" width="400"/>
+<img src="https://github.com/user-attachments/assets/41aff3c5-8d44-4079-bb9d-23a34ee47356"
+alt="fields logo colorful text" width="400"/>
 
 <!--
 Logo prompt: 
@@ -12,6 +13,8 @@ pink: ff4389, orange #f89332, yellow #ffde23,
 green #31CC5D, teal #4ad8aa, and blue #74ceff
 Background color: WHITE. 
 Text must be ultra-sharp; No blur.
+
+>> Feel free to make a better (simpler, more stylish) logo. :-)
 -->
 
 A **collection of frequently used `fields`**
@@ -60,9 +63,14 @@ and more precise.
 # _What_? 💭
 
 An `Elixir` package that helps you add popular custom types
-to your Phoenix/Ecto schemas so you can build apps faster!
+to your `Phoenix` / `Ecto` schemas so you can **build apps _faster_**!
 
-<img alt="sample people table with encrypted data" src="https://github.com/user-attachments/assets/e201bf66-879e-4a20-a674-6dc52d93493a" />
+All data is **automatically validated**,
+**securely encrypted** (or hashed)
+and before being **safely stored** in the database.
+e.g:
+
+<img alt="sample people table with encrypted data" src="https://github.com/user-attachments/assets/529e1db7-2530-4c06-9a23-14cd99147202" />
 
 > **@dwyl** we are firm believers that **personal data**
 > (_Personally Identifiable Information_ (PII)) **should be encrypted** "at rest"
