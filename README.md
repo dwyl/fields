@@ -1,17 +1,31 @@
 <div align="center">
 
-# `fields`
+<img alt="fields logo colorful text" src="https://github.com/user-attachments/assets/7ac20427-a169-4fa3-974b-fecff4bb48db" width="400"/>
 
-A **collection of frequently used `fields`** implemented as custom **`Ecto` Types** <br />
+<!--
+Logo prompt: 
+Generate a 4k image in landscape orientation 
+a playful retro-inspired 8-bit large 2D TEXT logo in monospace font Roboto Mono
+The lowercase word “fields”, where each letter is a different color, 
+specifically:
+pink: ff4389, orange #f89332, yellow #ffde23, 
+green #31CC5D, teal #4ad8aa, and blue #74ceff
+Background color: WHITE. 
+Text must be ultra-sharp; No blur.
+-->
+
+A **collection of frequently used `fields`**
+implemented as custom **`Ecto` Types** <br />
 with best-practice following
 [validation](https://hexdocs.pm/fields/Fields.Validate.html),
 [sanitising](https://hexdocs.pm/fields/Fields.HtmlBody.html),
-transparent 
-[encryption](https://hexdocs.pm/fields/Fields.AES.html) / 
+transparent
+[encryption](https://hexdocs.pm/fields/Fields.AES.html) /
 [decryption](https://hexdocs.pm/fields/Fields.AES.html#decrypt/1)
 &
-[hashing](https://hexdocs.pm/fields/Fields.Password.html) functions<br />
-to **build Privacy Compliant & Security-focussed `Phoenix` Apps _much_ faster!** 🚀<br />
+[hashing](https://hexdocs.pm/fields/Fields.Password.html)<br />
+functions to **build privacy compliant & security-focussed
+`Phoenix` apps _much_ faster!** 🚀<br />
 
 <!--
 TODO: update intro copy once we ship better docs!
@@ -33,7 +47,7 @@ See below for examples!
 
 </div>
 
-# _Why_? 🤷
+# _Why_? 🤷‍♀️
 
 We found ourselves repeating code
 for commonly used fields on each new **`Phoenix`** project/App ... <br />
@@ -45,11 +59,13 @@ and more precise.
 
 # _What_? 💭
 
-An Elixir package that helps you add popular custom types
+An `Elixir` package that helps you add popular custom types
 to your Phoenix/Ecto schemas so you can build apps faster!
 
-> **@dwyl** we are firm believers that personal data
-> (_Personally Identifiable Information_ (PII)) should be encrypted "at rest"
+<img alt="sample people table with encrypted data" src="https://github.com/user-attachments/assets/e201bf66-879e-4a20-a674-6dc52d93493a" />
+
+> **@dwyl** we are firm believers that **personal data**
+> (_Personally Identifiable Information_ (PII)) **should be encrypted** "at rest"
 > i.e. all "user" data should be encrypted _before_ being stored in the database.
 > This project makes hashing, encryption and _decryption_ for secure data storage
 > _much_ easier for everyone.
@@ -60,8 +76,8 @@ to your Phoenix/Ecto schemas so you can build apps faster!
 
 # _Who_? 👥
 
-This module is for people building Elixir/Phoenix apps
-who want to ship _simpler_ and more maintainable code.
+This module is for people building `Elixir` / `Phoenix` apps
+who want to ship _simpler_ and more **maintainable code**.
 
 > We've attempted to make **`Fields`**
 > as **beginner-friendly** as possible. <br />
@@ -70,7 +86,8 @@ who want to ship _simpler_ and more maintainable code.
 
 # _How_? ✅
 
-Start using **`Fields`** in your Phoenix App today with these 3 easy steps:
+Start using **`Fields`** in your Phoenix App today
+with these **3 easy steps**:
 
 ## 1. Add the `fields` hex package to `deps` in `mix.exs` 📦
 
@@ -79,7 +96,7 @@ Add the `fields` package to your list of dependencies in your `mix.exs` file:
 ```elixir
 def deps do
   [
-    {:fields, "~> 2.10.3"}
+    {:fields, "~> 2.12"}
   ]
 end
 ```
@@ -89,7 +106,7 @@ run **`mix deps.get`** in your terminal to download.
 
 ## 2. Ensure you have the necessary environment variables 🔑
 
-In order to use Encryption and Hashing,
+In order to use **Encryption** and **Hashing**,
 you will need to have environment variables
 defined for `ENCRYPTION_KEYS` and `SECRET_KEY_BASE` respectively.
 
@@ -98,16 +115,17 @@ export ENCRYPTION_KEYS=nMdayQpR0aoasLaq1g94FLba+A+wB44JLko47sVQXMg=
 export SECRET_KEY_BASE=GLH2S6EU0eZt+GSEmb5wEtonWO847hsQ9fck0APr4VgXEdp9EKfni2WO61z0DMOF
 ```
 
-If you need to create a secure `SECRET_KEY_BASE` value, please see:
+If you need to create a secure `SECRET_KEY_BASE` value,
+please see:
 [How to create Phoenix `secret_key_base`](https://github.com/dwyl/phoenix-ecto-encryption-example#generate-the-secret_key_base) <br />
 And for `ENCRYPTION_KEYS`, see:
 [How to create encryption keys](https://github.com/dwyl/phoenix-ecto-encryption-example#how-to-generate-aes-encryption-keys)
 
 > In our case we use a **`.env`** file
-> to manage our environment variables.
+> to manage our environment variables. <br />
 > See:
 > [github.com/dwyl/**learn-environment-variables**](https://git.io/JeMLg) <br />
-> This allows us to securely manage our secret keys in dev
+> This allows us to **securely manage** our **secret keys** in dev
 > without the risk of accidentally publishing them on Github. <br />
 > When we _deploy_ our Apps, we use our service provider's
 > built-in key management service to securely store Environment Variables.
@@ -218,15 +236,15 @@ e.g:
 
 <br />
 
-## Testing
+## Testing ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dwyl/fields/ci.yml?label=build&style=flat-square&branch=main)
 
 ```sh
 mix t
 ```
 
-### _Coverage_
+### _Coverage_ [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/fields/master.svg?style=flat-square)](https://codecov.io/github/dwyl/fields?branch=master)
 
-```
+```sh
 mix c
 ```
 
