@@ -5,7 +5,7 @@ defmodule Fields.ValidateEmailTest do
   alias Fields.Validate
 
   def valid_local() do
-    '!#$%&\'*+-/=?^_`{|}~'
+    ~c"!#$%&'*+-/=?^_`{|}~"
     |> Enum.concat(?a..?z)
     |> Enum.concat(?A..?Z)
     |> StreamData.string(min_length: 1)
@@ -28,7 +28,7 @@ defmodule Fields.ValidateEmailTest do
     end
 
     # local part of email can contain these special characters
-    check all(local <- string('!#$%&\'*+-/=?^_`{|}~', min_length: 1)) do
+    check all(local <- string(~c"!#$%&'*+-/=?^_`{|}~", min_length: 1)) do
       email = local <> "@testing.com"
       assert Validate.email(email)
     end
