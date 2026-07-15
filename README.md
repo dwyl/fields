@@ -64,7 +64,6 @@ and more precise.
 
 An `Elixir` package that helps you add popular custom types
 to your `Phoenix` / `Ecto` schemas so you can **build apps _faster_**!
-
 All data is **automatically validated**
 and
 **securely encrypted** (or hashed)
