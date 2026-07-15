@@ -508,3 +508,9 @@ The `IV` is included in the `bitstring` returned by `AES.encrypt/1`
 which could be split and stored separately in a high security system.
 We are storing them together as we feel that having a **unique key**
 stored in a Key Management System (KMS) is adequate for our needs.
+
+<hr />
+
+If you found this repository useful,
+**please star** it
+so we (and others) know you liked it. Thanks! ⭐️
