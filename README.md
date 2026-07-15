@@ -268,10 +268,12 @@ mix c
 
 ## Contributing ➕
 
-If there is a field that you need in your app
+[Contributions](https://github.com/dwyl/fields/graphs/contributors?all=1)
+are always welcome!
+If there is a `field` that you need in your app
 that is not already in the **`Fields`** package,
-please open an issue so we can add it!
-[github.com/dwyl/fields/issues](https://github.com/dwyl/fields/issues)
+[please open an issue](https://github.com/dwyl/fields/issues)
+so we can add it!
 
 <br />
 
